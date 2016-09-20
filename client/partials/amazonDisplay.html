@@ -1,0 +1,50 @@
+<!-- Modal -->
+<div ng-hide="itemLoaded" class="preloader"></div>
+<div ng-show="itemLoaded">
+  <div class="modal-content">
+    <div class="modal-body">
+      <div class="modal-product">
+        <div class="product-images">
+          <div class="main-image images">
+            <img alt="" ng-src="{{ itemDetail.img }}">
+          </div>
+        </div>
+        <div class="product-info">
+          <a href='{{ itemDetail.view }}' target='blank'><h1 class="modal-title">{{ itemDetail.title }}</h1></a>
+          <div class="price-box">
+            <span ng-if='itemDetail.percentage_Saved != "N/A"'>
+              <p class="s-price"><span class="special-price"><span class="amount"><strike>{{ itemDetail.list_price }}</strike> {{ itemDetail.sale_price }} (saves {{ itemDetail.percentage_Saved }}%)</span></span></p>
+            </span>
+
+          </div>
+          <b>Condition:</b> {{ itemDetail.condition }}<br>
+          <span ng-if='isArray(itemDetail.features)'>
+            <b>Features:</b>
+    				<ul class='feature' ng-repeat="feature in itemDetail.features">
+    					<li>{{ feature }}</li>
+    				</ul>
+          </span>
+          <span ng-if='!isArray(itemDetail.features)'>
+            <b>Features:</b><br>
+            {{ itemDetail.features }}
+          </span><br>
+          <div class="social-sharing">
+            <div class="widget widget_socialsharing_widget">
+              <h3 class="widget-title-modal">Share this product</h3>
+              <ul class="social-icons">
+                <li><a target="_blank" title="Facebook" href="#" class="facebook social-icon"><i class="fa fa-facebook"></i></a></li>
+                <li><a target="_blank" title="Twitter" href="#" class="twitter social-icon"><i class="fa fa-twitter"></i></a></li>
+                <li><a target="_blank" title="Pinterest" href="#" class="pinterest social-icon"><i class="fa fa-pinterest"></i></a></li>
+                <li><a target="_blank" title="Google +" href="#" class="gplus social-icon"><i class="fa fa-google-plus"></i></a></li>
+                <li><a target="_blank" title="LinkedIn" href="#" class="linkedin social-icon"><i class="fa fa-linkedin"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div><!-- .product-info -->
+      </div>
+    </div>
+    <div class="modal-footer">
+  	  <button class="btn btn-primary" ng-click="ok()">Close</button>
+  	</div>
+  </div>
+</div>

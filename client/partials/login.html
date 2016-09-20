@@ -1,0 +1,20 @@
+<div class='row'>
+ 	<div class='col-md-4'>
+		<h1>Login</h1>
+			<div ng-if="login_errors.length > 0" class="alert alert-danger">
+		    <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<p ng-repeat='i in login_errors'>{{i}}</p>
+		  </div>
+		</div>
+ </div>
+ <div class='row col-md-4'>
+	<form>
+		<div class='form-group'>
+	  	<label>Email:</label> <input class='form-control' type="email" name="Email" ng-model="loginUser.email">
+		</div>
+		<div class='form-group'>
+	  <label>Password:</label> <input class='form-control' type="password" name="password" ng-model="loginUser.password">
+		</div>
+	  <button class='btn btn-primary' ng-click='login()'>Login</button>
+	</form>
+ </div>

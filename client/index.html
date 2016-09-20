@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='myApp'>
+	<head>
+    <title>Grand Catch</title>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+    <!-- links for theme -->
+   	<link rel="stylesheet" href="stylesheets/animate.css">
+		<!-- jquery-ui.min css -->
+    <link rel="stylesheet" href="stylesheets/jquery-ui.min.css">
+		<!-- meanmenu css -->
+    <link rel="stylesheet" href="stylesheets/meanmenu.min.css">
+		<!-- Font-Awesome css -->
+    <link rel="stylesheet" href="stylesheets/font-awesome.min.css">
+		<!-- pe-icon-7-stroke css -->
+    <link rel="stylesheet" href="stylesheets/pe-icon-7-stroke.css">
+		<!-- Flaticon css -->
+    <link rel="stylesheet" href="stylesheets/flaticon.css">
+		<!-- venobox css -->
+    <link rel="stylesheet" href="venobox/venobox.css" type="text/css" media="screen" />
+  	<!-- nivo slider css -->
+  	<link rel="stylesheet" href="lib/css/nivo-slider.css" type="text/css" />
+  	<link rel="stylesheet" href="lib/css/preview.css" type="text/css" media="screen" />
+  	<!-- owl.carousel css -->
+    <link rel="stylesheet" href="stylesheets/owl.carousel.css">
+  	<!-- ecommerce style css -->
+  	<link rel="stylesheet" href="stylesheets/estyle.css">
+  	<!-- responsive css -->
+    <link rel="stylesheet" href="stylesheets/responsive.css">
+
+  	<script type='text/javascript' src='http://code.jquery.com/jquery-2.2.2.js'></script>
+  	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+  	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.js"></script>
+  	<script src="/components/moment/moment.js"></script>
+  	<script src="/components/angular-moment/angular-moment.js"></script>
+
+		<!-- ui bootstrap -->
+		<script type="text/javascript" src="scripts/ui-bootstrap-2.1.3.min.js"></script>
+		<script src="/components/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+
+  	<script src="scripts/modernizr-2.8.3.min.js"></script>
+  	<!-- pagination -->
+  	<script src="/components/angular-utils-pagination/dirPagination.js"></script>
+
+  	<!-- create myApp module and routes -->
+  	<script src='scripts/app.js'></script>
+
+  	<!-- Controllers -->
+  	<script src='scripts/controllers/itemsController.js'></script>
+  	<script src='scripts/controllers/paginateController.js'></script>
+  	<script src='scripts/controllers/usersController.js'></script>
+  	<script src='scripts/controllers/modalController.js'></script>
+
+		<!-- Factories -->
+  	<script src='scripts/factories/user.js'></script>
+  	<script src='scripts/factories/itemsFactory.js'></script>
+
+  	<!-- Bootstrap -->
+    <link href='/css/bootstrap.css' rel='stylesheet'>
+    <script src='/js/bootstrap.js'></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  	<!-- Async -->
+  	<script type="text/javascript" src="scripts/async.js"></script>
+    <!-- Autofocus -->
+    <script type="text/javascript" src="scripts/autofocus.js"></script>
+	</head>
+	<body>
+		<div ng-controller='usersController'>
+    		<!--Header Area Start-->
+            <div class="header-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-2 col-sm-6 col-xs-6">
+                            <div class="header-logo">
+                                <a href="#/">
+                                    <img style='width: 175px; height:150px' src="images/Grand-Catch-02.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-1 col-sm-6 visible-sm col-xs-6">
+                            <div class="header-right">
+                                <ul>
+                                    <li>
+                                        <a href="account.html"><i class="flaticon-people"></i></a>
+                                    </li>
+                                    <li class="shoping-cart">
+                                        <a href="#">
+                                            <i class="flaticon-shop"></i>
+                                            <span>2</span>
+                                        </a>
+                                        <div class="add-to-cart-product">
+                                            <div class="cart-product">
+                                                <div class="cart-product-image">
+                                                    <a href="single-product.html">
+                                                        <img src="images/shop/1.jpg" alt="">
+                                                    </a>
+                                                </div>
+                                                <div class="cart-product-info">
+                                                    <p>
+                                                        <span>1</span>
+                                                        x
+                                                        <a href="single-product.html">East of eden</a>
+                                                    </p>
+                                                    <a href="single-product.html">S, Orange</a>
+                                                    <span class="cart-price">$ 140.00</span>
+                                                </div>
+                                                <div class="cart-product-remove">
+                                                    <i class="fa fa-times"></i>
+                                                </div>
+                                            </div>
+                                            <div class="cart-product">
+                                                <div class="cart-product-image">
+                                                    <a href="single-product.html">
+                                                        <img src="images/shop/1.jpg" alt="">
+                                                    </a>
+                                                </div>
+                                                <div class="cart-product-info">
+                                                    <p>
+                                                        <span>1</span>
+                                                        x
+                                                        <a href="single-product.html">East of eden</a>
+                                                    </p>
+                                                    <a href="single-product.html">S, Orange</a>
+                                                    <span class="cart-price">$ 140.00</span>
+                                                </div>
+                                                <div class="cart-product-remove">
+                                                    <i class="fa fa-times"></i>
+                                                </div>
+                                            </div>
+                                            <div class="total-cart-price">
+                                                <div class="cart-product-line fast-line">
+                                                    <span>Shipping</span>
+                                                    <span class="free-shiping">$10.50</span>
+                                                </div>
+                                                <div class="cart-product-line">
+                                                    <span>Total</span>
+                                                    <span class="total">$ 140.00</span>
+                                                </div>
+                                            </div>
+                                            <div class="cart-checkout">
+                                                <a href="checkout.html">
+                                                    Check out
+                                                    <i class="fa fa-chevron-right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-9 col-sm-12 hidden-xs">
+                            <div class="mainmenu text-center">
+                                <nav>
+                                    <ul id="nav">
+                                        <li><a href="#/">HOME</a></li>
+                                        <li><a href="shop.html">FEATURED</a></li>
+                                        <li><a href="shop.html">REVIEW BOOK</a></li>
+                                        <li><a href="about.html">ABOUT AUTHOR</a></li>
+                                        <li><a href="#">pages</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="about.html">About Us</a></li>
+                                                <li><a href="cart.html">Cart Page</a></li>
+                                                <li><a href="checkout.html">Check Out</a></li>
+                                                <li><a href="contact.html">Contact</a></li>
+                                                <li><a href="login.html">Login</a></li>
+                                                <li><a href="my-account.html">My Account</a></li>
+                                                <li><a href="shop.html">Shopping Page</a></li>
+                                                <li><a href="single-product.html">Single Shop Page</a></li>
+                                                <li><a href="wishlist.html">Wishlist Page</a></li>
+                                                <li><a href="404.html">404 Page</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="contact.html">CONTACT</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-md-1 hidden-sm">
+                            <div class="header-right">
+                                <ul>
+                                    <li>
+                                        <a href="account.html"><i class="flaticon-people"></i></a>
+                                    </li>
+                                    <li class="shoping-cart">
+                                        <a href="#">
+                                            <i class="flaticon-shop"></i>
+                                            <span>2</span>
+                                        </a>
+                                        <div class="add-to-cart-product">
+                                            <div class="cart-product">
+                                                <div class="cart-product-image">
+                                                    <a href="single-product.html">
+                                                        <img src="images/shop/1.jpg" alt="">
+                                                    </a>
+                                                </div>
+                                                <div class="cart-product-info">
+                                                    <p>
+                                                        <span>1</span>
+                                                        x
+                                                        <a href="single-product.html">East of eden</a>
+                                                    </p>
+                                                    <a href="single-product.html">S, Orange</a>
+                                                    <span class="cart-price">$ 140.00</span>
+                                                </div>
+                                                <div class="cart-product-remove">
+                                                    <i class="fa fa-times"></i>
+                                                </div>
+                                            </div>
+                                            <div class="cart-product">
+                                                <div class="cart-product-image">
+                                                    <a href="single-product.html">
+                                                        <img src="images/shop/1.jpg" alt="">
+                                                    </a>
+                                                </div>
+                                                <div class="cart-product-info">
+                                                    <p>
+                                                        <span>1</span>
+                                                        x
+                                                        <a href="single-product.html">East of eden</a>
+                                                    </p>
+                                                    <a href="single-product.html">S, Orange</a>
+                                                    <span class="cart-price">$ 140.00</span>
+                                                </div>
+                                                <div class="cart-product-remove">
+                                                    <i class="fa fa-times"></i>
+                                                </div>
+                                            </div>
+                                            <div class="total-cart-price">
+                                                <div class="cart-product-line fast-line">
+                                                    <span>Shipping</span>
+                                                    <span class="free-shiping">$10.50</span>
+                                                </div>
+                                                <div class="cart-product-line">
+                                                    <span>Total</span>
+                                                    <span class="total">$ 140.00</span>
+                                                </div>
+                                            </div>
+                                            <div class="cart-checkout">
+                                                <a href="checkout.html">
+                                                    Check out
+                                                    <i class="fa fa-chevron-right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Header Area End-->
+            <!-- Mobile Menu Start -->
+    		<div class="mobile-menu-area">
+    			<div class="container">
+    				<div class="row">
+    					<div class="col-lg-12 col-md-12 col-sm-12">
+    						<div class="mobile-menu">
+    							<nav id="dropdown">
+    								<ul>
+                      <li><a href="index.html">HOME</a></li>
+                      <li><a href="shop.html">FEATURED</a></li>
+                      <li><a href="shop.html">REVIEW BOOK</a></li>
+                      <li><a href="about.html">ABOUT AUTHOR</a></li>
+                      <li><a href="#">pages</a>
+                        <ul>
+                          <li><a href="about.html">About Us</a></li>
+                          <li><a href="cart.html">Cart Page</a></li>
+                          <li><a href="checkout.html">Check Out</a></li>
+                          <li><a href="contact.html">Contact</a></li>
+                          <li><a href="login.html">Login</a></li>
+                          <li><a href="my-account.html">My Account</a></li>
+                          <li><a href="shop.html">Shopping Page</a></li>
+                          <li><a href="single-product.html">Single Shop Page</a></li>
+                          <li><a href="wishlist.html">Wishlist Page</a></li>
+                          <li><a href="404.html">404 Page</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="contact.html">CONTACT</a></li>
+    								</ul>
+    							</nav>
+    						</div>
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    		<!-- Mobile Menu End -->
+		</div> <!-- end of usersController -->
+
+		<div style='width:100%; height:100%;' ng-view=''></div>
+    </body>
+
+	 <!--End of Quickview Product-->
+		<!-- all js here -->
+		<script type="text/javascript" src='scripts/angular-smooth-scroll.min.js'></script>
+		<!-- owl.carousel js -->
+        <script src="scripts/owl.carousel.min.js"></script>
+		<!-- jquery-ui js -->
+        <script src="scripts/jquery-ui.min.js"></script>
+		<!-- jquery Counterup js -->
+        <script src="scripts/jquery.counterup.min.js"></script>
+        <script src="scripts/waypoints.min.js"></script>
+		<!-- jquery countdown js -->
+        <script src="scripts/jquery.countdown.min.js"></script>
+		<!-- jquery countdown js -->
+        <script type="text/javascript" src="venobox/venobox.min.js"></script>
+		<!-- jquery Meanmenu js -->
+        <script src="scripts/jquery.meanmenu.js"></script>
+		<!-- wow js -->
+        <script src="scripts/wow.min.js"></script>
+			<script>
+				new WOW().init();
+			</script>
+			<!-- scrollUp JS -->
+	        <script src="scripts/jquery.scrollUp.min.js"></script>
+			<!-- plugins js -->
+	        <script src="scripts/plugins.js"></script>
+
+			<!-- main js -->
+       <script src="scripts/main.js"></script>
+
+</html>

@@ -1,0 +1,466 @@
+
+<!--[if lt IE 8]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Add your site or application content here -->
+<!-- Search Area Start -->
+<div class="search-area">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+			    <div class='searchBar'>
+            <form>
+              <input type="text" name="keywords" autofocus placeholder='Search Product' ng-model="search.keywords">
+              <a href="#/search/{{search.keywords}}"><button type="submit"><i class="fa fa-search"></i></button></a>
+            </form>
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Search Area Start -->
+<!-- Shop Area Start -->
+<div class="shopping-area section-padding">
+    <div class="container">
+        <div class="row">
+            <!-- side nav bar -->
+            <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="shop-widget">
+                    <div class="shop-widget-top">
+                        <aside class="widget widget-categories">
+                            <h2 class="sidebar-title text-center">CATEGORY</h2>
+                            <ul class="sidebar-menu">
+                                <li>
+                                    <a href="#">
+                                       <i class="fa fa-angle-double-right"></i>
+                                        LEARNING
+                                        <span>(5)</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                       <i class="fa fa-a	le-double-right"></i>
+                                        LIGHTING
+                                        <span>(8)</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                      <i class="fa fa-angle-double-right"></i>
+                                       LIVING ROOMS
+                                        <span>(4)</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                       <i class="fa fa-angle-double-right"></i>
+                                        LAMP
+                                        <span>(7)</span>
+                                    </a>
+                                </li>`
+                            </ul>
+                        </aside>
+                        <aside class="widget shop-filter">
+                            <h2 class="sidebar-title text-center">PRICE SLIDER</h2>
+                            <div class="info-widget">
+                                <div class="price-filter">
+                                    <div id="slider-range"></div>
+                                    <div class="price-slider-amount">
+                                        <input type="text" id="amount" name="price"  placeholder="Add Your Price" />
+                                        <div class="widget-buttom">
+                                            <input type="submit"  value="Filter"/>
+                                            <input type="reset" value="CLEAR" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                    <div class="shop-widget-bottom">
+                        <aside class="widget widget-tag">
+                            <h2 class="sidebar-title">POPULAR TAG</h2>
+                            <ul class="tag-list">
+                                <li>
+                                    <a href="#">e-book</a>
+                                </li>
+                                <li>
+                                    <a href="#">writer</a>
+                                </li>
+                                <li>
+                                    <a href="#">book’s</a>
+                                </li>
+                                <li>
+                                    <a href="#">eassy</a>
+                                </li>
+                                <li>
+                                    <a href="#">nice</a>
+                                </li>
+                                <li>
+                                    <a href="#">author</a>
+                                </li>
+                            </ul>
+                        </aside>
+                        <aside class="widget widget-seller">
+                            <h2 class="sidebar-title">TOP SELLERS</h2>
+                            <div class="single-seller">
+                                <div class="seller-img">
+                                    <img src="img/shop/1.jpg" alt="" />
+                                </div>
+                                <div class="seller-details">
+                                    <a href="shop.html"><h5>Cold mountain</h5></a>
+                                    <h5>$ 50.00</h5>
+                                    <ul>
+                                        <li><i class="fa fa-star icolor"></i></li>
+                                        <li><i class="fa fa-star icolor"></i></li>
+                                        <li><i class="fa fa-star icolor"></i></li>
+                                        <li><i class="fa fa-star icolor"></i></li>
+                                        <li><i class="fa fa-star icolor"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="single-seller">
+                                <div class="seller-img">
+                                    <img src="img/shop/2.jpg" alt="" />
+                                </div>
+                                <div class="seller-details">
+                                    <a href=""><h5>The historian</h5></a>
+                                    <h5>$ 50.00</h5>
+                                    <ul>
+                                        <li><i class="fa fa-star icolor"></i></li>
+                                        <li><i class="fa fa-star icolor"></i></li>
+                                        <li><i class="fa fa-star icolor"></i></li>
+                                        <li><i class="fa fa-star icolor"></i></li>
+                                        <li><i class="fa fa-star icolor"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div> <!-- end of side nav bar -->
+            <div class="col-md-9 col-sm-9 col-xs-12">
+                <div class="shop-tab-area">
+                    <!-- product menu bar -->
+                    <div class="shop-tab-list">
+                        <div class="shop-tab-pill pull-left">
+                            <ul>
+                                <li class="active" id="left"><a data-toggle="pill" href="#home"><i class="fa fa-th"></i><span>Grid</span></a></li>
+                                <li><a data-toggle="pill" href="#menu1"><i class="fa fa-th-list"></i><span>List</span></a></li>
+                            </ul>
+                        </div>
+                        <div class="shop-tab-pill pull-right">
+                            <ul>
+                           <!--      <li class="product-size-details">
+                                    <div class="show-label">
+                                        <label>Show : </label>
+                                        <select>
+                                            <option value="10" selected="selected">10</option>
+                                            <option value="09">09</option>
+                                            <option value="08">08</option>
+                                            <option value="07">07</option>
+                                            <option value="06">06</option>
+                                        </select>
+                                    </div>
+                                </li> -->
+                                <li class="product-size-details">
+                                    <div class="show-label">
+                                        <label><i class="fa fa-sort-amount-asc"></i>Sort by : </label>
+                                        <select ng-model="orderByPrice">
+                                            <option value="" selected="selected">Best Match</option>
+                                            <option value="price">Price: Lowest first</option>
+                                            <option value="-price">Price: Highest first</option>
+                                        </select>
+                                    </div>
+                                </li>
+                                <li class='product-size-details'>
+                                    <div class='show-label'>
+                                        <select ng-model="filterBySeller">
+                                            <option value="" selected="selected">All Sellers</option>
+                                            <option value="amazon">Amazon</option>
+                                            <option value="ebay">Ebay</option>
+                                        </select>
+                                    </div>
+                                </li>
+                                <li class='product-size-details'>
+                                    <div class='show-label'>
+                                        <select ng-model="filterByCondition">
+                                            <option value="" selected="selected">All Products</option>
+                                            <option ng-repeat="(key, value) in conditions" value="{{key}}">{{key}}</option>
+                                        </select>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div> <!-- end of product menu -->
+                    <div class="pagination">
+                        <div ng-controller="paginateController">
+                            <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="dirPagination.tpl.html"></dir-pagination-controls>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="tab-content">
+                            <div class="row" id='home'>
+                                <div ng-hide="dataLoaded" class="preloader">
+                                </div>
+                                <!-- show table if dataLoaded is true -->
+                                <div ng-show="dataLoaded">
+                                    <div class="shop-single-product-area">
+                                        <div dir-paginate="item in searchResult | orderBy:orderByPrice | filter:filterBySeller | filter:filterByCondition | itemsPerPage: 12" current-page='currentPage'>
+                                        <!-- single product listing -->
+                                        <div smooth-scroll></div>
+                                        <div class="col-md-4 col-sm-6 col-xs-12" id='scroll' ng-controller="modalController">
+                                            <div class="single-banner">
+                                                <div class="product-wrapper">
+                                                    <div class="product-bg">
+                                                        <!-- <a href="" ng-click="ebayDisplay(item)" class="single-banner-image-wrapper"> -->
+                                                          <span class="helper"></span><img class='product-img' ng-src="{{ item.img }}">
+                                                        <!-- </a> -->
+                                                         <div class="functional-buttons">
+                                                            <a href="#" title="Add to Wishlist">
+                                                              <i class="fa fa-anchor"></i>
+                                                            </a>
+                                                            <!-- <a href="#" title="Quick view" data-toggle="modal" data-target="#productModal">
+                                                                <i class="fa fa-compress"></i>
+                                                            </a> -->
+                                                        </div>
+                                                    </div>
+                                                <!--     <div class="product-description">
+
+                                                    </div> -->
+                                                </div>
+                                                <div class="banner-bottom text-center">
+																									<div ng-if="item.seller == 'ebay'">
+                                                    <div class="banner-bottom-title">
+																										<a href="" ng-click="ebayDisplay(item)">{{ item.title }}</a>
+                                                    </div>
+                                                    <div class="product-details text-center">
+                                                      <b>Seller:</b> {{ item.seller }} <br>
+																											<!-- <b>Category: {{ item.category }} <br> -->
+                                                      <b>Price:</b> <span>$</span>{{ item.price | number:2 }} <br>
+                                                      <b>Condition:</b> {{ item.condition }}<br>
+																											<!-- <b>Expires at:</b> {{ item.endTime | amUtc | amLocal | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a' }} -->
+                                                    </div>
+                                                    <div class="rating-icon">
+                                                      <i class="fa fa-star icolor"></i>
+                                                      <i class="fa fa-star icolor"></i>
+                                                      <i class="fa fa-star icolor"></i>
+                                                      <i class="fa fa-star"></i>
+                                                      <i class="fa fa-star"></i>
+                                                    </div>
+																									</div>
+																									<div ng-if="item.seller == 'amazon'">
+                                                    <div class="banner-bottom-title">
+                                                      <a href="" ng-click="amazonDisplay(item)">{{ item.title }}</a>
+                                                    </div>
+                                                    <div class="product-details text-center">
+                                                      <b>Seller:</b> {{ item.seller }} <span ng-if='item.prime_item'>(Amazon Prime Item)</span><br>
+                                                      <b>Price:</b> {{ item.list_price }} <br>
+																											<span ng-if='item.percentage_Saved != "N/A"'><b>Sale price:</b> {{ item.sale_price }} (save {{ item.percentage_Saved }}%)<br></span>
+																											<b>Condition:</b> {{ item.condition }}<br>
+                                                    </div>
+                                                    <div class="rating-icon">
+                                                      <i class="fa fa-star icolor"></i>
+                                                      <i class="fa fa-star icolor"></i>
+                                                      <i class="fa fa-star icolor"></i>
+                                                      <i class="fa fa-star"></i>
+                                                      <i class="fa fa-star"></i>
+                                                    </div>
+																									</div>
+                                                </div>
+                                            </div>
+                                            </div> <!-- end of single product listing -->
+                                        </div> <!-- end of products area -->
+                                    </div> <!-- end of dir-pagination directive -->
+                                </div>
+                            </div>
+                        </div>
+                        <div scroll-to='scroll'>
+                            <div ng-controller="paginateController">
+                                <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="dirPagination.tpl.html"></dir-pagination-controls>
+                            </div>
+                        </div>
+                    </div> <!-- end of content -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- Shop Area End -->
+<!-- Footer Area Start -->
+<footer>
+    <div class="footer-top-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-8">
+                    <div class="footer-left">
+                        <a href="#/">
+                            <img style='width:175px; height:auto' src="images/Grand-Catch-White-02.png" alt="">
+                        </a>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                        <ul class="footer-contact">
+                            <li>
+                                <i class="flaticon-location"></i>
+                                450 fifth Avenue, 34th floor. NYC
+                            </li>
+                            <li>
+                                <i class="flaticon-technology"></i>
+                                (+800) 123 4567 890
+                            </li>
+                            <li>
+                                <i class="flaticon-web"></i>
+                                info@bookstore.com
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-4">
+                    <div class="single-footer">
+                        <h2 class="footer-title">Information</h2>
+                        <ul class="footer-list">
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="#">Delivery Information</a></li>
+                            <li><a href="#">Privacy & Policy</a></li>
+                            <li><a href="#">Terms & Conditions</a></li>
+                            <li><a href="#">Manufactures</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2 hidden-sm">
+                    <div class="single-footer">
+                        <h2 class="footer-title">My Account</h2>
+                        <ul class="footer-list">
+                            <li><a href="my-account.html">My Account</a></li>
+                            <li><a href="account.html">Login</a></li>
+                            <li><a href="cart.html">My Cart</a></li>
+                            <li><a href="wishlist.html">Wishlist</a></li>
+                            <li><a href="checkout.html">Checkout</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2 hidden-sm">
+                    <div class="single-footer">
+                        <h2 class="footer-title">Shop</h2>
+                        <ul class="footer-list">
+                            <li><a href="#">Orders & Returns</a></li>
+                            <li><a href="#">Search Terms</a></li>
+                            <li><a href="#">Advance Search</a></li>
+                            <li><a href="#">Affiliates</a></li>
+                            <li><a href="#">Group Sales</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-8">
+                    <div class="single-footer footer-newsletter">
+                        <h2 class="footer-title">Our Newsletter</h2>
+                        <p>Consectetur adipisicing elit se do eiusm od tempor incididunt ut labore et dolore magnas aliqua.</p>
+                        <form action="#" method="post">
+                            <div>
+                                <input type="text" placeholder="email address">
+                            </div>
+                            <button class="btn btn-search btn-small" type="submit">SUBSCRIBE</button>
+                            <i class="flaticon-networking"></i>
+                        </form>
+                        <ul class="social-icon">
+                            <li>
+                                <a href="#">
+                                    <i class="flaticon-social"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="flaticon-social-1"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="flaticon-social-2"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="flaticon-video"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-4 visible-sm">
+                    <div class="single-footer">
+                        <h2 class="footer-title">Shop</h2>
+                        <ul class="footer-list">
+                            <li><a href="#">Orders & Returns</a></li>
+                            <li><a href="#">Search Terms</a></li>
+                            <li><a href="#">Advance Search</a></li>
+                            <li><a href="#">Affiliates</a></li>
+                            <li><a href="#">Group Sales</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="footer-bottom-left pull-left">
+                        <p>Copyright &copy; 2016 <span><a href="#">DevItems</a></span>. All Right Reserved.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="footer-bottom-right pull-right">
+                        <img src="img/paypal.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer Area End -->
+<!--Quickview Product Start -->
+<div id="quickview-wrapper">
+    <!-- Modal -->
+    <div class="modal fade" id="productModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-product">
+                        <div class="product-images">
+                            <div class="main-image images">
+                                <img alt="" ng-src="{{ itemDetail.PictureURL[0] }}">
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h1>{{ itemDetail.Title }}</h1>
+                            <div class="price-box">
+                                <p class="s-price"><span class="special-price"><span class="amount">${{ itemDetail.ConvertedCurrentPrice.Value }}</span></span></p>
+                            </div>
+                            <b>Features:</b>
+														<span ng-repeat="list in itemDetail.ItemSpecifics.NameValueList">
+															<b>{{ list.Name }}:</b> {{ list.Value[0] }}<br>
+														</span>
+														<span><b>Expires at:</b> {{ itemDetail.EndTime | amUtc | amLocal | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a' }}</span><br>
+														<span><b>Time left:</b> {{ timeTill }}</span><Br>
+                            <div class="social-sharing">
+                                <div class="widget widget_socialsharing_widget">
+                                    <h3 class="widget-title-modal">Share this product</h3>
+                                    <ul class="social-icons">
+                                        <li><a target="_blank" title="Facebook" href="#" class="facebook social-icon"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a target="_blank" title="Twitter" href="#" class="twitter social-icon"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a target="_blank" title="Pinterest" href="#" class="pinterest social-icon"><i class="fa fa-pinterest"></i></a></li>
+                                        <li><a target="_blank" title="Google +" href="#" class="gplus social-icon"><i class="fa fa-google-plus"></i></a></li>
+                                        <li><a target="_blank" title="LinkedIn" href="#" class="linkedin social-icon"><i class="fa fa-linkedin"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><!-- .product-info -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End of Quickview Product-->

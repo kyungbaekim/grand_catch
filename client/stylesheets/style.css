@@ -1,0 +1,168 @@
+/*body{
+	background-color: blue;
+}*/
+
+/*ul.nav a:hover
+{
+	color: blue !important;
+}
+
+*/
+
+div.header-logo{
+  position: relative;
+  top: -20px;
+  left: 50px;
+}
+i.fa-anchor{
+  color: #E1E1E1;
+}
+
+i.fa-anchor:hover{
+  color: white;
+}
+
+div.shop-tab-area{
+/*  border: 1px solid red;*/
+}
+
+div.shop-tab-list{
+ /* border: 1px solid blue;*/
+}
+div.shopping-area{
+  /*position: relative;
+  bottom: -60px;*/
+}
+div.content{
+  position: relative;
+  top: -80px;
+  /*overflow: hidden;*/
+/*  border: 1px solid green;*/
+}
+
+div.pagination{
+ /* border: 1px solid purple;*/
+ /* margin-left: 25%;*/
+ position: relative;
+ top: -20px;
+/* bottom: 40px;*/
+}
+div.product-bg{
+  width: 260px;
+  height: 280px;
+  background-color: white;
+  text-align: center;
+  /* remove the gap between inline(-block) elements */
+  font: 0/0 a;
+}
+span.helper{
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+
+}
+img.product-img{
+  min-width: 145px;
+  max-width: 160px;
+  height: auto;
+  max-height: 260px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+div.searchBar{
+  text-align: center
+}
+div.searchBar input{
+  border: 2px solid #40acd7;
+  border-bottom-left-radius: 30px;
+  border-top-left-radius: 30px;
+/*  color: #444444;*/
+  height: 50px;
+  line-height: 50px;
+  padding-left: 20px;
+  position: relative;
+  width: 40%;
+}
+div.searchBar button {
+  background: #40acd7 none repeat scroll 0 0;
+  border: medium none;
+  border-bottom-right-radius: 30px;
+  border-top-right-radius: 30px;
+  font-size: 22px;
+  height: 50px;
+  line-height: 22px;
+  position: absolute;
+  width: 70px;
+
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+ /* border-collapse: collapse;*/
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 10px 15px !important;
+}
+
+td {
+  border: 1px solid #cecfd5;
+}
+
+th {
+  font-weight: bold;
+}
+
+thead {
+  background: #395870;
+  color: #fff;
+}
+
+tr:nth-child(even) {
+  background: #f0f0f2;
+}
+
+#search_btn1 {
+  margin-bottom: 20px;
+}
+
+.preloader {
+  /*padding: 50px;*/
+  width: 100px;
+  height: 100px;
+  position: relative;
+  top: 250px;
+  left: 400px;
+  /*background: url('/images/loading-blue.gif') no-repeat;*/
+  background: url('/images/octo.gif') no-repeat;
+  background-size: contain;
+}
+
+div.navbar-header{
+  background: white;
+}
+
+div#bs-example-navbar-collapse-1.collapse.navbar-collapse, div.container-fluid {
+   background: white;
+}
+
+input:invalid {
+  border: 1px solid red;
+}
+
+.warning{
+  color: red;
+}
+
+.description{
+  all: initial;
+}
+
+.feature {
+  /*list-style-position: inside;*/
+  padding-left: 15px;
+  margin: 0px;
+  list-style-type: square;
+}
