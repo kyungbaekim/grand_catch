@@ -258,7 +258,8 @@
 																											<span ng-if='item.price != "Check Website"'><b>Price:</b> ${{ item.price | number:2 }} <br></span>
 																											<span ng-if='item.price == "Check Website"'><b>Price:</b> {{ item.price }} <br></span>
 																											<span ng-if='item.percentage_Saved != "N/A"'><b>Sale price:</b> ${{ item.sale_price }} (save {{ item.percentage_Saved }}%)<br></span>
-																											<b>Condition:</b> {{ item.condition }}<br>
+																											<span ng-if='item.condition == "Not available"'><b>Condition:</b> Check Website<br></span>
+																											<span ng-if='item.condition != "Not available"'><b>Condition:</b> {{ item.condition }}<br></span>
                                                     </div>
                                                     <div class="rating-icon">
                                                       <i class="fa fa-star icolor"></i>

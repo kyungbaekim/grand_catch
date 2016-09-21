@@ -79,7 +79,7 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 				var price = parseFloat(temp[i].sellingStatus[0].currentPrice[0].__value__).toFixed(2);
 				var condition;
 				if(temp[i].condition == undefined){
-					condition = 'N/A'
+					condition = 'Not available'
 				}
 				else{
 					condition = temp[i].condition[0].conditionDisplayName[0];
@@ -164,7 +164,7 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 					}
 				}
 				else{
-					condition = 'Chech Website'
+					condition = 'Not available'
 					console.log("No condition", i, obj[i])
 				}
 
