@@ -232,7 +232,7 @@
                                                 <div class="banner-bottom text-center">
 																									<div ng-if="item.seller == 'ebay'">
                                                     <div class="banner-bottom-title">
-																										<a href="" ng-click="ebayDisplay(item)">{{ item.title }}</a>
+																										<a href="" ng-click="ebayDisplay(item, 'lg')">{{ item.title }}</a>
                                                     </div>
                                                     <div class="product-details text-center">
                                                       <b>Seller:</b> {{ item.seller }} <br>
@@ -251,12 +251,13 @@
 																									</div>
 																									<div ng-if="item.seller == 'amazon'">
                                                     <div class="banner-bottom-title">
-                                                      <a href="" ng-click="amazonDisplay(item)">{{ item.title }}</a>
+                                                      <a href="" ng-click="amazonDisplay(item, 'lg')">{{ item.title }}</a>
                                                     </div>
                                                     <div class="product-details text-center">
                                                       <b>Seller:</b> {{ item.seller }} <span ng-if='item.prime_item'>(Amazon Prime Item)</span><br>
-                                                      <b>Price:</b> {{ item.list_price }} <br>
-																											<span ng-if='item.percentage_Saved != "N/A"'><b>Sale price:</b> {{ item.sale_price }} (save {{ item.percentage_Saved }}%)<br></span>
+																											<span ng-if='item.price != "Check Website"'><b>Price:</b> ${{ item.price | number:2 }} <br></span>
+																											<span ng-if='item.price == "Check Website"'><b>Price:</b> {{ item.price }} <br></span>
+																											<span ng-if='item.percentage_Saved != "N/A"'><b>Sale price:</b> ${{ item.sale_price }} (save {{ item.percentage_Saved }}%)<br></span>
 																											<b>Condition:</b> {{ item.condition }}<br>
                                                     </div>
                                                     <div class="rating-icon">

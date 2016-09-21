@@ -54,7 +54,7 @@ myAppModule.factory('itemsFactory', function ($http){
 		// var URL = 'http://open.api.ebay.com/shopping?callname=GetSingleItem&'
 		var URL = '/shopping?callname=GetSingleItem'
 		URL += '&responseencoding=JSON&appid=' + production_app_id + '&'
-		URL += 'siteid=0&version=975&ItemID=' + itemID + '&IncludeSelector=Description,ItemSpecifics,Details'
+		URL += 'siteid=0&version=975&ItemID=' + itemID + '&IncludeSelector=Description,ItemSpecifics,Details,ShippingCosts'
 		$http.get(URL).success(function(res){
 			console.log("Success:", res)
 			callback(res)

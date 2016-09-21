@@ -12,15 +12,16 @@
         <div class="product-info">
           <a href='{{ itemDetail.ViewItemURLForNaturalSearch }}' target='blank'><h1 class="modal-title">{{ itemDetail.Title }}</h1></a>
           <div class="price-box">
-            <p class="s-price"><span class="special-price"><span class="amount">${{ itemDetail.ConvertedCurrentPrice.Value }}</span></span></p>
+            <p class="s-price"><span class="special-price"><span class="amount">${{ itemDetail.ConvertedCurrentPrice.Value | number:2 }}</span></span></p>
           </div>
-          <b>Shipping cost:</b> ${{ itemDetail.shipping }}<br>
-          <b>Seller:</b> {{ itemDetail.}}
+          <b>Shipping cost:</b> ${{ itemDetail.ShippingCostSummary.ShippingServiceCost.Value | number:2 }}<br>
+          <span ng-if="itemDetail.Storefront && itemDetail.Seller"><b>Seller:</b> <a href="{{ itemDetail.Storefront.StoreURL }}" target="blank">{{ itemDetail.Storefront.StoreName }}</a>(positive feedback: {{ itemDetail.Seller.PositiveFeedbackPercent }}%)<br></span>
+          <span ng-if="itemDetail.Seller && !itemDetail.Storefront"><b>Seller:</b> {{ itemDetail.Seller.UserID }}(positive feedback: {{ itemDetail.Seller.PositiveFeedbackPercent }}%)<br></span>
           <b>Condition:</b> {{ itemDetail.ConditionDisplayName }}<br>
           <b>Features:</b><br>
           <ul class='feature' ng-repeat="feature in itemDetail.ItemSpecifics.NameValueList">
             <li>{{ feature.Name }}: {{ feature.Value[0] }}</li>
-          </ul>
+          </ul><br>
 					<span><b>Expires at:</b> {{ itemDetail.EndTime | amUtc | amLocal | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a' }}</span><br>
 					<span><b>Time left:</b> {{ timeTill }}</span><br><br>
           <div class="social-sharing">

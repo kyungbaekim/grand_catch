@@ -123,7 +123,7 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 			for(var i=0; i<obj.length; i++){
 				var data = {}
 				// var lowest_Price;
-				var list_Price = 'N/A';
+				var list_Price = 'Check Website';
 				var prime_item = false;
 				var sale_Price;
 				var PercentageSaved = 'N/A';
@@ -134,18 +134,15 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 				}
 
 				if(obj[i].ItemAttributes.ListPrice != undefined){
-					list_Price = obj[i].ItemAttributes.ListPrice.FormattedPrice;
+					list_Price = parseFloat(obj[i].ItemAttributes.ListPrice.Amount) / 100;
 				}
 				else{
-					if(obj[i].Offers.Offer != undefined){
-						list_Price = obj[i].Offers.Offer.OfferListing.Price.FormattedPrice
-					}
-					else{
-						list_Price = 'N/A'
+					if(obj[i].Offers != undefined && obj[i].Offers.Offer != undefined){
+						list_Price = parseFloat(obj[i].Offers.Offer.OfferListing.Price.Amount) / 100
 					}
 				}
 
-				if(obj[i].Offers.Offer != undefined){
+				if(obj[i].Offers != undefined && obj[i].Offers.Offer != undefined){
 					condition = obj[i].Offers.Offer.OfferAttributes.Condition
 					if(obj[i].Offers.Offer.OfferListing != undefined){
 						if(obj[i].Offers.Offer.OfferListing.IsEligibleForPrime == '1'){
@@ -154,11 +151,11 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 						if(obj[i].Offers.Offer.OfferListing.PercentageSaved != undefined){
 							PercentageSaved = obj[i].Offers.Offer.OfferListing.PercentageSaved
 							if(obj[i].Offers.Offer.OfferListing.SalePrice != undefined){
-								sale_Price = obj[i].Offers.Offer.OfferListing.SalePrice.FormattedPrice;
-								list_Price = obj[i].Offers.Offer.OfferListing.Price.FormattedPrice
+								sale_Price = parseFloat(obj[i].Offers.Offer.OfferListing.SalePrice.Amount) / 100
+								list_Price = parseFloat(obj[i].Offers.Offer.OfferListing.Price.Amount) / 100
 							}
 							else{
-								sale_Price = obj[i].Offers.Offer.OfferListing.Price.FormattedPrice
+								sale_Price = parseFloat(obj[i].Offers.Offer.OfferListing.Price.Amount) / 100
 							}
 						}
 					}
@@ -167,7 +164,7 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 					}
 				}
 				else{
-					condition = 'N/A'
+					condition = 'Chech Website'
 					console.log("No condition", i, obj[i])
 				}
 
@@ -186,7 +183,7 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 					view = null
 				}
 				var categoryName = obj[i].ItemAttributes.Binding;
-				data = { 'seller': 'amazon', 'id': obj[i].ASIN, 'title': obj[i].ItemAttributes.Title, 'view': obj[i].DetailPageURL, 'img': view, 'list_price': list_Price, 'sale_price': sale_Price, 'percentage_Saved': PercentageSaved, 'prime_item': prime_item, 'features': features, 'condition':  condition, 'category': categoryName }
+				data = { 'seller': 'amazon', 'id': obj[i].ASIN, 'title': obj[i].ItemAttributes.Title, 'view': obj[i].DetailPageURL, 'img': view, 'price': list_Price, 'sale_price': sale_Price, 'percentage_Saved': PercentageSaved, 'prime_item': prime_item, 'features': features, 'condition':  condition, 'category': categoryName }
 				$scope.searchAmazonResult[i] = data
 			}
 			// console.log("Amazon search result", $scope.searchAmazonResult)

@@ -2,13 +2,14 @@ myAppModule.controller('modalController', function ($scope, itemsFactory, $uibMo
   $scope.isArray = angular.isArray;
   $scope.itemLoaded = true;
 
-	$scope.ebayDisplay = function(item){
+	$scope.ebayDisplay = function(item, size){
     console.log("calling ebayDisplay")
     $scope.itemLoaded = false;
     var modalInstance;
     modalInstance = $uibModal.open({
       templateUrl: 'partials/ebayDisplay.html',
       controller: ebayDisplayModalInstanceCtrl,
+      size: size,
 			scope: $scope,
       resolve: {
         item: function(){
@@ -69,13 +70,14 @@ myAppModule.controller('modalController', function ($scope, itemsFactory, $uibMo
 	  };
 	};
 
-	$scope.amazonDisplay = function(item){
+	$scope.amazonDisplay = function(item, size){
 		// $scope.item = item
 		$scope.itemLoaded = false;
     var modalInstance;
     modalInstance = $uibModal.open({
       templateUrl: 'partials/amazonDisplay.html',
       controller: amazonDisplayModalInstanceCtrl,
+      size: size,
 			scope: $scope,
       resolve: {
         item: function(){
