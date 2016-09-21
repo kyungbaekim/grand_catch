@@ -93,25 +93,22 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 				var categoryId = temp[i].primaryCategory[0].categoryId[0];
 				var categoryName = temp[i].primaryCategory[0].categoryName[0];
 				var itemID = temp[i].itemId[0]
-				// var shipping;
+				var shipping;
 				// var total_cost;
-				// if(temp[i].shippingInfo[0].shippingServiceCost === undefined){
-				// 	shipping = 'Check website';
-				// 	total_cost = price;
-				// }
-				// else{
-				// 	if(temp[i].shippingInfo[0].shippingServiceCost[0].__value__ == '0.0'){
-				// 		shipping = parseFloat(0.00).toFixed(2);
-				// 		total_cost = price;
-				// 	}
-				// 	else{
-				// 		shipping = parseFloat(temp[i].shippingInfo[0].shippingServiceCost[0].__value__).toFixed(2);
-				// 		total_cost = (parseFloat(price) + parseFloat(shipping)).toFixed(2);
-				// 	}
-				// }
+				if(temp[i].shippingInfo[0].shippingServiceCost === undefined){
+					shipping = 'Check website';
+				}
+				else{
+					if(temp[i].shippingInfo[0].shippingServiceCost[0].__value__ == '0.0'){
+						shipping = parseFloat(0.00).toFixed(2);
+					}
+					else{
+						shipping = parseFloat(temp[i].shippingInfo[0].shippingServiceCost[0].__value__).toFixed(2);
+					}
+				}
 				// var start = temp[i].listingInfo[0].startTime[0];
 				var end = temp[i].listingInfo[0].endTime[0];
-				data = { 'seller': 'ebay', 'id': itemID, 'title': title, 'view': viewURL, 'img': imgURL, 'price': parseFloat(price), 'condition': condition, 'category': categoryName, 'endTime': end }
+				data = { 'seller': 'ebay', 'id': itemID, 'title': title, 'view': viewURL, 'img': imgURL, 'price': parseFloat(price), 'shipping': shipping, 'condition': condition, 'category': categoryName, 'endTime': end }
 				$scope.searchEbayResult[i] = data
 			}
 			// console.log("Ebay search result", $scope.searchEbayResult)

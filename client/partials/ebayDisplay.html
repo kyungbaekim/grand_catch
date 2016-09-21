@@ -14,11 +14,13 @@
           <div class="price-box">
             <p class="s-price"><span class="special-price"><span class="amount">${{ itemDetail.ConvertedCurrentPrice.Value }}</span></span></p>
           </div>
-          <b>Condition:</b> {{ itemDetail.ConditionDisplayName }}
-          <b>Features:</b>
-					<span ng-repeat="list in itemDetail.ItemSpecifics.NameValueList">
-						<b>{{ list.Name }}:</b> {{ list.Value[0] }}<br>
-					</span>
+          <b>Shipping cost:</b> ${{ itemDetail.shipping }}<br>
+          <b>Seller:</b> {{ itemDetail.}}
+          <b>Condition:</b> {{ itemDetail.ConditionDisplayName }}<br>
+          <b>Features:</b><br>
+          <ul class='feature' ng-repeat="feature in itemDetail.ItemSpecifics.NameValueList">
+            <li>{{ feature.Name }}: {{ feature.Value[0] }}</li>
+          </ul>
 					<span><b>Expires at:</b> {{ itemDetail.EndTime | amUtc | amLocal | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a' }}</span><br>
 					<span><b>Time left:</b> {{ timeTill }}</span><br><br>
           <div class="social-sharing">

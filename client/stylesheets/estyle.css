@@ -1,17 +1,17 @@
 /*-----------------------------------------------------------------------------------
 
-    Template Name: Your template name 
-    Template URI: 
+    Template Name: Your template name
+    Template URI:
     Description: This is html5 template
     Author: BootExperts
-    Author URI: 
+    Author URI:
     Version: 1.0
 
 -----------------------------------------------------------------------------------
-    
+
     CSS INDEX
     ===================
-	
+
   1.	Theme Default CSS (body, link color, section etc)
 	2.	Header Area CSS
 	3.	Slider Area CSS
@@ -36,7 +36,7 @@
 	22.	My Account CSS
 	23.	scrollUp CSS
 
-	
+
 
 
 -----------------------------------------------------------------------------------*/
@@ -633,7 +633,7 @@ body {
   border-top: 1px solid #ddd;
   /*overflow: scroll;*/
   padding: 10px 0;
-  height: 180px; 
+  height: 180px;
 /*  width: 200px; */
 }
 
@@ -653,7 +653,7 @@ body {
   /* Fallback for non-webkit */
    -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
- 
+
 }
 /*show scrollbar if overflow*/
 /*::-webkit-scrollbar {
