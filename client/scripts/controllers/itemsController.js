@@ -50,9 +50,6 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 		$scope.searchProduct();
 	}
 
-	// $scope.searchProduct = function (){
-	// 	searchProduct1()
-	// }
 
 	function createEbayList(obj){
 		var temp = obj.findItemsByKeywordsResponse[0].searchResult[0].item

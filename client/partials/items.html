@@ -266,7 +266,7 @@
                                                         <i class="fa fa-star"></i>
                                                         <i class="fa fa-star"></i>
                                                     </div>
-                                                    <a target='blank' ng-if="item.seller == 'amazon'" href={{item.CustomerReviews.IFrameURL}}><img class='reviews'  src={{review}}></a>
+                                                    <a target='blank' ng-if="item.seller == 'amazon'" href='{{amazonReview}}'><img class='reviews'  ng-init='getReviewURL(item.id,item.view)' src='{{review}}'></a>
 												</div>
                                                 </div>
                                             </div>

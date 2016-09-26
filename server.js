@@ -16,6 +16,8 @@ app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); // redirect CSS bootstrap
 app.use('/components', express.static(__dirname + '/node_modules')); // redirect moment compoments
 app.use('/fonts', express.static(__dirname + '/node_modules/bootstrap/fonts')); // redirect ui bootstrap
+app.use('/pattern', express.static(__dirname + '/node_modules/url-pattern/lib')); // redirect url pattern
+
 
 require("./server/config/mongoose.js");
 require("./server/config/routes.js")(app);

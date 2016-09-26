@@ -20,11 +20,8 @@ div.quickview{
   background-color: grey;
   z-index: 1;
   bottom: 0;
- /* position: relative;
-  top: 70px;
-  left: -1px;*/
+  color: white;
   opacity: 0.5;
-/*  font: white;*/
 }
 
 img.reviews {

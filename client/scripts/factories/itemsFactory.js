@@ -76,18 +76,26 @@ myAppModule.factory('itemsFactory', function ($http){
 		// console.log('in itemLookup factory')
 		var start = new Date().getTime();
 		var amazonReview = data.slice(21,data.length)
-		// console.log('amazone review', amazonReview)
+		// get the pages source of url
 		$http.get(amazonReview).success(function(data){
 			// console.log('data in reviews', data);
 			//url pattern to search for in page source
-			var reviewUrl = 'https://images-na.ssl-images-amazon.com/images/G/01/x-locale/common/customer-reviews/ratings/stars';
+			var reviewUrl = 'out of 5 stars';
 			// console.log('reviews', reviewUrl.length)
 			//search for index of review URL in page source
-			var index = data.search(reviewUrl)
+			var index = data.search(reviewUrl) - 4;
+			console.log('index', index)
 			var end = new Date().getTime();
 			var time = end - start;
-			var word = data.substring(index);
-			word = word.substring(0,reviewUrl.length + 4) + '._CB_.gif'
+			if(index < 0 ){
+				console.log('cannot find review')
+				word = '';
+			}else{
+				word = data.substring(index);
+				word = word.substring(0,3);
+				console.log('word', word)
+			}
+			// word = word.substring(0,reviewUrl.length + 4) + '._CB_.gif'
 			// var res = str.substring(1, 4);
       console.log('Execution time: ' + time + 'ms');
       // console.log('word', word)
