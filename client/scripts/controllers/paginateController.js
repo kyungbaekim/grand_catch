@@ -10,7 +10,7 @@ myAppModule.controller('paginateController', function ($scope){
   	  console.log('clicked scroll')
   	  // document.getElementById("scroll").scrollIntoView()
     }
-    var timeRefreshInterval = 20;
+    var timeRefreshInterval = 120;
     if(time_diff > timeRefreshInterval){
      	$scope.searchProduct();
     }

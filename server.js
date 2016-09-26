@@ -24,10 +24,20 @@ app.use(morgan('dev'));
 app.use(proxy.initialize({
   proxy: {
     'forward': {
-      '/shopping': "http://open.api.ebay.com/"
+      '/shopping': "http://open.api.ebay.com/",
+      '/reviews': 'https://www.amazon.com/'
     }
   }
 }));
+
+//create proxy server for XOR request
+// app.use(proxy.initialize({
+// 	proxy: {
+// 		'forward' : {
+// 			'/reviews': 'https://www.amazon.com/'
+// 		}
+// 	}
+// }))
 
 port = 8000;
 var server = app.listen(port, function(){
