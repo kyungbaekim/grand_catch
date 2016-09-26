@@ -72,15 +72,38 @@ myAppModule.factory('itemsFactory', function ($http){
 	  return true;
 	}
 
-	// Amazon single item
-	factory.itemLookUp = function(data, callback){
-		console.log('in itemLookup factory')
-		//run $http request to server routes
-		$http.get('/itemLookUp/' + data).success(function(output){
-			//run callback function to send data back to controller
-			callback(output)
+	factory.reviewLookUp = function(data, callback){
+		// console.log('in itemLookup factory')
+		var start = new Date().getTime();
+		var amazonReview = data.slice(21,data.length)
+		// console.log('amazone review', amazonReview)
+		$http.get(amazonReview).success(function(data){
+			// console.log('data in reviews', data);
+			//url pattern to search for in page source
+			var reviewUrl = 'https://images-na.ssl-images-amazon.com/images/G/01/x-locale/common/customer-reviews/ratings/stars';
+			// console.log('reviews', reviewUrl.length)
+			//search for index of review URL in page source
+			var index = data.search(reviewUrl)
+			var end = new Date().getTime();
+			var time = end - start;
+			var word = data.substring(index);
+			word = word.substring(0,reviewUrl.length + 4) + '._CB_.gif'
+			// var res = str.substring(1, 4);
+      console.log('Execution time: ' + time + 'ms');
+      // console.log('word', word)
+      callback(word)
 		})
 	}
+
+	// Amazon single item
+	// factory.itemLookUp = function(data, callback){
+	// 	console.log('in itemLookup factory')
+	// 	//run $http request to server routes
+	// 	$http.get('/itemLookUp/' + data).success(function(output){
+	// 		//run callback function to send data back to controller
+	// 		callback(output)
+	// 	})
+	// }
 
 	return factory;
 })

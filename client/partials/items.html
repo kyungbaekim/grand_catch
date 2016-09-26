@@ -206,40 +206,38 @@
                                 <!-- show table if dataLoaded is true -->
                                 <div ng-show="dataLoaded">
                                     <div class="shop-single-product-area">
-                                        <div dir-paginate="item in searchResult | orderBy:orderByPrice | filter:filterBySeller | filter:filterByCondition | itemsPerPage: 12" current-page='currentPage'>
+                                        <div dir-paginate="item in searchResult | orderBy:orderByPrice | filter:filterBySeller | filter:filterByCondition | itemsPerPage: 12" current-page='currentPage' ng-controller='reviewController'>
                                         <!-- single product listing -->
                                         <div smooth-scroll></div>
                                         <div class="col-md-4 col-sm-6 col-xs-12" id='scroll' ng-controller="modalController">
                                             <div class="single-banner">
                                                 <div class="product-wrapper">
-                                                    <div class="product-bg">
+                                                    <div  ng-mouseenter='hover = true' ng-mouseleave='hover = false' class="product-bg">
                                                         <!-- <a href="" ng-click="ebayDisplay(item)" class="single-banner-image-wrapper"> -->
-                                                          <span class="helper"></span><img class='product-img' ng-src="{{ item.img }}">
+                                                          <span class="helper"></span><a target="blank" href='{{item.view}}'><img class='product-img' ng-src="{{ item.img }}"></a>
                                                         <!-- </a> -->
                                                          <div class="functional-buttons">
                                                             <a href="#" title="Add to Wishlist">
                                                               <i class="fa fa-anchor"></i>
                                                             </a>
-                                                            <!-- <a href="#" title="Quick view" data-toggle="modal" data-target="#productModal">
+                                                       <!--      <a href="#" title="Quick view" data-toggle="modal" data-target="#productModal">
                                                                 <i class="fa fa-compress"></i>
                                                             </a> -->
                                                         </div>
+                                                        <div ng-class='{quickview: hover}'>Quick View</div>
                                                     </div>
-                                                <!--     <div class="product-description">
-
-                                                    </div> -->
                                                 </div>
                                                 <div class="banner-bottom text-center">
-																									<div ng-if="item.seller == 'ebay'">
+												    <div ng-if="item.seller == 'ebay'">
                                                     <div class="banner-bottom-title">
-																										<a href="" ng-click="ebayDisplay(item, 'lg')">{{ item.title }}</a>
+													<a href="" ng-click="ebayDisplay(item, 'lg')">{{ item.title }}</a>
                                                     </div>
                                                     <div class="product-details text-center">
                                                       <b>Seller:</b> {{ item.seller }} <br>
-																											<!-- <b>Category: {{ item.category }} <br> -->
+													<!-- <b>Category: {{ item.category }} <br> -->
                                                       <b>Price:</b> <span>$</span>{{ item.price | number:2 }} <br>
                                                       <b>Condition:</b> {{ item.condition }}<br>
-																											<!-- <b>Expires at:</b> {{ item.endTime | amUtc | amLocal | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a' }} -->
+													<!-- <b>Expires at:</b> {{ item.endTime | amUtc | amLocal | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a' }} -->
                                                     </div>
                                                     <div class="rating-icon">
                                                       <i class="fa fa-star icolor"></i>
@@ -248,27 +246,28 @@
                                                       <i class="fa fa-star"></i>
                                                       <i class="fa fa-star"></i>
                                                     </div>
-																									</div>
-																									<div ng-if="item.seller == 'amazon'">
+												</div>
+												<div ng-if="item.seller == 'amazon'">
                                                     <div class="banner-bottom-title">
                                                       <a href="" ng-click="amazonDisplay(item, 'lg')">{{ item.title }}</a>
                                                     </div>
                                                     <div class="product-details text-center">
                                                       <b>Seller:</b> {{ item.seller }} <span ng-if='item.prime_item'>(Amazon Prime Item)</span><br>
-																											<span ng-if='item.price != "Check Website"'><b>Price:</b> ${{ item.price | number:2 }} <br></span>
-																											<span ng-if='item.price == "Check Website"'><b>Price:</b> {{ item.price }} <br></span>
-																											<span ng-if='item.percentage_Saved != "N/A"'><b>Sale price:</b> ${{ item.sale_price }} (save {{ item.percentage_Saved }}%)<br></span>
-																											<span ng-if='item.condition == "Not available"'><b>Condition:</b> Check Website<br></span>
-																											<span ng-if='item.condition != "Not available"'><b>Condition:</b> {{ item.condition }}<br></span>
+													   <span ng-if='item.price != "Check Website"'><b>Price:</b> ${{ item.price | number:2 }} <br></span>
+													   <span ng-if='item.price == "Check Website"'><b>Price:</b> {{ item.price }} <br></span>
+													<span ng-if='item.percentage_Saved != "N/A"'><b>Sale price:</b> ${{ item.sale_price }} (save {{ item.percentage_Saved }}%)<br></span>
+													<span ng-if='item.condition == "Not available"'><b>Condition:</b> Check Website<br></span>
+													<span ng-if='item.condition != "Not available"'><b>Condition:</b> {{ item.condition }}<br></span>
                                                     </div>
-                                                    <div class="rating-icon">
-                                                      <i class="fa fa-star icolor"></i>
-                                                      <i class="fa fa-star icolor"></i>
-                                                      <i class="fa fa-star icolor"></i>
-                                                      <i class="fa fa-star"></i>
-                                                      <i class="fa fa-star"></i>
+                                                     <div ng-if="item.seller == 'ebay'" class="rating-icon">
+                                                        <i class="fa fa-star icolor"></i>
+                                                        <i class="fa fa-star icolor"></i>
+                                                        <i class="fa fa-star icolor"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
                                                     </div>
-																									</div>
+                                                    <a target='blank' ng-if="item.seller == 'amazon'" href={{item.CustomerReviews.IFrameURL}}><img class='reviews'  src={{review}}></a>
+												</div>
                                                 </div>
                                             </div>
                                             </div> <!-- end of single product listing -->

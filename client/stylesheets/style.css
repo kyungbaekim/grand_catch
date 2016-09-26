@@ -9,6 +9,29 @@
 
 */
 
+div.red {
+   /* background-color: red;*/
+}
+
+div.quickview{
+  position: absolute;
+  width: 260px;
+  height: 40px;
+  background-color: grey;
+  z-index: 1;
+  bottom: 0;
+ /* position: relative;
+  top: 70px;
+  left: -1px;*/
+  opacity: 0.5;
+/*  font: white;*/
+}
+
+img.reviews {
+  width: 70px;
+  height: auto;
+}
+
 div.header-logo{
   position: relative;
   top: -20px;
@@ -48,9 +71,11 @@ div.pagination{
 /* bottom: 40px;*/
 }
 div.product-bg{
+ /* border: 1px solid red;*/
   width: 260px;
   height: 280px;
-  background-color: white;
+  position: relative;
+  /*background-color: white;*/
   text-align: center;
   /* remove the gap between inline(-block) elements */
   font: 0/0 a;

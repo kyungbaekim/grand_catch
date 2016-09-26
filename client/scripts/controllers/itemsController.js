@@ -183,7 +183,7 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 					view = null
 				}
 				var categoryName = obj[i].ItemAttributes.Binding;
-				data = { 'seller': 'amazon', 'id': obj[i].ASIN, 'title': obj[i].ItemAttributes.Title, 'view': obj[i].DetailPageURL, 'img': view, 'price': list_Price, 'sale_price': sale_Price, 'percentage_Saved': PercentageSaved, 'prime_item': prime_item, 'features': features, 'condition':  condition, 'category': categoryName }
+				data = { 'seller': 'amazon', 'id': obj[i].ASIN, 'title': obj[i].ItemAttributes.Title, 'view': obj[i].DetailPageURL, 'img': view, 'price': list_Price, 'sale_price': sale_Price, 'percentage_Saved': PercentageSaved, 'prime_item': prime_item, 'features': features, 'condition':  condition, 'category': categoryName,'CustomerReviews' : obj[i].CustomerReviews}
 				$scope.searchAmazonResult[i] = data
 			}
 			// console.log("Amazon search result", $scope.searchAmazonResult)

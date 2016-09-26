@@ -27,31 +27,31 @@ module.exports = {
 
 		function testSearch1(callback){
 			console.log("Searched keyword:", keywords);
-			prodAdv.call("ItemSearch", {SearchIndex: "All", Keywords: keywords, ItemPage: 1,  ResponseGroup:"Images,ItemAttributes,Offers,Features"}, function(err, result) {
+			prodAdv.call("ItemSearch", {SearchIndex: "All", Keywords: keywords, ItemPage: 1,  ResponseGroup:"Images,ItemAttributes,Offers,Reviews"}, function(err, result) {
 				callback(null, result.Items.Item)
 			})
 		}
 
 		function testSearch2(callback){
-			prodAdv.call("ItemSearch", {SearchIndex: "All", Keywords: keywords, ItemPage: 2,  ResponseGroup:"Images,ItemAttributes,Offers"}, function(err, result) {
+			prodAdv.call("ItemSearch", {SearchIndex: "All", Keywords: keywords, ItemPage: 2,  ResponseGroup:"Images,ItemAttributes,Offers,Reviews"}, function(err, result) {
 				callback(null, result.Items.Item)
 			})
 		}
 
 		function testSearch3(callback){
-			prodAdv.call("ItemSearch", {SearchIndex: "All", Keywords: keywords, ItemPage: 3,  ResponseGroup:"Images,ItemAttributes,Offers"}, function(err, result) {
+			prodAdv.call("ItemSearch", {SearchIndex: "All", Keywords: keywords, ItemPage: 3,  ResponseGroup:"Images,ItemAttributes,Offers,Reviews"}, function(err, result) {
 				callback(null, result.Items.Item)
 			})
 		}
 
 		function testSearch4(callback){
-			prodAdv.call("ItemSearch", {SearchIndex: "All", Keywords: keywords, ItemPage: 4,  ResponseGroup:"Images,ItemAttributes,Offers"}, function(err, result) {
+			prodAdv.call("ItemSearch", {SearchIndex: "All", Keywords: keywords, ItemPage: 4,  ResponseGroup:"Images,ItemAttributes,Offers,Reviews"}, function(err, result) {
 				callback(null, result.Items.Item)
 			})
 		}
 
 		function testSearch5(callback){
-			prodAdv.call("ItemSearch", {SearchIndex: "All", Keywords: keywords, ItemPage: 5,  ResponseGroup:"Images,ItemAttributes,Offers"}, function(err, result) {
+			prodAdv.call("ItemSearch", {SearchIndex: "All", Keywords: keywords, ItemPage: 5,  ResponseGroup:"Images,ItemAttributes,Offers,Reviews"}, function(err, result) {
 				callback(null, result.Items.Item)
 			})
 		}
