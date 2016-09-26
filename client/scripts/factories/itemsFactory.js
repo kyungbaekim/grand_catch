@@ -50,13 +50,11 @@ myAppModule.factory('itemsFactory', function ($http){
 
 	factory.getEbaySingleItem = function(param, callback){
 		var itemID = param
-		console.log(itemID)
-		// var URL = 'http://open.api.ebay.com/shopping?callname=GetSingleItem&'
 		var URL = '/shopping?callname=GetSingleItem'
 		URL += '&responseencoding=JSON&appid=' + production_app_id + '&'
 		URL += 'siteid=0&version=975&ItemID=' + itemID + '&IncludeSelector=Description,ItemSpecifics,Details,ShippingCosts'
 		$http.get(URL).success(function(res){
-			console.log("Success:", res)
+			// console.log("Success:", res)
 			callback(res)
 		}).error(function(res){
 			console.log("error:", res)
@@ -72,7 +70,7 @@ myAppModule.factory('itemsFactory', function ($http){
 	  return true;
 	}
 
-	factory.reviewLookUp = function(data, callback){
+	factory.amazonReviewLookUp = function(data, callback){
 		// console.log('in itemLookup factory')
 		var start = new Date().getTime();
 		var amazonReview = data.slice(21,data.length)
@@ -95,15 +93,27 @@ myAppModule.factory('itemsFactory', function ($http){
 		})
 	}
 
-	// Amazon single item
-	// factory.itemLookUp = function(data, callback){
-	// 	console.log('in itemLookup factory')
-	// 	//run $http request to server routes
-	// 	$http.get('/itemLookUp/' + data).success(function(output){
-	// 		//run callback function to send data back to controller
-	// 		callback(output)
-	// 	})
-	// }
+	factory.ebayReviewLookUp = function(url, callback){
+		var start = new Date().getTime();
+		var review_url = url.replace("http://www.ebay.com/", "");
+		// console.log('review url', url)
+		$http.get(review_url).success(function(data){
+			// url pattern to search for in page source
+			var ratings = '<span class=\"ebay-review-start-rating\">';
+			// console.log(ratings)
+			// console.log('reviews', reviewUrl.length)
+			//search for index of review URL in page source
+			var index = data.search(ratings)
+			// var end = new Date().getTime();
+			// var time = end - start;
+			var word = data.substring(index);
+			word = parseFloat(word.substring(42, 45))
+			console.log(index, word)
+			if(index > -1){
+				callback(word)
+			}
+		})
+	}
 
 	return factory;
 })
