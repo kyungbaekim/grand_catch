@@ -1,23 +1,23 @@
 
 <!--[if lt IE 8]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->
+    <![endif]-->
 
-<!-- Add your site or application content here -->
-<!-- Search Area Start -->
-<div class="search-area">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-			    <div class='searchBar'>
-            <form>
-              <input type="text" name="keywords" autofocus placeholder='Search Product' ng-model="search.keywords">
-              <a href="#/search/{{search.keywords}}"><button type="submit"><i class="fa fa-search"></i></button></a>
-            </form>
-			    </div>
-			</div>
-		</div>
-	</div>
+    <!-- Add your site or application content here -->
+    <!-- Search Area Start -->
+    <div class="search-area">
+       <div class="container">
+          <div class="row">
+             <div class="col-md-12">
+                 <div class='searchBar'>
+                    <form>
+                      <input type="text" name="keywords" autofocus placeholder='Search Product' ng-model="search.keywords">
+                      <a href="#/search/{{search.keywords}}"><button type="submit"><i class="fa fa-search"></i></button></a>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
 <!-- Search Area Start -->
 <!-- Shop Area Start -->
@@ -145,20 +145,84 @@
                             </div>
                         </aside> -->
                     <!-- </div> -->
+            </div>
+					</div>
+        </aside>
+    </div>
+    <div class="shop-widget-bottom">
+        <aside class="widget widget-tag">
+            <h2 class="sidebar-title">POPULAR TAG</h2>
+            <ul class="tag-list">
+                <li>
+                    <a href="#">e-book</a>
+                </li>
+                <li>
+                    <a href="#">writer</a>
+                </li>
+                <li>
+                    <a href="#">book’s</a>
+                </li>
+                <li>
+                    <a href="#">eassy</a>
+                </li>
+                <li>
+                    <a href="#">nice</a>
+                </li>
+                <li>
+                    <a href="#">author</a>
+                </li>
+            </ul>
+        </aside>
+        <aside class="widget widget-seller">
+            <h2 class="sidebar-title">TOP SELLERS</h2>
+            <div class="single-seller">
+                <div class="seller-img">
+                    <img src="img/shop/1.jpg" alt="" />
                 </div>
-            </div> <!-- end of side nav bar -->
-            <div class="col-md-9 col-sm-9 col-xs-12">
-                <div class="shop-tab-area">
-                    <!-- product menu bar -->
-                    <div class="shop-tab-list">
-                        <div class="shop-tab-pill pull-left">
-                            <ul>
-                                <li class="active" id="left"><a data-toggle="pill" href="#home"><i class="fa fa-th"></i><span>Grid</span></a></li>
-                                <li><a data-toggle="pill" href="#menu1"><i class="fa fa-th-list"></i><span>List</span></a></li>
-                            </ul>
-                        </div>
-                        <div class="shop-tab-pill pull-right">
-                            <ul>
+                <div class="seller-details">
+                    <a href="shop.html"><h5>Cold mountain</h5></a>
+                    <h5>$ 50.00</h5>
+                    <ul>
+                        <li><i class="fa fa-star icolor"></i></li>
+                        <li><i class="fa fa-star icolor"></i></li>
+                        <li><i class="fa fa-star icolor"></i></li>
+                        <li><i class="fa fa-star icolor"></i></li>
+                        <li><i class="fa fa-star icolor"></i></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="single-seller">
+                <div class="seller-img">
+                    <img src="img/shop/2.jpg" alt="" />
+                </div>
+                <div class="seller-details">
+                    <a href=""><h5>The historian</h5></a>
+                    <h5>$ 50.00</h5>
+                    <ul>
+                        <li><i class="fa fa-star icolor"></i></li>
+                        <li><i class="fa fa-star icolor"></i></li>
+                        <li><i class="fa fa-star icolor"></i></li>
+                        <li><i class="fa fa-star icolor"></i></li>
+                        <li><i class="fa fa-star icolor"></i></li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+    </div>
+</div>
+</div> <!-- end of side nav bar -->
+<div class="col-md-9 col-sm-9 col-xs-12">
+    <div class="shop-tab-area">
+        <!-- product menu bar -->
+        <div id='scroll' class="shop-tab-list">
+            <div class="shop-tab-pill pull-left">
+                <ul>
+                    <li class="active" id="left"><a data-toggle="pill" href="#home"><i class="fa fa-th"></i><span>Grid</span></a></li>
+                    <li><a data-toggle="pill" href="#menu1"><i class="fa fa-th-list"></i><span>List</span></a></li>
+                </ul>
+            </div>
+            <div class="shop-tab-pill pull-right">
+                <ul>
                            <!--      <li class="product-size-details">
                                     <div class="show-label">
                                         <label>Show : </label>
@@ -202,9 +266,9 @@
                         </div>
                     </div> <!-- end of product menu -->
                     <div class="pagination">
-                        <div ng-controller="paginateController">
+                        <!-- <div ng-controller="paginateController">
                             <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="dirPagination.tpl.html"></dir-pagination-controls>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="content">
                         <div class="tab-content">
@@ -228,73 +292,70 @@
                                                             <a href="#" title="Add to Wishlist">
                                                               <i class="fa fa-anchor"></i>
                                                             </a>
-                                                       			<!-- <a href="#" title="Quick view" data-toggle="modal" data-target="#productModal">
-                                                                <i class="fa fa-compress"></i>
-                                                            </a> -->
                                                         </div>
-                                                        <div ng-class='{quickview: hover}'>Quick View</div>
+                                                        <a ng-if="item.seller == 'amazon'" href="" ng-click="amazonDisplay(item, 'lg')"><div ng-class='{quickview: hover}'><p>Quick View</p></div></a>
+                                                        <a ng-if="item.seller == 'ebay'" href="" ng-click="ebayDisplay(itemDetail, 'lg')"><div ng-class='{quickview: hover}'><p>Quick View</p></div></a>
                                                     </div>
                                                 </div>
                                                 <div class="banner-bottom text-center">
-												    											<div ng-if="item.seller == 'ebay'">
+                                                 <div ng-if="item.seller == 'ebay'">
                                                     <div class="banner-bottom-title">
-																											<!-- <a href="" ng-click="ebayDisplay(item, 'lg')">{{ item.title }}</a> -->
-																											<a href="" ng-click="ebayDisplay(itemDetail, 'lg')">{{ item.title }}</a>
-                                                    </div>
-                                                    <div class="product-details text-center">
-                                                      <b>Seller:</b> {{ item.seller }} <br>
-																											<!-- <b>Category: {{ item.category }} <br> -->
-                                                      <b>Price:</b> <span>$</span>{{ item.price | number:2 }} <br>
-                                                      <b>Condition:</b> {{ item.condition }}<br>
-																											<!-- <b>Expires at:</b> {{ item.endTime | amUtc | amLocal | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a' }} -->
-                                                    </div>
-																										<span ng-if='ebayReview != undefined'><a target='blank' href='{{ reviewURL }}'>
-																											<div class="average" align="center">
-																												<average-star-rating ng-model="ebayReview" max="5"><average-star-rating>
-																											</div>
-																										{{ ebayReview }} out of 5</a>
-																										</span>
-																										<span ng-if='ebayReview == undefined'>No customer review available</span>
-																									</div>
-																									<div ng-if="item.seller == 'amazon'">
-                                                    <div class="banner-bottom-title">
-                                                      <a href="" ng-click="amazonDisplay(item, 'lg')">{{ item.title }}</a>
-                                                    </div>
-                                                    <div class="product-details text-center">
-                                                      <b>Seller:</b> {{ item.seller }} <span ng-if='item.prime_item'><font color="red">(Amazon Prime Item)</font></span><br>
-																									   	<span ng-if='item.price == "Check Website"'><b>Price:</b> Check website<br></span>
-																											<span ng-if='item.price != "Check Website" && item.percentage_Saved == "N/A"'><b>Price:</b> ${{ item.price | number:2 }} <br></span>
-																											<span ng-if='item.price != "Check Website" && item.percentage_Saved != "N/A"'><b>Price:</b> <strike>${{ item.price | number:2 }}</strike> ${{ item.sale_price }} (save {{ item.percentage_Saved }}%)<br></span>
-																											<span ng-if='item.condition == "Not available"'><b>Condition:</b> Check Website<br></span>
-																											<span ng-if='item.condition != "Not available"'><b>Condition:</b> {{ item.condition }}<br></span>
-                                                    </div>
-																										<span ng-if='amazonReview != undefined'><a target='blank' href='{{ amazonReviewURL }}'>
-																											<div class="average" align="center">
-																												<average-star-rating ng-model="amazonReview" max="5"><average-star-rating>
-																											</div>
-																										{{ amazonReview }} out of 5</a>
-																										</span>
-																										<span ng-if='amazonReview == undefined'>No customer review available</span>
-                                                    <!-- <a target='blank' href='{{ amazonReview }}'><span ng-init='getReviewURL(item.id,item.view)' {{ review }}></span></a> -->
-																									</div>
+                                                     <!-- <a href="" ng-click="ebayDisplay(item, 'lg')">{{ item.title }}</a> -->
+                                                     <a href="" ng-click="ebayDisplay(itemDetail, 'lg')">{{ item.title }}</a>
+                                                 </div>
+                                                 <div class="product-details text-center">
+                                                  <b>Seller:</b> {{ item.seller }} <br>
+                                                  <!-- <b>Category: {{ item.category }} <br> -->
+                                                  <b>Price:</b> <span>$</span>{{ item.price | number:2 }} <br>
+                                                  <b>Condition:</b> {{ item.condition }}<br>
+                                                  <!-- <b>Expires at:</b> {{ item.endTime | amUtc | amLocal | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a' }} -->
+                                              </div>
+                                              <span ng-if='ebayReview != undefined'><a target='blank' href='{{ reviewURL }}'>
+                                                 <div class="average" align="center">
+                                                    <average-star-rating ng-model="ebayReview" max="5"><average-star-rating>
                                                 </div>
+                                                {{ ebayReview }} out of 5</a>
+                                            </span>
+                                            <span ng-if='ebayReview == undefined'>No customer review available</span>
+                                        </div>
+                                        <div ng-if="item.seller == 'amazon'">
+                                            <div class="banner-bottom-title">
+                                              <a href="" ng-click="amazonDisplay(item, 'lg')">{{ item.title }}</a>
+                                          </div>
+                                          <div class="product-details text-center">
+                                              <b>Seller:</b> {{ item.seller }} <span ng-if='item.prime_item'><img class='amazonPrimeIcon' src="images/amazonPrime1.png"></span><br>
+                                              <span ng-if='item.price == "Check Website"'><b>Price:</b> Check website<br></span>
+                                              <span ng-if='item.price != "Check Website" && item.percentage_Saved == "N/A"'><b>Price:</b> ${{ item.price | number:2 }} <br></span>
+                                              <span ng-if='item.price != "Check Website" && item.percentage_Saved != "N/A"'><b>Price:</b> <strike>${{ item.price | number:2 }}</strike> ${{ item.sale_price }} (save {{ item.percentage_Saved }}%)<br></span>
+                                              <span ng-if='item.condition == "Not available"'><b>Condition:</b> Check Website<br></span>
+                                              <span ng-if='item.condition != "Not available"'><b>Condition:</b> {{ item.condition }}<br></span>
+                                          </div>
+                                          <span ng-if='amazonReview != undefined'><a target='blank' ng-init='getReviewURL(item.id,item.view)' href='{{ amazonReviewURL }}'>
+                                             <div class="average" align="center">
+                                                <average-star-rating ng-model="amazonReview" max="5"><average-star-rating>
                                             </div>
-                                            </div> <!-- end of single product listing -->
-                                        </div> <!-- end of products area -->
-                                    </div> <!-- end of dir-pagination directive -->
+                                            {{ amazonReview }} out of 5</a>
+                                        </span>
+                                        <span ng-if='amazonReview == undefined'>No customer review available</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div scroll-to='scroll'>
-                            <div ng-controller="paginateController">
-                                <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="dirPagination.tpl.html"></dir-pagination-controls>
-                            </div>
-                        </div>
-                    </div> <!-- end of content -->
-                </div>
+                        </div> <!-- end of single product listing -->
+                    </div> <!-- end of products area -->
+                </div> <!-- end of dir-pagination directive -->
             </div>
         </div>
     </div>
+    <div scroll-to='scroll'>
+        <div ng-click='scrollTop()' ng-controller="paginateController">
+            <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="dirPagination.tpl.html"></dir-pagination-controls>
+        </div>
+    </div>
+</div> <!-- end of content -->
+</div>
+</div>
+</div>
+</div>
 </div> <!-- Shop Area End -->
 <!-- Footer Area Start -->
 <footer>

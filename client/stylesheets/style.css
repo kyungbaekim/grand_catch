@@ -1,27 +1,27 @@
-/*body{
-	background-color: blue;
-}*/
-
-/*ul.nav a:hover
-{
-	color: blue !important;
-}
-
-*/
-
-div.red {
-   /* background-color: red;*/
-}
 
 div.quickview{
   position: absolute;
   width: 260px;
   height: 40px;
   background-color: grey;
-  z-index: 1;
   bottom: 0;
+  opacity: 0.8;
+}
+
+div.quickview p {
+  font-family: 'Montserrat', sans-serif;
   color: white;
-  opacity: 0.5;
+  font-size: 18px;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  right: 0; left: 0;
+  bottom: 8px;
+  }
+
+img.amazonPrimeIcon{
+  width: 55px;
+  height: auto;
 }
 
 img.reviews {
@@ -66,7 +66,7 @@ div.pagination{
  /* margin-left: 25%;*/
  position: relative;
  top: -20px;
-/* bottom: 40px;*/
+ margin-bottom: 50px;
 }
 
 div.product-bg{
@@ -189,7 +189,7 @@ input:invalid {
 }
 
 .feature {
-  /*list-style-position: inside;*/
+  /*list-style-position: insid`e;*/
   padding-left: 15px;
   margin: 0px;
   list-style-type: square;
