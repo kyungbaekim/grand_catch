@@ -43,6 +43,21 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 			// console.log($scope.conditions);
 			console.log("Final search result in client side:", $scope.searchResult);
 			console.log($scope.categories);
+
+			// $scope.Filter = {};
+			// $scope.uniques = (function () {
+		  //   var uniques = [];
+		  //   for (var i = 0; i < $scope.searchResult.length; i++) {
+		  //     if (uniques.indexOf($scope.searchResult[i].category) === -1) {
+		  //       uniques.push($scope.searchResult[i].category);
+		  //       //this populates the Filter with a key of the type, and the [val] of true
+		  //       $scope.Filter[$scope.searchResult[i].category] = true;
+		  //     }
+		  //   }
+			// 	console.log('Uniques:', uniques)
+		  //   return uniques;
+		  // })();
+
 			var price = Object.keys($scope.searchResult).map(function (key) {
 				if(typeof $scope.searchResult[key].price === 'string'){
 					return 0;

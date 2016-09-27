@@ -28,10 +28,13 @@
             <div class="col-md-3 col-sm-3 col-xs-12">
                 <div class="shop-widget">
                     <div class="shop-widget-top">
-                        <aside class="widget widget-categories">
+                        <!-- <aside class="widget widget-categories"> -->
+												<aside class="widget widget-filter">
                             <h2 class="sidebar-title text-center"><b>FILTERS</b></h2>
-                            <ul class="sidebar-menu">
-                                <li>
+														<b>Categories</b><br><br>
+                            <ul class="sidebar-menu" ng-repeat='(key, value) in categories'>
+															<li>{{ key }} ({{ value }})</li>
+                                <!-- <li>
                                     <a href="#">
                                        <i class="fa fa-angle-double-right"></i>
                                         LEARNING
@@ -58,7 +61,7 @@
                                         LAMP
                                         <span>(7)</span>
                                     </a>
-                                </li>`
+                                </li>` -->
                             </ul>
 														<rzslider rz-slider-model="slider.minValue" rz-slider-high="slider.maxValue" rz-slider-options="slider.options"></rzslider>
                         </aside>
