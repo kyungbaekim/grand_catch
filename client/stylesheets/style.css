@@ -53,6 +53,7 @@ div.shopping-area{
   /*position: relative;
   bottom: -60px;*/
 }
+
 div.content{
   position: relative;
   top: -80px;
@@ -67,6 +68,7 @@ div.pagination{
  top: -20px;
  margin-bottom: 50px;
 }
+
 div.product-bg{
  /* border: 1px solid red;*/
   width: 260px;
@@ -77,12 +79,13 @@ div.product-bg{
   /* remove the gap between inline(-block) elements */
   font: 0/0 a;
 }
-span.helper{
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
 
+span.helper{
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
 }
+
 img.product-img{
   min-width: 145px;
   max-width: 160px;
@@ -95,6 +98,7 @@ img.product-img{
 div.searchBar{
   text-align: center
 }
+
 div.searchBar input{
   border: 2px solid #40acd7;
   border-bottom-left-radius: 30px;
@@ -106,6 +110,7 @@ div.searchBar input{
   position: relative;
   width: 40%;
 }
+
 div.searchBar button {
   background: #40acd7 none repeat scroll 0 0;
   border: medium none;
@@ -118,6 +123,7 @@ div.searchBar button {
   width: 70px;
 
 }
+
 table {
   border-collapse: separate;
   border-spacing: 0;
@@ -224,4 +230,8 @@ input:invalid {
 
 .average-rating-container li.filled {
   color: #fd0; //#21568b
+}
+
+h2.sidebar-title{
+  margin-bottom: 0px;
 }

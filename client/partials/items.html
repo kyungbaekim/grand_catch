@@ -28,53 +28,125 @@
             <div class="col-md-3 col-sm-3 col-xs-12">
                 <div class="shop-widget">
                     <div class="shop-widget-top">
-                        <aside class="widget widget-categories">
-                            <h2 class="sidebar-title text-center">CATEGORY</h2>
-                            <ul class="sidebar-menu">
+                        <!-- <aside class="widget widget-categories"> -->
+												<aside class="widget widget-filter">
+                            <h2 class="sidebar-title text-center"><b>FILTERS</b></h2>
+														<b>Categories</b><br><br>
+                            <ul class="sidebar-menu" ng-repeat='(key, value) in categories'>
+															<li>{{ key }} ({{ value }})</li>
+                                <!-- <li>
+                                    <a href="#">
+                                       <i class="fa fa-angle-double-right"></i>
+                                        LEARNING
+                                        <span>(5)</span>
+                                    </a>
+                                </li>
                                 <li>
                                     <a href="#">
-                                     <i class="fa fa-angle-double-right"></i>
-                                     LEARNING
-                                     <span>(5)</span>
-                                 </a>
-                             </li>
-                             <li>
-                                <a href="#">
-                                 <i class="fa fa-angle-double-right"></i>
-                                 LIGHTING
-                                 <span>(8)</span>
-                             </a>
-                         </li>
-                         <li>
-                            <a href="#">
-                              <i class="fa fa-angle-double-right"></i>
-                              LIVING ROOMS
-                              <span>(4)</span>
-                          </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                         <i class="fa fa-angle-double-right"></i>
-                         LAMP
-                         <span>(7)</span>
-                     </a>
-                 </li>`
-             </ul>
-         </aside>
-         <aside class="widget shop-filter">
-            <h2 class="sidebar-title text-center">PRICE SLIDER</h2>
-            <div class="info-widget">
-                <div class="price-filter">
-                    <div id="slider-range"></div>
-                    <div class="price-slider-amount">
-                        <input type="text" id="amount" name="price"  placeholder="Add Your Price" />
-                        <div class="widget-buttom">
-                            <input type="submit"  value="Filter"/>
-                            <input type="reset" value="CLEAR" />
-                        </div>
+                                       <i class="fa fa-angle-double-right"></i>
+                                        LIGHTING
+                                        <span>(8)</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                      <i class="fa fa-angle-double-right"></i>
+                                       LIVING ROOMS
+                                        <span>(4)</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                       <i class="fa fa-angle-double-right"></i>
+                                        LAMP
+                                        <span>(7)</span>
+                                    </a>
+                                </li>` -->
+                            </ul>
+														<rzslider rz-slider-model="slider.minValue" rz-slider-high="slider.maxValue" rz-slider-options="slider.options"></rzslider>
+                        </aside>
+                        <!-- <aside class="widget shop-filter">
+                            <h2 class="sidebar-title text-center">PRICE FILTER</h2>
+														<rzslider rz-slider-model="slider.minValue"
+															        rz-slider-high="slider.maxValue"
+															        rz-slider-options="slider.options"></rzslider> -->
+														<!-- <slider floor="slider.minValue" ceiling="slider.maxValue" ng-model-low="slider.options.floor" ng-model-high="slider.options.ceil"></slider> -->
+                            <!-- <div class="info-widget">
+                                <div class="price-filter">
+                                    <div id="slider-range"></div>
+                                    <div class="price-slider-amount">
+                                        <input type="text" id="amount" name="price" placeholder="Add Your Price" />
+                                        <div class="widget-buttom">
+                                            <input type="submit"  value="Filter"/>
+                                            <input type="reset" value="CLEAR" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+                        <!-- </aside> -->
                     </div>
-                </div>
+                    <!-- <div class="shop-widget-bottom">
+                        <aside class="widget widget-tag">
+                            <h2 class="sidebar-title">POPULAR TAG</h2>
+                            <ul class="tag-list">
+                                <li>
+                                    <a href="#">e-book</a>
+                                </li>
+                                <li>
+                                    <a href="#">writer</a>
+                                </li>
+                                <li>
+                                    <a href="#">book’s</a>
+                                </li>
+                                <li>
+                                    <a href="#">eassy</a>
+                                </li>
+                                <li>
+                                    <a href="#">nice</a>
+                                </li>
+                                <li>
+                                    <a href="#">author</a>
+                                </li>
+                            </ul>
+                        </aside>
+                        <aside class="widget widget-seller">
+                            <h2 class="sidebar-title">TOP SELLERS</h2>
+                            <div class="single-seller">
+                                <div class="seller-img">
+                                    <img src="img/shop/1.jpg" alt="" />
+                                </div>
+                                <div class="seller-details">
+                                    <a href="shop.html"><h5>Cold mountain</h5></a>
+                                    <h5>$ 50.00</h5>
+                                    <ul>
+                                        <li><i class="fa fa-star icolor"></i></li>
+                                        <li><i class="fa fa-star icolor"></i></li>
+                                        <li><i class="fa fa-star icolor"></i></li>
+                                        <li><i class="fa fa-star icolor"></i></li>
+                                        <li><i class="fa fa-star icolor"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="single-seller">
+                                <div class="seller-img">
+                                    <img src="img/shop/2.jpg" alt="" />
+                                </div>
+                                <div class="seller-details">
+                                    <a href=""><h5>The historian</h5></a>
+                                    <h5>$ 50.00</h5>
+                                    <ul>
+                                        <li><i class="fa fa-star icolor"></i></li>
+                                        <li><i class="fa fa-star icolor"></i></li>
+                                        <li><i class="fa fa-star icolor"></i></li>
+                                        <li><i class="fa fa-star icolor"></i></li>
+                                        <li><i class="fa fa-star icolor"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </aside> -->
+                    <!-- </div> -->
             </div>
+					</div>
         </aside>
     </div>
     <div class="shop-widget-bottom">
@@ -206,23 +278,20 @@
                                 <!-- show table if dataLoaded is true -->
                                 <div ng-show="dataLoaded">
                                     <div class="shop-single-product-area">
-                                        <div dir-paginate="item in searchResult | orderBy:orderByPrice | filter:filterBySeller | filter:filterByCondition | itemsPerPage: 12" current-page='currentPage' ng-controller='reviewController'>
-                                            <!-- single product listing -->
-                                            <div smooth-scroll></div>
-                                            <div class="col-md-4 col-sm-6 col-xs-12" ng-controller="modalController">
-                                                <div class="single-banner">
-                                                    <div class="product-wrapper">
-                                                        <div  ng-mouseenter='hover = true' ng-mouseleave='hover = false' class="product-bg">
-                                                            <!-- <a href="" ng-click="ebayDisplay(item)" class="single-banner-image-wrapper"> -->
-                                                            <span class="helper"></span><a target="blank" href='{{ item.view }}'><img class='product-img' ng-src="{{ item.img }}"></a>
-                                                            <!-- </a> -->
-                                                            <div class="functional-buttons">
-                                                                <a href="#" title="Add to Wishlist">
-                                                                  <i class="fa fa-anchor"></i>
-                                                              </a>
-                                                       			<!-- <a href="#" title="Quick view" data-toggle="modal" data-target="#productModal">
-                                                                <i class="fa fa-compress"></i>
-                                                            </a> -->
+                                        <div dir-paginate="item in searchResult | orderBy:orderByPrice | filter:filterBySeller | filter:filterByCondition | filter:priceRange | itemsPerPage: 12" current-page='currentPage' ng-controller='reviewController'>
+                                        <!-- single product listing -->
+                                        <div smooth-scroll></div>
+                                        <div class="col-md-4 col-sm-6 col-xs-12" id='scroll' ng-controller="modalController">
+                                            <div class="single-banner">
+                                                <div class="product-wrapper">
+                                                    <div  ng-mouseenter='hover = true' ng-mouseleave='hover = false' class="product-bg">
+                                                        <!-- <a href="" ng-click="ebayDisplay(item)" class="single-banner-image-wrapper"> -->
+                                                          <span class="helper"></span><a target="blank" href='{{ item.view }}'><img class='product-img' ng-src="{{ item.img }}"></a>
+                                                        <!-- </a> -->
+                                                         <div class="functional-buttons">
+                                                            <a href="#" title="Add to Wishlist">
+                                                              <i class="fa fa-anchor"></i>
+                                                            </a>
                                                         </div>
                                                         <a ng-if="item.seller == 'amazon'" href="" ng-click="amazonDisplay(item, 'lg')"><div ng-class='{quickview: hover}'><p>Quick View</p></div></a>
                                                         <a ng-if="item.seller == 'ebay'" href="" ng-click="ebayDisplay(itemDetail, 'lg')"><div ng-class='{quickview: hover}'><p>Quick View</p></div></a>

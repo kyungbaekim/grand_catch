@@ -11,6 +11,9 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 		$scope.dataLoaded = false;
 		$scope.searchResult = [];
 		$scope.conditions = {};
+		$scope.rangeInfo = {}
+		$scope.categories = {}
+		$scope.sliderConfig = null
 		$scope.searchTime = new Date();
 
 		itemsFactory.getItems($scope.keywords, function(data){
@@ -38,8 +41,61 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 			var temp = $scope.searchEbayResult.concat($scope.searchAmazonResult)
 			$scope.searchResult = $scope.searchResult.concat(shuffle(temp));
 			// console.log($scope.conditions);
-			// console.log("Final search result in client side:", $scope.searchResult);
+			console.log("Final search result in client side:", $scope.searchResult);
+			console.log($scope.categories);
+
+			// $scope.Filter = {};
+			// $scope.uniques = (function () {
+		  //   var uniques = [];
+		  //   for (var i = 0; i < $scope.searchResult.length; i++) {
+		  //     if (uniques.indexOf($scope.searchResult[i].category) === -1) {
+		  //       uniques.push($scope.searchResult[i].category);
+		  //       //this populates the Filter with a key of the type, and the [val] of true
+		  //       $scope.Filter[$scope.searchResult[i].category] = true;
+		  //     }
+		  //   }
+			// 	console.log('Uniques:', uniques)
+		  //   return uniques;
+		  // })();
+
+			var price = Object.keys($scope.searchResult).map(function (key) {
+				if(typeof $scope.searchResult[key].price === 'string'){
+					return 0;
+				}
+				else {
+					return $scope.searchResult[key].price;
+				}
+			});
+			// console.log(price)
+			$scope.rangeInfo = {
+        // min : Math.min.apply(Math, price),
+        max : Math.max.apply(Math, price)
+			}
+			// console.log($scope.rangeInfo)
 			$scope.dataLoaded = true;
+			$scope.slider = {
+			  minValue: 0,
+			  maxValue: $scope.rangeInfo.max,
+				step: 1,
+			  options: {
+			    floor: 0,
+			    ceil: Math.round($scope.rangeInfo.max),
+					pushRange: true,
+			    translate: function(value, sliderId, label) {
+						switch (label) {
+			        case 'model':
+			          return '<b>Min:</b> $' + value;
+			        case 'high':
+			          return '<b>Max:</b> $' + value;
+			        default:
+			          return '$' + value
+			      }
+			    }
+			  }
+			};
+			$scope.priceRange = function(item) {
+		    return (parseInt(item['price']) >= $scope.slider.minValue && parseInt(item['price']) <= $scope.slider.maxValue);
+		  };
 		})
 	}
 
@@ -89,6 +145,12 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 				}
 				var categoryId = temp[i].primaryCategory[0].categoryId[0];
 				var categoryName = temp[i].primaryCategory[0].categoryName[0];
+				if(categoryName in $scope.categories){
+					$scope.categories[categoryName]++
+				}
+				else{
+					$scope.categories[categoryName] = 1;
+				}
 				var itemID = temp[i].itemId[0]
 				var shipping;
 				// var total_cost;
@@ -162,7 +224,7 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 				}
 				else{
 					condition = 'Not available'
-					console.log("No condition", i, obj[i])
+					// console.log("No condition", i, obj[i])
 				}
 
 				if(condition in $scope.conditions){
@@ -180,6 +242,12 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 					view = null
 				}
 				var categoryName = obj[i].ItemAttributes.Binding;
+				if(categoryName in $scope.categories){
+					$scope.categories[categoryName]++
+				}
+				else{
+					$scope.categories[categoryName] = 1;
+				}
 				data = { 'seller': 'amazon', 'id': obj[i].ASIN, 'title': obj[i].ItemAttributes.Title, 'view': obj[i].DetailPageURL, 'img': view, 'price': list_Price, 'sale_price': sale_Price, 'percentage_Saved': PercentageSaved, 'prime_item': prime_item, 'features': features, 'condition':  condition, 'category': categoryName,'CustomerReviews' : obj[i].CustomerReviews}
 				$scope.searchAmazonResult[i] = data
 			}

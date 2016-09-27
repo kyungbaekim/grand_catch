@@ -1511,7 +1511,7 @@ p.form-row-phone {
 }
 .shop-widget-top {
   background: #f6f6f6 none repeat scroll 0 0;
-  padding: 25px 0;
+  padding: 25px 10px;
 }
 .sidebar-title {
   font-size: 16px;
@@ -1528,6 +1528,7 @@ p.form-row-phone {
   left: 0;
   position: absolute;
   width: 100%;
+  margin-bottom: 15px;
 }
 .sidebar-menu li a i {
   color: #9c9c9c;
@@ -1542,7 +1543,7 @@ p.form-row-phone {
 }
 .sidebar-menu > li {
   line-height: 1;
-  padding: 19px 0;
+  padding: 5px 0;
 }
 .widget-categories {
   margin-bottom: 37px;
