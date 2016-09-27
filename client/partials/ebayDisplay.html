@@ -16,7 +16,7 @@
           </div>
           <b>Shipping cost:</b> ${{ itemDetail.ShippingCostSummary.ShippingServiceCost.Value | number:2 }}<br>
           <span ng-if="itemDetail.Storefront && itemDetail.Seller"><b>Seller:</b> <a href="{{ itemDetail.Storefront.StoreURL }}" target="blank">{{ itemDetail.Storefront.StoreName }}</a>(positive feedback: {{ itemDetail.Seller.PositiveFeedbackPercent }}%)<br></span>
-          <span ng-if="itemDetail.Seller && !itemDetail.Storefront"><b>Seller:</b> {{ itemDetail.Seller.UserID }}(positive feedback: {{ itemDetail.Seller.PositiveFeedbackPercent }}%)<br></span>
+          <span ng-if="itemDetail.Seller && !itemDetail.Storefront"><b>Seller:</b> {{ itemDetail.Seller.UserID }} (positive feedback: {{ itemDetail.Seller.PositiveFeedbackPercent }}%)<br></span>
           <b>Condition:</b> {{ itemDetail.ConditionDisplayName }}<br>
           <b>Features:</b><br>
           <ul class='feature' ng-repeat="feature in itemDetail.ItemSpecifics.NameValueList">

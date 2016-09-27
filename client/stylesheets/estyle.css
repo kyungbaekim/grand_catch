@@ -1528,6 +1528,7 @@ p.form-row-phone {
   left: 0;
   position: absolute;
   width: 100%;
+  margin-bottom: 15px;
 }
 .sidebar-menu li a i {
   color: #9c9c9c;

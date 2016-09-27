@@ -29,7 +29,7 @@
                 <div class="shop-widget">
                     <div class="shop-widget-top">
                         <aside class="widget widget-categories">
-                            <h2 class="sidebar-title text-center">CATEGORY</h2>
+                            <h2 class="sidebar-title text-center"><b>FILTERS</b></h2>
                             <ul class="sidebar-menu">
                                 <li>
                                     <a href="#">
@@ -60,24 +60,29 @@
                                     </a>
                                 </li>`
                             </ul>
+														<rzslider rz-slider-model="slider.minValue" rz-slider-high="slider.maxValue" rz-slider-options="slider.options"></rzslider>
                         </aside>
-                        <aside class="widget shop-filter">
-                            <h2 class="sidebar-title text-center">PRICE SLIDER</h2>
-                            <div class="info-widget">
+                        <!-- <aside class="widget shop-filter">
+                            <h2 class="sidebar-title text-center">PRICE FILTER</h2>
+														<rzslider rz-slider-model="slider.minValue"
+															        rz-slider-high="slider.maxValue"
+															        rz-slider-options="slider.options"></rzslider> -->
+														<!-- <slider floor="slider.minValue" ceiling="slider.maxValue" ng-model-low="slider.options.floor" ng-model-high="slider.options.ceil"></slider> -->
+                            <!-- <div class="info-widget">
                                 <div class="price-filter">
                                     <div id="slider-range"></div>
                                     <div class="price-slider-amount">
-                                        <input type="text" id="amount" name="price"  placeholder="Add Your Price" />
+                                        <input type="text" id="amount" name="price" placeholder="Add Your Price" />
                                         <div class="widget-buttom">
                                             <input type="submit"  value="Filter"/>
                                             <input type="reset" value="CLEAR" />
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </aside>
+                            </div> -->
+                        <!-- </aside> -->
                     </div>
-                    <div class="shop-widget-bottom">
+                    <!-- <div class="shop-widget-bottom">
                         <aside class="widget widget-tag">
                             <h2 class="sidebar-title">POPULAR TAG</h2>
                             <ul class="tag-list">
@@ -135,8 +140,8 @@
                                     </ul>
                                 </div>
                             </div>
-                        </aside>
-                    </div>
+                        </aside> -->
+                    <!-- </div> -->
                 </div>
             </div> <!-- end of side nav bar -->
             <div class="col-md-9 col-sm-9 col-xs-12">
@@ -206,7 +211,7 @@
                                 <!-- show table if dataLoaded is true -->
                                 <div ng-show="dataLoaded">
                                     <div class="shop-single-product-area">
-                                        <div dir-paginate="item in searchResult | orderBy:orderByPrice | filter:filterBySeller | filter:filterByCondition | itemsPerPage: 12" current-page='currentPage' ng-controller='reviewController'>
+                                        <div dir-paginate="item in searchResult | orderBy:orderByPrice | filter:filterBySeller | filter:filterByCondition | filter:priceRange | itemsPerPage: 12" current-page='currentPage' ng-controller='reviewController'>
                                         <!-- single product listing -->
                                         <div smooth-scroll></div>
                                         <div class="col-md-4 col-sm-6 col-xs-12" id='scroll' ng-controller="modalController">

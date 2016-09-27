@@ -1,5 +1,4 @@
 myAppModule.controller('reviewController', function ($scope, itemsFactory){
-  // console.log('reviewController', $scope.item)
   // check if scope.item is available
   if($scope.item){
     // call getReview if seller is Amazon
