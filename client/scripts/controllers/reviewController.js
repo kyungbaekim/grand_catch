@@ -28,6 +28,15 @@ myAppModule.controller('reviewController', function ($scope, itemsFactory){
       })
     }
   }
+
+  $scope.getReviewURL = function(id,url){
+    // console.log('in getReviewURL', url)
+    var pattern = new UrlPattern('(http(s)\\://)(:subdomain.):domain.:tld(/:product)(/*)');
+    var amazonUrl = pattern.match(url);
+    var refUrl = 'ref=cm_cr_if_acr_cm_cr_acr_txt?ie=UTF8&linkCode=xm2&showViewpoints=1&tag=smartercost-20'
+    $scope.amazonReviewURL = 'https://www.amazon.com/' + amazonUrl.product + '/product-reviews/' + id + '/' + refUrl
+    // console.log('amazonReview', $scope.amazonReview)
+  }
 })
 
 myAppModule.directive("averageStarRating", function() {

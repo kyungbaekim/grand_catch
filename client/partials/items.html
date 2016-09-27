@@ -253,14 +253,21 @@
                                                       <a href="" ng-click="amazonDisplay(item, 'lg')">{{ item.title }}</a>
                                                     </div>
                                                     <div class="product-details text-center">
-                                                      <b>Seller:</b> {{ item.seller }} <span ng-if='item.prime_item'>(Amazon Prime Item)</span><br>
-																									   	<span ng-if='item.price != "Check Website"'><b>Price:</b> ${{ item.price | number:2 }} <br></span>
-																									   	<span ng-if='item.price == "Check Website"'><b>Price:</b> {{ item.price }} <br></span>
-																											<span ng-if='item.percentage_Saved != "N/A"'><b>Sale price:</b> ${{ item.sale_price }} (save {{ item.percentage_Saved }}%)<br></span>
+                                                      <b>Seller:</b> {{ item.seller }} <span ng-if='item.prime_item'><font color="red">(Amazon Prime Item)</font></span><br>
+																									   	<span ng-if='item.price == "Check Website"'><b>Price:</b> Check website<br></span>
+																											<span ng-if='item.price != "Check Website" && item.percentage_Saved == "N/A"'><b>Price:</b> ${{ item.price | number:2 }} <br></span>
+																											<span ng-if='item.price != "Check Website" && item.percentage_Saved != "N/A"'><b>Price:</b> <strike>${{ item.price | number:2 }}</strike> ${{ item.sale_price }} (save {{ item.percentage_Saved }}%)<br></span>
 																											<span ng-if='item.condition == "Not available"'><b>Condition:</b> Check Website<br></span>
 																											<span ng-if='item.condition != "Not available"'><b>Condition:</b> {{ item.condition }}<br></span>
                                                     </div>
-                                                    <a target='blank' href='{{ item.CustomerReviews.IFrameURL }}'><img class='reviews' ng-src='{{ amazonReview }}'></a>
+																										<span ng-if='amazonReview != undefined'><a target='blank' href='{{ amazonReviewURL }}'>
+																											<div class="average" align="center">
+																												<average-star-rating ng-model="amazonReview" max="5"><average-star-rating>
+																											</div>
+																										{{ amazonReview }} out of 5</a>
+																										</span>
+																										<span ng-if='amazonReview == undefined'>No customer review available</span>
+                                                    <!-- <a target='blank' href='{{ amazonReview }}'><span ng-init='getReviewURL(item.id,item.view)' {{ review }}></span></a> -->
 																									</div>
                                                 </div>
                                             </div>

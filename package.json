@@ -23,6 +23,7 @@
     "json-proxy": "^0.9.1",
     "moment": "^2.14.1",
     "mongoose": "^4.5.7",
-    "node-sass": "^3.8.0"
+    "node-sass": "^3.8.0",
+    "url-pattern": "^1.0.1"
   }
 }
