@@ -22,7 +22,7 @@
           <b>Condition:</b> {{ itemDetail.condition }}<br>
           <span ng-if='isArray(itemDetail.features)'>
             <b>Features:</b>
-    				<ul class='feature' ng-repeat="feature in itemDetail.features">
+    				<ul class='feature' ng-repeat="feature in itemDetail.features track by $index">
     					<li>{{ feature }}</li>
     				</ul>
           </span>

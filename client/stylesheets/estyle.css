@@ -1645,7 +1645,7 @@ p.form-row-phone {
 .shop-tab-list {
   border: 1px solid #dddddd;
   padding: 10px 10px 40px;
-  min-height: 70px;
+  /*min-height: 70px;*/
 }
 .shop-tab-pill li#left, .shop-tab-pill li#left-top {
   margin-right: 28px;

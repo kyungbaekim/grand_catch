@@ -86,7 +86,7 @@ myAppModule.controller('modalController', function ($scope, itemsFactory, $uibMo
 
 	var amazonDisplayModalInstanceCtrl = function ($uibModalInstance, $scope, item) {
     $scope.itemDetail = item
-    // console.log(item, $scope.itemDetail)
+    console.log($scope.itemDetail)
     $scope.itemLoaded = true;
 
 		$scope.ok = function() {
