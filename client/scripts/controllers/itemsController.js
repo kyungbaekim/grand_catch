@@ -1,4 +1,4 @@
-myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibModal, $interval, $routeParams){
+myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibModal, $interval, $routeParams, filterFilter){
 	$scope.currentPage = 1;
   $scope.pageSize = 10;
 
@@ -6,6 +6,17 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 	$scope.dataLoaded = true;
 	$scope.keywords = '';
 	var temp = [];
+
+	var uniqueItems = function (data, key) {
+    var result = [];
+    for (var i = 0; i < data.length; i++) {
+      var value = data[i][key];
+      if (result.indexOf(value) == -1) {
+          result.push(value);
+      }
+    }
+    return result;
+	};
 
 	$scope.searchProduct = function (){
 		$scope.dataLoaded = false;
@@ -44,45 +55,87 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 			console.log("Final search result in client side:", $scope.searchResult);
 			console.log($scope.categories);
 
-			var price = Object.keys($scope.searchResult).map(function (key) {
-				if(typeof $scope.searchResult[key].price === 'string' || isNaN($scope.searchResult[key].price)){
-					// console.log($scope.searchResult[key].price)
-					return 0;
+			$scope.useCategory = {};
+			$scope.categoryGroup = uniqueItems($scope.searchResult, 'category');
+			console.log($scope.categoryGroup)
+
+			// Watch the categories that are selected
+	    $scope.$watch(function () {
+        return {
+					useCategory: $scope.useCategory
+        }
+	    }, function (value) {
+        var selected;
+
+        $scope.count = function (prop, value) {
+          return function (el) {
+            return el[prop] == value;
+          };
+        };
+
+        var filterAfterCategories = [];
+        selected = false;
+        for (var j in $scope.searchResult) {
+          var p = $scope.searchResult[j];
+          for (var i in $scope.useCategory) {
+            if ($scope.useCategory[i]) {
+              selected = true;
+              if (i == p.category) {
+                filterAfterCategories.push(p);
+                break;
+              }
+            }
+          }
+        }
+        if (!selected) {
+          filterAfterCategories = $scope.searchResult;
+        }
+
+				$scope.filteredSearchResult = filterAfterCategories;
+				var price = Object.keys($scope.filteredSearchResult).map(function (key) {
+					if(typeof $scope.filteredSearchResult[key].price === 'string' || isNaN($scope.filteredSearchResult[key].price)){
+						return 0;
+					}
+					else {
+						return $scope.filteredSearchResult[key].price;
+					}
+				});
+				$scope.rangeInfo = {
+	        min : Math.min.apply(Math, price),
+	        max : Math.max.apply(Math, price)
 				}
-				else {
-					return $scope.searchResult[key].price;
-				}
-			});
-			// console.log(price)
-			$scope.rangeInfo = {
-        min : Math.min.apply(Math, price),
-        max : Math.max.apply(Math, price)
-			}
-			console.log($scope.rangeInfo)
-			$scope.dataLoaded = true;
-			$scope.slider = {
-			  minValue: 0,
-			  maxValue: $scope.rangeInfo.max,
-				step: 1,
-			  options: {
-			    floor: 0,
-			    ceil: Math.round($scope.rangeInfo.max),
-					pushRange: true,
-			    translate: function(value, sliderId, label) {
-						switch (label) {
-			        case 'model':
-			          return '<b>Min:</b> $' + value;
-			        case 'high':
-			          return '<b>Max:</b> $' + value;
-			        default:
-			          return '$' + value
-			      }
-			    }
-			  }
-			};
-			$scope.priceRange = function(item) {
-		    return (parseInt(item['price']) >= $scope.slider.minValue && parseInt(item['price']) <= $scope.slider.maxValue);
-		  };
+				console.log($scope.rangeInfo)
+				$scope.dataLoaded = true;
+				$scope.slider = {
+				  minValue: 0,
+				  maxValue: $scope.rangeInfo.max,
+					step: 1,
+				  options: {
+				    floor: 0,
+				    ceil: Math.round($scope.rangeInfo.max),
+						pushRange: true,
+				    translate: function(value, sliderId, label) {
+							switch (label) {
+				        case 'model':
+				          return '<b>Min:</b> $' + value;
+				        case 'high':
+				          return '<b>Max:</b> $' + value;
+				        default:
+				          return '$' + value
+				      }
+				    }
+				  }
+				};
+				$scope.priceRange = function(item) {
+			    return (parseInt(item['price']) >= $scope.slider.minValue && parseInt(item['price']) <= $scope.slider.maxValue);
+			  };
+	    }, true);
+
+	    $scope.$watch('filtered', function (newValue) {
+        if (angular.isArray(newValue)) {
+          console.log(newValue.length);
+        }
+	    }, true);
 		})
 	}
 
@@ -228,7 +281,10 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 				else{
 					view = null
 				}
-				var categoryName = obj[i].ItemAttributes.Binding;
+				var categoryName = obj[i].ItemAttributes.ProductGroup;
+				if(categoryName == undefined){
+					console.log(obj[i])
+				}
 				if(categoryName in $scope.categories){
 					$scope.categories[categoryName]++
 				}
@@ -259,3 +315,22 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
     return array;
 	}
 })
+
+// myAppModule.filter('count', function() {
+//   return function(collection, key) {
+//     var out = "test";
+//     for (var i = 0; i < collection.length; i++) {
+//       //console.log(collection[i].pants);
+//       //var out = myApp.filter('filter')(collection[i].pants, "42", true);
+//     }
+//     return out;
+//   }
+// });
+//
+// myAppModule.filter('groupBy',
+//   function () {
+//     return function (collection, key) {
+//       if (collection === null) return;
+//       return uniqueItems(collection, key);
+//   };
+// });

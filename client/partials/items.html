@@ -27,14 +27,12 @@
             <!-- side nav bar -->
             <div class="col-md-3 col-sm-3 col-xs-12">
                 <div class="shop-widget">
-                    <div class="shop-widget-top">
-                        <!-- <aside class="widget widget-categories"> -->
+                    <div class="shop-widget-top" style='min-height:500px;'>
 												<aside class="widget widget-filter">
                             <h2 class="sidebar-title text-center"><b>FILTERS</b></h2>
 														<b>Categories</b><br><br>
-                            <ul class="sidebar-menu" ng-repeat='(key, value) in categories'>
-															<li><input type="checkbox" ng-model="categories"/> {{ key }} ({{ value }})</li>
-															<!-- <input type="checkbox" ng-model="usePants[pants]"/>{{pants}} -->
+                            <ul class="sidebar-menu" ng-repeat='category in categoryGroup'>
+															<li><input type="checkbox" ng-model="useCategory[category]"/> {{ category }} ({{ (searchResult | filter:count('category', category)).length }})</li>
                             </ul><br><br>
                             <b>Price Range</b><br><br>
 														<rzslider rz-slider-model="slider.minValue" rz-slider-high="slider.maxValue" rz-slider-options="slider.options"></rzslider>
@@ -97,20 +95,18 @@
                                 <!-- show table if dataLoaded is true -->
                                 <div ng-show="dataLoaded">
                                     <div class="shop-single-product-area">
-                                        <div dir-paginate="item in searchResult | orderBy:orderByPrice | filter:filterBySeller | filter:filterByCondition | filter:priceRange | itemsPerPage: 12" current-page='currentPage' ng-controller='reviewController'>
+                                        <div dir-paginate="item in filteredSearchResult | orderBy:orderByPrice | filter:filterBySeller | filter:filterByCondition | filter:priceRange | itemsPerPage: 12" current-page='currentPage' ng-controller='reviewController'>
                                         <!-- single product listing -->
                                         <div smooth-scroll></div>
                                         <div class="col-md-4 col-sm-6 col-xs-12" id='scroll' ng-controller="modalController">
                                             <div class="single-banner">
                                                 <div class="product-wrapper">
                                                     <div  ng-mouseenter='hover = true' ng-mouseleave='hover = false' class="product-bg">
-                                                        <!-- <a href="" ng-click="ebayDisplay(item)" class="single-banner-image-wrapper"> -->
-                                                          <span class="helper"></span><a target="blank" href='{{ item.view }}'><img class='product-img' ng-src="{{ item.img }}"></a>
-                                                        <!-- </a> -->
-                                                         <div class="functional-buttons">
-                                                            <a href="#" title="Add to Wishlist">
-                                                              <i class="fa fa-anchor"></i>
-                                                            </a>
+                                                        <span class="helper"></span><a target="blank" href='{{ item.view }}'><img class='product-img' ng-src="{{ item.img }}"></a>
+                                                        <div class="functional-buttons">
+                                                          <a href="#" title="Add to Wishlist">
+                                                            <i class="fa fa-anchor"></i>
+                                                          </a>
                                                         </div>
                                                         <a ng-if="item.seller == 'amazon'" href="" ng-click="amazonDisplay(item, 'lg')"><div ng-class='{quickview: hover}'><p>Quick View</p></div></a>
                                                         <a ng-if="item.seller == 'ebay'" href="" ng-click="ebayDisplay(itemDetail, 'lg')"><div ng-class='{quickview: hover}'><p>Quick View</p></div></a>
@@ -119,7 +115,6 @@
                                                 <div class="banner-bottom text-center">
                                                  <div ng-if="item.seller == 'ebay'">
                                                     <div class="banner-bottom-title">
-                                                     <!-- <a href="" ng-click="ebayDisplay(item, 'lg')">{{ item.title }}</a> -->
                                                      <a href="" ng-click="ebayDisplay(itemDetail, 'lg')">{{ item.title }}</a>
                                                  </div>
                                                  <div class="product-details text-center">
