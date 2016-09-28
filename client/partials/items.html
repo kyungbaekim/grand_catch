@@ -30,11 +30,27 @@
                     <div class="shop-widget-top" style='min-height:500px;'>
 												<aside class="widget widget-filter">
                             <h2 class="sidebar-title text-center"><b>FILTERS</b></h2>
-														<b>Categories</b><br><br>
+                            <div style="margin-top: 10px; margin-bottom: 7px;">
+						                  <b>Categories</b>
+                            </div>
                             <ul class="sidebar-menu" ng-repeat='category in categoryGroup'>
 															<li><input type="checkbox" ng-model="useCategory[category]"/> {{ category }} ({{ (searchResult | filter:count('category', category)).length }})</li>
-                            </ul><br><br>
-                            <b>Price Range</b><br><br>
+                            </ul>
+                            <div style="margin-top: 30px; margin-bottom: 7px;">
+                              <b>Sellers</b>
+                            </div>
+                            <ul class="sidebar-menu" ng-repeat='seller in sellerGroup'>
+															<li><input type="checkbox" ng-model="useSeller[seller]"/> {{ seller }} ({{ (filteredSearchResult | filter:count('seller', seller)).length }})</li>
+                            </ul>
+                            <div style="margin-top: 30px; margin-bottom: 7px;">
+                              <b>Conditions</b>
+                            </div>
+                            <ul class="sidebar-menu" ng-repeat='condition in conditionGroup'>
+															<li><input type="checkbox" ng-model="useCondition[condition]"/> {{ condition }} ({{ (filteredSearchResult | filter:count('condition', condition)).length }})</li>
+                            </ul>
+                            <div style="margin-top: 30px; margin-bottom: 7px;">
+                              <b>Price Range</b>
+                            </div>
 														<rzslider rz-slider-model="slider.minValue" rz-slider-high="slider.maxValue" rz-slider-options="slider.options"></rzslider>
                         </aside>
                     </div>
@@ -44,13 +60,13 @@
 						    <div class="shop-tab-area">
 						        <!-- product menu bar -->
 						        <div id='scroll' class="shop-tab-list">
-						            <div class="shop-tab-pill pull-left">
+						            <!-- <div class="shop-tab-pill pull-left">
 						                <ul>
 						                    <li class="active" id="left"><a data-toggle="pill" href="#home"><i class="fa fa-th"></i><span>Grid</span></a></li>
 						                    <li><a data-toggle="pill" href="#menu1"><i class="fa fa-th-list"></i><span>List</span></a></li>
 						                </ul>
-						            </div>
-						            <div class="shop-tab-pill pull-right">
+						            </div> -->
+						            <div class="shop-tab-pill pull-left">
 						                <ul>
 						                    <li class="product-size-details">
 						                        <div class="show-label">
@@ -62,7 +78,7 @@
 						                            </select>
 						                        </div>
 						                    </li>
-						                    <li class='product-size-details'>
+						                    <!-- <li class='product-size-details'>
 						                        <div class='show-label'>
 						                            <select ng-model="filterBySeller">
 						                                <option value="" selected="selected">All Sellers</option>
@@ -78,7 +94,7 @@
 						                                <option ng-repeat="(key, value) in conditions" value="{{key}}">{{key}}</option>
 						                            </select>
 						                        </div>
-						                    </li>
+						                    </li> -->
 						                </ul>
 						            </div>
 						        </div> <!-- end of product menu -->
@@ -95,7 +111,7 @@
                                 <!-- show table if dataLoaded is true -->
                                 <div ng-show="dataLoaded">
                                     <div class="shop-single-product-area">
-                                        <div dir-paginate="item in filteredSearchResult | orderBy:orderByPrice | filter:filterBySeller | filter:filterByCondition | filter:priceRange | itemsPerPage: 12" current-page='currentPage' ng-controller='reviewController'>
+                                        <div dir-paginate="item in filteredSearchResult | orderBy:orderByPrice | itemsPerPage: 12" current-page='currentPage' ng-controller='reviewController'>
                                         <!-- single product listing -->
                                         <div smooth-scroll></div>
                                         <div class="col-md-4 col-sm-6 col-xs-12" id='scroll' ng-controller="modalController">

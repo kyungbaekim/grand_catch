@@ -1542,8 +1542,8 @@ p.form-row-phone {
   text-transform: uppercase;
 }
 .sidebar-menu > li {
-  line-height: 1;
-  padding: 2px 0;
+  line-height: 1.5;
+  padding: 1px 0;
 }
 .widget-categories {
   margin-bottom: 37px;
@@ -2154,7 +2154,7 @@ a.wish-btn {
 }
 .product-details {
   padding: 10px;
-  text-align: left;
+  /*text-align: left;*/
 }
 .product-details > h4, .product-cart-details > span {
   font-size: 16px;

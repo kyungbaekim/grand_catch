@@ -28,12 +28,12 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 		$scope.searchTime = new Date();
 
 		itemsFactory.getItems($scope.keywords, function(data){
-			console.log(data);
+			// console.log(data);
 			createEbayList(data[0])
 			var temp = [];
 			for(var i=0; i<data[1].length; i++){
-				if(data[1][i] != null){
-					temp = temp.concat(data[1][i])
+				if(data[1][i].item != null){
+					temp = temp.concat(data[1][i].item)
 				}
 			}
 			createAmazonList(temp)
@@ -51,18 +51,25 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 			}
 			var temp = $scope.searchEbayResult.concat($scope.searchAmazonResult)
 			$scope.searchResult = $scope.searchResult.concat(shuffle(temp));
-			// console.log($scope.conditions);
-			console.log("Final search result in client side:", $scope.searchResult);
-			console.log($scope.categories);
+			console.log($scope.conditions);
+			// console.log("Final search result in client side:", $scope.searchResult);
+			// console.log($scope.categories);
 
 			$scope.useCategory = {};
+			$scope.useSeller = {};
+			$scope.useCondition = {};
+
 			$scope.categoryGroup = uniqueItems($scope.searchResult, 'category');
-			console.log($scope.categoryGroup)
+			$scope.sellerGroup = uniqueItems($scope.searchResult, 'seller');
+			$scope.conditionGroup = uniqueItems($scope.searchResult, 'condition');
+			// console.log($scope.categoryGroup, $scope.sellerGroup, $scope.conditionGroup)
 
 			// Watch the categories that are selected
 	    $scope.$watch(function () {
         return {
-					useCategory: $scope.useCategory
+					useCategory: $scope.useCategory,
+					useSeller: $scope.useSeller,
+					useCondition: $scope.useCondition
         }
 	    }, function (value) {
         var selected;
@@ -91,7 +98,45 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
           filterAfterCategories = $scope.searchResult;
         }
 
-				$scope.filteredSearchResult = filterAfterCategories;
+        var filterAfterSeller = [];
+        selected = false;
+        for (var j in filterAfterCategories) {
+            var p = filterAfterCategories[j];
+            for (var i in $scope.useSeller) {
+                if ($scope.useSeller[i]) {
+                    selected = true;
+                    if (i == p.seller) {
+                        filterAfterSeller.push(p);
+                        break;
+                    }
+                }
+            }
+        }
+        if (!selected) {
+            filterAfterSeller = filterAfterCategories;
+        }
+
+				var filterAfterCondition = [];
+        selected = false;
+        for (var j in filterAfterSeller) {
+            var p = filterAfterSeller[j];
+            for (var i in $scope.useCondition) {
+                if ($scope.useCondition[i]) {
+                    selected = true;
+                    if (i == p.condition) {
+                        filterAfterCondition.push(p);
+                        break;
+                    }
+                }
+            }
+        }
+        if (!selected) {
+            filterAfterCondition= filterAfterSeller;
+        }
+
+				$scope.filteredSearchResult = filterAfterCondition;
+				console.log($scope.filteredSearchResult)
+
 				var price = Object.keys($scope.filteredSearchResult).map(function (key) {
 					if(typeof $scope.filteredSearchResult[key].price === 'string' || isNaN($scope.filteredSearchResult[key].price)){
 						return 0;
@@ -100,11 +145,12 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 						return $scope.filteredSearchResult[key].price;
 					}
 				});
+				// console.log(price)
 				$scope.rangeInfo = {
 	        min : Math.min.apply(Math, price),
 	        max : Math.max.apply(Math, price)
 				}
-				console.log($scope.rangeInfo)
+				// console.log($scope.rangeInfo)
 				$scope.dataLoaded = true;
 				$scope.slider = {
 				  minValue: 0,

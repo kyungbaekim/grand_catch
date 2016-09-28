@@ -28,31 +28,36 @@ module.exports = {
 		function testSearch1(callback){
 			console.log("Searched keyword:", keywords);
 			prodAdv.call("ItemSearch", {SearchIndex: "All", Keywords: keywords, ItemPage: 1,  ResponseGroup:"Images,ItemAttributes,Offers,Reviews"}, function(err, result) {
-				callback(null, result.Items.Item)
+				var res = {'item': result.Items.Item, 'page': 1}
+				callback(null, res)
 			})
 		}
 
 		function testSearch2(callback){
 			prodAdv.call("ItemSearch", {SearchIndex: "All", Keywords: keywords, ItemPage: 2,  ResponseGroup:"Images,ItemAttributes,Offers,Reviews"}, function(err, result) {
-				callback(null, result.Items.Item)
+				var res = {'item': result.Items.Item, 'page': 2}
+				callback(null, res)
 			})
 		}
 
 		function testSearch3(callback){
 			prodAdv.call("ItemSearch", {SearchIndex: "All", Keywords: keywords, ItemPage: 3,  ResponseGroup:"Images,ItemAttributes,Offers,Reviews"}, function(err, result) {
-				callback(null, result.Items.Item)
+				var res = {'item': result.Items.Item, 'page': 3}
+				callback(null, res)
 			})
 		}
 
 		function testSearch4(callback){
 			prodAdv.call("ItemSearch", {SearchIndex: "All", Keywords: keywords, ItemPage: 4,  ResponseGroup:"Images,ItemAttributes,Offers,Reviews"}, function(err, result) {
-				callback(null, result.Items.Item)
+				var res = {'item': result.Items.Item, 'page': 4}
+				callback(null, res)
 			})
 		}
 
 		function testSearch5(callback){
 			prodAdv.call("ItemSearch", {SearchIndex: "All", Keywords: keywords, ItemPage: 5,  ResponseGroup:"Images,ItemAttributes,Offers,Reviews"}, function(err, result) {
-				callback(null, result.Items.Item)
+				var res = {'item': result.Items.Item, 'page': 5}
+				callback(null, res)
 			})
 		}
 	},
