@@ -33,8 +33,10 @@
                             <h2 class="sidebar-title text-center"><b>FILTERS</b></h2>
 														<b>Categories</b><br><br>
                             <ul class="sidebar-menu" ng-repeat='(key, value) in categories'>
-															<li>{{ key }} ({{ value }})</li>
-                            </ul>
+															<li><input type="checkbox" ng-model="categories"/> {{ key }} ({{ value }})</li>
+															<!-- <input type="checkbox" ng-model="usePants[pants]"/>{{pants}} -->
+                            </ul><br><br>
+                            <b>Price Range</b><br><br>
 														<rzslider rz-slider-model="slider.minValue" rz-slider-high="slider.maxValue" rz-slider-options="slider.options"></rzslider>
                         </aside>
                     </div>
@@ -141,7 +143,7 @@
                                               <b>Seller:</b> {{ item.seller }} <span ng-if='item.prime_item'><img class='amazonPrimeIcon' src="images/amazonPrime1.png"></span><br>
                                               <span ng-if='item.price == "Check Website"'><b>Price:</b> Check website<br></span>
                                               <span ng-if='item.price != "Check Website" && item.percentage_Saved == "N/A"'><b>Price:</b> ${{ item.price | number:2 }} <br></span>
-                                              <span ng-if='item.price != "Check Website" && item.percentage_Saved != "N/A"'><b>Price:</b> <strike>${{ item.price | number:2 }}</strike> ${{ item.sale_price }} (save {{ item.percentage_Saved }}%)<br></span>
+                                              <span ng-if='item.price != "Check Website" && item.percentage_Saved != "N/A"'><b>Price:</b> <strike>${{ item.price | number:2 }}</strike> ${{ item.sale_price | number:2 }} (save {{ item.percentage_Saved }}%)<br></span>
                                               <span ng-if='item.condition == "Not available"'><b>Condition:</b> Check Website<br></span>
                                               <span ng-if='item.condition != "Not available"'><b>Condition:</b> {{ item.condition }}<br></span>
                                           </div>

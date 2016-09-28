@@ -13,10 +13,10 @@
           <a href='{{ itemDetail.view }}' target='blank'><h1 class="modal-title">{{ itemDetail.title }}</h1></a>
           <div class="price-box">
             <span ng-if='itemDetail.percentage_Saved != "N/A"'>
-              <p class="s-price"><span class="special-price"><span class="amount"><strike>${{ itemDetail.price }}</strike> ${{ itemDetail.sale_price }}(saves {{ itemDetail.percentage_Saved }}%)</span></span></p>
+              <p class="s-price"><span class="special-price"><span class="amount"><strike>${{ itemDetail.price | number:2 }}</strike> ${{ itemDetail.sale_price | number:2 }}(saves {{ itemDetail.percentage_Saved }}%)</span></span></p>
             </span>
             <span ng-if='itemDetail.percentage_Saved == "N/A"'>
-              <p class="s-price"><span class="special-price"><span class="amount">{{ itemDetail.list_price }}</span></span></p>
+              <p class="s-price"><span class="special-price"><span class="amount">${{ itemDetail.price | number:2 }}</span></span></p>
             </span>
           </div>
           <b>Condition:</b> {{ itemDetail.condition }}<br>

@@ -44,22 +44,9 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 			console.log("Final search result in client side:", $scope.searchResult);
 			console.log($scope.categories);
 
-			// $scope.Filter = {};
-			// $scope.uniques = (function () {
-		  //   var uniques = [];
-		  //   for (var i = 0; i < $scope.searchResult.length; i++) {
-		  //     if (uniques.indexOf($scope.searchResult[i].category) === -1) {
-		  //       uniques.push($scope.searchResult[i].category);
-		  //       //this populates the Filter with a key of the type, and the [val] of true
-		  //       $scope.Filter[$scope.searchResult[i].category] = true;
-		  //     }
-		  //   }
-			// 	console.log('Uniques:', uniques)
-		  //   return uniques;
-		  // })();
-
 			var price = Object.keys($scope.searchResult).map(function (key) {
-				if(typeof $scope.searchResult[key].price === 'string'){
+				if(typeof $scope.searchResult[key].price === 'string' || isNaN($scope.searchResult[key].price)){
+					// console.log($scope.searchResult[key].price)
 					return 0;
 				}
 				else {
@@ -68,10 +55,10 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 			});
 			// console.log(price)
 			$scope.rangeInfo = {
-        // min : Math.min.apply(Math, price),
+        min : Math.min.apply(Math, price),
         max : Math.max.apply(Math, price)
 			}
-			// console.log($scope.rangeInfo)
+			console.log($scope.rangeInfo)
 			$scope.dataLoaded = true;
 			$scope.slider = {
 			  minValue: 0,
