@@ -28,7 +28,8 @@ app.use(proxy.initialize({
     'forward': {
       '/shopping': "http://open.api.ebay.com/",
       '/reviews': 'https://www.amazon.com/',
-      '/itm': 'http://www.ebay.com/'
+      '/itm': 'http://www.ebay.com/',
+      '/MerchandisingService': "http://svcs.ebay.com/"
     }
   }
 }));

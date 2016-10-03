@@ -109,5 +109,19 @@ myAppModule.factory('itemsFactory', function ($http){
 		})
 	}
 
+	factory.getPopularItems = function(callback){
+		var URL = '/MerchandisingService?OPERATION-NAME=getTopSellingProducts&'
+   	URL += 'SERVICE-NAME=MerchandisingService&'
+   	URL += 'SERVICE-VERSION=1.1.0&'
+   	URL += 'CONSUMER-ID=' + production_app_id
+   	URL += '&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&maxResults=20&affiliate.trackingId=' + affiliateTrackingId + '&affiliate.networkId=' + affiliateNetworkId + '&affiliate.customId=' + affiliateCustomId
+		$http.get(URL).success(function(res){
+			// console.log("Success:", res)
+			callback(res)
+		}).error(function(res){
+			console.log("error:", res)
+		})
+	}
+
 	return factory;
 })

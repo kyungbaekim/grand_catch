@@ -1,4 +1,4 @@
-<div class='row'>
+<!-- <div class='row'>
  	<div class='col-md-4'>
 		<h1>Login</h1>
 			<div ng-if="login_errors.length > 0" class="alert alert-danger">
@@ -17,4 +17,32 @@
 		</div>
 	  <button class='btn btn-primary' ng-click='login()'>Login</button>
 	</form>
+ </div> -->
+
+ <div class="modal-header">
+   <h3>Login</h3>
+   <p class='warning' ng-show="login_errors.length > 0">{{ login_errors[0] }}</p>
  </div>
+ <form name="loginForm" novalidate>
+   <div class="modal-body">
+     <!-- EMAIL -->
+     <div class="form-group">
+       <label>Email</label>
+       <input type="email" name="email" class="form-control" ng-model="user.email" required>
+       <p ng-show="!loginForm.email.$dirty" class="help-block">Email required.</p>
+       <p ng-show="loginForm.email.$error.email && loginForm.email.$dirty" class="help-block">Enter a valid email.</p>
+     </div>
+
+     <!-- PASSWORD -->
+     <div class="form-group">
+       <label>Password</label>
+       <input type="password" name="password" class="form-control" ng-model="user.password" ng-minlength="8" required>
+       <p ng-show="!loginForm.password.$dirty" class="help-block">Password required.</p>
+     </div>
+   </div>
+
+   <div class="modal-footer">
+     <button class="btn btn-primary" ng-disabled="!loginForm.$valid" ng-click="login()">OK</button>
+     <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+   </div>
+ </form>

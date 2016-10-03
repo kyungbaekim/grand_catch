@@ -111,7 +111,7 @@
                                 <!-- show table if dataLoaded is true -->
                                 <div ng-show="dataLoaded">
                                     <div class="shop-single-product-area">
-                                        <div dir-paginate="item in filteredSearchResult | orderBy:orderByPrice | itemsPerPage: 12" current-page='currentPage' ng-controller='reviewController'>
+                                        <div dir-paginate="item in filteredSearchResult | orderBy:orderByPrice | filter:priceRange | itemsPerPage: 12" current-page='currentPage' ng-controller='reviewController'>
                                         <!-- single product listing -->
                                         <div smooth-scroll></div>
                                         <div class="col-md-4 col-sm-6 col-xs-12" id='scroll' ng-controller="modalController">

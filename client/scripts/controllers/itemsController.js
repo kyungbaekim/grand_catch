@@ -18,6 +18,10 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
     return result;
 	};
 
+	itemsFactory.getPopularItems(function(res){
+		console.log(res)
+	})
+
 	$scope.searchProduct = function (){
 		$scope.dataLoaded = false;
 		$scope.searchResult = [];

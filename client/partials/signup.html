@@ -1,4 +1,4 @@
-<div class='partial'>
+<!-- <div class='partial'>
 	<div class='row'>
  		<div class='col-md-3'>
 			<div ng-if="register_errors.length > 0" class="alert alert-danger">
@@ -28,4 +28,57 @@
 			</form>
 	 	</div>
  	</div>
+</div> -->
+<div class="modal-header">
+  <h3>Create A New Account!</h3>
+  <p ng-show="register_errors.length > 0">{{ register_errors }}</p>
 </div>
+<form name="regForm" novalidate>
+  <div class="modal-body">
+    <!-- FIRST NAME -->
+    <div class="form-group">
+      <label>First Name</label>
+      <input type="text" name="fname" class="form-control" ng-model="user.fname" ng-minlength="3" required>
+      <p ng-show="!regForm.fname.$dirty" class="help-block">First name is required.</p>
+      <p ng-show="!regForm.fname.$error.required && regForm.fname.$error.minlength && regForm.fname.$dirty" class="help-block">First name is too short. Must be at least 3 characters.</p>
+    </div>
+
+    <!-- LAST NAME -->
+    <div class="form-group">
+      <label>Last Name</label>
+      <input type="text" name="lname" class="form-control" ng-model="user.lname" ng-minlength="2" required>
+      <p ng-show="!regForm.lname.$dirty" class="help-block">Last name is required.</p>
+      <p ng-show="regForm.lname.$error.minlength" class="help-block">Last name is too short. Must be at least 2 characters.</p>
+    </div>
+
+    <!-- EMAIL -->
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" name="email" class="form-control" ng-model="user.email" required>
+      <p ng-show="!regForm.email.$dirty" class="help-block">Email required.</p>
+      <p ng-show="regForm.email.$error.email && regForm.email.$dirty" class="help-block">Enter a valid email.</p>
+      <p ng-show="register_email_error.length > 0" class="help-block">{{ register_email_error[0] }}.</p>
+    </div>
+
+    <!-- PASSWORD -->
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" name="password" class="form-control" ng-model="user.password" ng-minlength="8" required>
+      <p ng-show="!regForm.password.$dirty" class="help-block">Password required.</p>
+      <p ng-show="regForm.password.$error.minlength && regForm.password.$dirty" class="help-block">Password is too short. Must be at least 8 characters long.</p>
+    </div>
+
+    <!-- CONFIRM PASSWORD -->
+    <div class="form-group">
+      <label>Confirm Password</label>
+      <input type="password" name="cpassword" class="form-control" ng-model="user.cpassword" data-password-verify="user.password" required>
+      <p ng-show="!regForm.cpassword.$dirty" class="help-block">Confirm password required.</p>
+      <p ng-show="regForm.cpassword.$error.passwordVerify" class="help-block">Confirm password and password must match.</p>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-disabled="!regForm.$valid" ng-click="register()">OK</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+  </div>
+</form>
