@@ -17,9 +17,21 @@ div.quickview p {
   position: absolute;
   right: 0; left: 0;
   bottom: 8px;
-  }
+}
 
+span.priceSize{
+  font-size: 18px;
+  position: relative;
+  top: 8px;
+}
+span.sellerInfo{
+  font-size: 12px;
+  /*color: #555555;*/
+}
 img.amazonPrimeIcon{
+  position: relative;
+  top: -3px;
+  left: -2px;
   width: 55px;
   height: auto;
 }
@@ -122,34 +134,6 @@ div.searchBar button {
   position: absolute;
   width: 70px;
 
-}
-
-table {
-  border-collapse: separate;
-  border-spacing: 0;
- /* border-collapse: collapse;*/
-  margin-top: 20px;
-}
-
-th, td {
-  padding: 10px 15px !important;
-}
-
-td {
-  border: 1px solid #cecfd5;
-}
-
-th {
-  font-weight: bold;
-}
-
-thead {
-  background: #395870;
-  color: #fff;
-}
-
-tr:nth-child(even) {
-  background: #f0f0f2;
 }
 
 #search_btn1 {

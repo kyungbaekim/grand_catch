@@ -121,9 +121,9 @@
                                                      <a href="" ng-click="ebayDisplay(itemDetail, 'lg')">{{ item.title }}</a>
                                                  </div>
                                                  <div class="product-details text-center">
-                                                  <b>Seller:</b> {{ item.seller }} <br>
-                                                  <b>Price:</b> <span>$</span>{{ item.price | number:2 }} <br>
-                                                  <b>Condition:</b> {{ item.condition }}<br>
+                                                  <span class="sellerInfo"><b>Seller:</b> {{ item.seller }} <br>
+                                                  <!-- <b>Condition:</b> {{ item.condition }}<br></span> -->
+                                                 <span class='priceSize'><span>$</span>{{ item.price | number:2 }} <br></span>
                                               </div>
                                               <span ng-if='ebayReview != undefined'><a target='blank' href='{{ reviewURL }}'>
                                                  <div class="average" align="center">
@@ -137,13 +137,14 @@
                                             <div class="banner-bottom-title">
                                               <a href="" ng-click="amazonDisplay(item, 'lg')">{{ item.title }}</a>
                                           </div>
-                                          <div class="product-details text-center">
-                                              <b>Seller:</b> {{ item.seller }} <span ng-if='item.prime_item'><img class='amazonPrimeIcon' src="images/amazonPrime1.png"></span><br>
-                                              <span ng-if='item.price == "Check Website"'><b>Price:</b> Check website<br></span>
-                                              <span ng-if='item.price != "Check Website" && item.percentage_Saved == "N/A"'><b>Price:</b> ${{ item.price | number:2 }} <br></span>
-                                              <span ng-if='item.price != "Check Website" && item.percentage_Saved != "N/A"'><b>Price:</b> <strike>${{ item.price | number:2 }}</strike> ${{ item.sale_price }} (save {{ item.percentage_Saved }}%)<br></span>
-                                              <span ng-if='item.condition == "Not available"'><b>Condition:</b> Check Website<br></span>
-                                              <span ng-if='item.condition != "Not available"'><b>Condition:</b> {{ item.condition }}<br></span>
+                                          <div style='text-transform:capitalize' class="product-details text-center">
+                                              <span class="sellerInfo"><b>Seller:</b> {{ item.seller }} 
+                                              <span ng-if='item.prime_item'><img class='amazonPrimeIcon' src="images/amazonPrime1.png"></span><br>
+                                           <!--    <span ng-if='item.condition == "Not available"'><b>Condition:</b> Check Website<br></span>
+                                              <span ng-if='item.condition != "Not available"'><b>Condition:</b> {{ item.condition }}<br></span></span>
+                                              <span ng-if='item.price == "Check Website"'>Check website for price<br></span> -->
+                                              <span ng-if='item.price != "Check Website" && item.percentage_Saved == "N/A"'><span class='priceSize'>${{ item.price | number:2 }} <br></span></span>
+                                              <span ng-if='item.price != "Check Website" && item.percentage_Saved != "N/A"'><span class='priceSize'><strike>${{ item.price | number:2 }}</strike> ${{ item.sale_price }} (save {{ item.percentage_Saved }}%)<br></span></span>
                                           </div>
                                           <span ng-if='amazonReview != undefined'><a target='blank' ng-init='getReviewURL(item.id,item.view)' href='{{ amazonReviewURL }}'>
                                              <div class="average" align="center">
