@@ -87,8 +87,8 @@ span.helper{
 }
 
 img.product-img{
-  min-width: 145px;
-  max-width: 160px;
+  min-width: 160px;
+  max-width: 180px;
   height: auto;
   max-height: 260px;
   display: inline-block;
@@ -190,7 +190,7 @@ input:invalid {
 
 .feature {
   /*list-style-position: insid`e;*/
-  padding-left: 15px;
+  padding-left: 20px;
   margin: 0px;
   list-style-type: square;
 }
@@ -234,4 +234,8 @@ input:invalid {
 
 h2.sidebar-title{
   margin-bottom: 0px;
+}
+
+.ebay-topselling{
+  margin-top: 40px;
 }

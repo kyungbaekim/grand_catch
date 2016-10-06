@@ -109,17 +109,51 @@ myAppModule.factory('itemsFactory', function ($http){
 		})
 	}
 
-	factory.getPopularItems = function(callback){
-		var URL = '/MerchandisingService?OPERATION-NAME=getTopSellingProducts&'
+	factory.getPopularEbayItems = function(cID, callback){
+		var URL = '/MerchandisingService?OPERATION-NAME=getMostWatchedItems&'
    	URL += 'SERVICE-NAME=MerchandisingService&'
    	URL += 'SERVICE-VERSION=1.1.0&'
    	URL += 'CONSUMER-ID=' + production_app_id
-   	URL += '&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&maxResults=20&affiliate.trackingId=' + affiliateTrackingId + '&affiliate.networkId=' + affiliateNetworkId + '&affiliate.customId=' + affiliateCustomId
+   	URL += '&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&maxResults=12&categoryId=' + cID
+		URL += '&affiliate.trackingId=' + affiliateTrackingId + '&affiliate.networkId=' + affiliateNetworkId + '&affiliate.customId=' + affiliateCustomId
 		$http.get(URL).success(function(res){
 			// console.log("Success:", res)
 			callback(res)
 		}).error(function(res){
 			console.log("error:", res)
+		})
+	}
+
+	factory.getPopularEbaySingleItem = function(pID, callback){
+		// console.log(pID)
+		var URL = 'v1?OPERATION-NAME=findItemsByProduct&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=' + production_app_id + '&'
+		URL += 'RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&paginationInput.entriesPerPage=1&productId.@type=ReferenceID&productId=' + pID
+		URL += '&outputSelector(0)=PictureURLLarge&outputSelector(1)=PictureURLSuperSize'
+	// 	var URL = '/shopping?callname=Products&responseencoding=JSON&appid=' + production_app_id + '&'
+	//   URL += 'siteid=0&version=957&ProductID=' + pID + '&AvailableItemsOnly=true&MaxEntries=1'
+		$http.get(URL).success(function(res){
+			// console.log("Success:", res)
+			callback(res)
+		}).error(function(res){
+			console.log("error:", res)
+		})
+	}
+
+	factory.getPopularAmazonItems = function(department, callback){
+		console.log("Department code:", department)
+		$http.get('/topSellers/' + department).then(function(res){
+			console.log("From factory...:", res)
+			callback(res)
+		})
+	}
+
+	// Amazon single item
+	factory.itemLookUp = function(data, callback){
+		// console.log('in itemLookup factor:', data)
+		//run $http request to server routes
+		$http.get('/itemLookUp/' + data).success(function(output){
+			//run callback function to send data back to controller
+			callback(output)
 		})
 	}
 

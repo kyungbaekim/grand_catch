@@ -569,6 +569,7 @@ body {
   width: 1px;
 }
 .tab-menu ul.nav-tabs {
+  margin-top: 10px;
   border: medium none;
   text-align: center;
 }
@@ -609,7 +610,7 @@ body {
   display: inline-block;
   float: none;
   margin-bottom: 0;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .single-banner {
   border: 1px solid #ddd;
@@ -632,15 +633,31 @@ body {
   font-family: 'Montserrat', sans-serif;
   border-top: 1px solid #ddd;
   /*overflow: scroll;*/
-  padding: 10px 0;
+  padding: 10px 10px;
   height: 230px;
 /*  width: 200px; */
 }
+.popularA-banner-bottom {
+  font-family: 'Montserrat', sans-serif;
+  border-top: 1px solid #ddd;
+  /*overflow: scroll;*/
+  padding: 5px 5px;
+  min-height: 135px;
+/*  width: 200px; */
+}
+.popularE-banner-bottom {
+  font-family: 'Montserrat', sans-serif;
+  border-top: 1px solid #ddd;
+  /*overflow: scroll;*/
+  padding: 5px 5px;
+  min-height: 210px;
+/*  width: 200px; */
+}
 
-/*.banner-bottom-title {
-  border: 1px solid red;
-  height: 60px;
-}*/
+.banner-bottom-title {
+  /*border: 1px solid red;*/
+  height: 80px;
+}
 
 .banner-bottom-title a {
   height: 60px;
@@ -2313,9 +2330,9 @@ a.see-all {
   color: #ffffff;
   float: left;
   font-weight: 700;
-  height: 40px;
-  margin-left: 15px;
-  padding: 0 70px;
+  min-height: 40px;
+  margin: 15px 0px;
+  padding: 5px 10px;
   text-transform: uppercase;
   transition: all 0.3s ease 0s;
 }
@@ -2416,7 +2433,7 @@ h3.widget-title-modal {
   color: #ffffff;
 }
 .modal-content {
-  background-color: #f3f3f3;
+  /*background-color: #f3f3f3;*/
 }
 /*----------------------------------------*/
 /*  22.	My Account CSS

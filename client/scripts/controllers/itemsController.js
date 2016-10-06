@@ -1,4 +1,4 @@
-myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibModal, $interval, $routeParams, filterFilter){
+myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibModal, $interval, $routeParams){
 	$scope.currentPage = 1;
   $scope.pageSize = 10;
 
@@ -18,11 +18,8 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
     return result;
 	};
 
-	itemsFactory.getPopularItems(function(res){
-		console.log(res)
-	})
-
 	$scope.searchProduct = function (){
+		console.log($scope.keywords);
 		$scope.dataLoaded = false;
 		$scope.searchResult = [];
 		$scope.conditions = {};
@@ -365,22 +362,3 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
     return array;
 	}
 })
-
-// myAppModule.filter('count', function() {
-//   return function(collection, key) {
-//     var out = "test";
-//     for (var i = 0; i < collection.length; i++) {
-//       //console.log(collection[i].pants);
-//       //var out = myApp.filter('filter')(collection[i].pants, "42", true);
-//     }
-//     return out;
-//   }
-// });
-//
-// myAppModule.filter('groupBy',
-//   function () {
-//     return function (collection, key) {
-//       if (collection === null) return;
-//       return uniqueItems(collection, key);
-//   };
-// });

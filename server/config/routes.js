@@ -8,7 +8,13 @@ module.exports = function(app){
 		aws.itemSearch(req, res);
 	})
 
+	app.get('/topSellers/:department', function (req,res){
+		console.log("From routes.js:", req.params)
+		aws.topSellers(req, res);
+	})
+
 	app.get('/itemLookUp/:asin', function (req,res){
+		console.log("From routes.js:", req.params)
 		aws.itemLookUp(req, res);
 	})
 

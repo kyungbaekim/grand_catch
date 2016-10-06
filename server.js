@@ -29,7 +29,8 @@ app.use(proxy.initialize({
       '/shopping': "http://open.api.ebay.com/",
       '/reviews': 'https://www.amazon.com/',
       '/itm': 'http://www.ebay.com/',
-      '/MerchandisingService': "http://svcs.ebay.com/"
+      '/MerchandisingService': "http://svcs.ebay.com/",
+      '/v1': 'http://svcs.ebay.com/services/search/FindingService/'
     }
   }
 }));

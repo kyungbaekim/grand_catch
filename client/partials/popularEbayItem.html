@@ -1,0 +1,40 @@
+<div ng-controller='topEbaySellerController'>
+  <div ng-repeat='eItem in ebayItems' class="shop-single-product-area" ng-controller='topSingleItemController'>
+    <div class="col-md-3 col-sm-3 col-xs-6" id='scroll'>
+      <div class="single-banner">
+        <div class="product-wrapper">
+          <div ng-mouseenter='hover = true' ng-mouseleave='hover = false' class="product-bg">
+            <span class="helper"></span>
+            <!-- <span ng-if="eItemDetail.item[0].pictureURLSuperSize[0]"><img class='product-img' ng-src="{{ eItemDetail.item[0].pictureURLSuperSize[0] }}"></span>
+            <span ng-if="eItemDetail.item[0].pictureURLSuperSize[0] == undefined && eItemDetail.item[0].pictureURLLarge[0] != undefined"><img class='product-img' ng-src="{{ eItemDetail.item[0].pictureURLLarge[0] }}"></span>
+            <span ng-if="eItemDetail.item[0].pictureURLSuperSize[0] == undefined && eItemDetail.item[0].pictureURLLarge[0] == undefined"><img class='product-img' ng-src="{{ eItemDetail.item[0].galleryURL[0] }}"></span> -->
+            <img class='product-img' ng-src="{{ eItem.imageURL}}">
+            <div class="functional-buttons">
+              <a href="#" title="Add to Wishlist">
+                <i class="fa fa-anchor"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="popularE-banner-bottom text-center">
+          <div class="banner-bottom-title">
+            <a href='{{ eItem.viewItemURL }}' target="blank">{{ eItem.title }}</a>
+          </div>
+          <div style='text-transform:capitalize' class="product-details text-center quick-add-to-cart">
+            <!-- {{ eItem.primaryCategoryId }}: {{ eItem.primaryCategoryName }} -->
+            <div style="height: 40px;">
+              <!-- Price range: ${{ eItem.priceRangeMin['__value__'] | number:2}} ~ ${{ eItem.priceRangeMax['__value__'] | number:2}} -->
+              Price: ${{ eItem.buyItNowPrice['__value__'] | number:2 }}
+            </div>
+            <div style="height: 50px;">
+              <form>
+                <input type="hidden" name="keywords" ng-init="keywords = eItem.keywords" ng-model="search.keywords">
+          			<a href="#/search/{{ keywords }}"><button type="submit" class="single_add_to_cart_button">Search for similar products</button></a>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> <!-- end of single product listing -->
+  </div> <!-- end of products area -->
+</div>

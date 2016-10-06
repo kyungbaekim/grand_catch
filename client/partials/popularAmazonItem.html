@@ -1,0 +1,36 @@
+<div ng-controller='topAmazonSellerController'>
+  <div ng-repeat='item in itemInfo' class="shop-single-product-area" ng-controller='topSingleItemController'>
+    <div class="col-md-3 col-sm-3 col-xs-6" id='scroll'>
+      <div class="single-banner">
+        <div class="product-wrapper">
+          <div ng-mouseenter='hover = true' ng-mouseleave='hover = false' class="product-bg">
+            <span class="helper"></span><img class='product-img' ng-src="{{ itemDetail.LargeImage.URL }}"></a>
+            <div class="functional-buttons">
+              <a href="#" title="Add to Wishlist">
+                <i class="fa fa-anchor"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="popularA-banner-bottom text-center">
+          <div class="banner-bottom-title">
+            <a href="{{ item.DetailPageURL }}" target="blank">{{ item.Title }}</a>
+          </div>
+          <div style='text-transform:capitalize' class="product-details text-center quick-add-to-cart">
+            <!-- {{ item.ASIN }} -->
+            <span ng-if='itemDetail.Offers.Offer.OfferListing.Price && itemDetail.Offers.Offer.OfferListing.Price.FormattedPrice != "Too low to display"'><span class='priceSize'>Price: {{ itemDetail.Offers.Offer.OfferListing.Price.FormattedPrice }}</span></span>
+            <span ng-if='itemDetail.Offers.Offer.OfferListing.Price && itemDetail.Offers.Offer.OfferListing.Price.FormattedPrice == "Too low to display"'><span class='priceSize'>Check website for price</span></span>
+            <span ng-if='itemDetail.Offers.Offer.OfferListing.Price == undefined'><span class='priceSize'>Check website for price</span></span>
+            <span ng-if='itemDetail.Offers.Offer.OfferListing.IsEligibleForPrime == "1"'><img class='amazonPrimeIcon' src="images/amazonPrime1.png"></span>
+            <div style="height: 50px;">
+              <form>
+                <input type="hidden" name="keywords" ng-init="keywords = item.keywords" ng-model="search.keywords">
+                <a href="#/search/{{ keywords }}"><button type="submit" class="single_add_to_cart_button">Search for similar products</button></a>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> <!-- end of single product listing -->
+  </div> <!-- end of products area -->
+</div>
