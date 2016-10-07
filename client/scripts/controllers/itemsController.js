@@ -38,6 +38,12 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 				}
 			}
 			createAmazonList(temp)
+			for(var k=0; k<$scope.searchAmazonResult.length; k++){
+				if($scope.searchAmazonResult[k].price == "Check Website" && typeof($scope.searchAmazonResult[k].sale_price) === 'number'){
+					console.log($scope.searchAmazonResult[k])
+					$scope.searchAmazonResult[k].price = $scope.searchAmazonResult[k].sale_price;
+				}
+			}
 			var i = 0;
 			while(i < 10){
 				if($scope.searchAmazonResult[0] != undefined){
@@ -136,7 +142,7 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
         }
 
 				$scope.filteredSearchResult = filterAfterCondition;
-				// console.log($scope.filteredSearchResult)
+				console.log($scope.filteredSearchResult)
 
 				var price = Object.keys($scope.filteredSearchResult).map(function (key) {
 					if(typeof $scope.filteredSearchResult[key].price === 'string' || isNaN($scope.filteredSearchResult[key].price)){

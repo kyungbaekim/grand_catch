@@ -9,9 +9,9 @@ myAppModule.controller('topSingleItemController', function ($scope, itemsFactory
 
   if($scope.eItem){
     // console.log($scope.eItem.productId['@type'], $scope.eItem.productId['__value__'])
-    // itemsFactory.getPopularEbaySingleItem($scope.eItem.productId['__value__'], function(res){
-    //   $scope.eItemDetail = res.findItemsByProductResponse[0].searchResult[0]
-    //   console.log($scope.eItemDetail)
-    // })
+    itemsFactory.getEbaySingleItem($scope.eItem.itemId, function(data){
+      $scope.eItemDetail = data.Item;
+      console.log($scope.eItemDetail)
+    })
   }
 })

@@ -642,7 +642,7 @@ body {
   border-top: 1px solid #ddd;
   /*overflow: scroll;*/
   padding: 5px 5px;
-  min-height: 135px;
+  min-height: 150px;
 /*  width: 200px; */
 }
 .popularE-banner-bottom {
@@ -650,7 +650,7 @@ body {
   border-top: 1px solid #ddd;
   /*overflow: scroll;*/
   padding: 5px 5px;
-  min-height: 210px;
+  min-height: 150px;
 /*  width: 200px; */
 }
 
@@ -2331,7 +2331,7 @@ a.see-all {
   float: left;
   font-weight: 700;
   min-height: 40px;
-  margin: 15px 0px;
+  margin: 0px 0px;
   padding: 5px 10px;
   text-transform: uppercase;
   transition: all 0.3s ease 0s;

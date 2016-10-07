@@ -17,11 +17,13 @@
             <a href="{{ item.DetailPageURL }}" target="blank">{{ item.Title }}</a>
           </div>
           <div style='text-transform:capitalize' class="product-details text-center quick-add-to-cart">
-            <!-- {{ item.ASIN }} -->
-            <span ng-if='itemDetail.Offers.Offer.OfferListing.Price && itemDetail.Offers.Offer.OfferListing.Price.FormattedPrice != "Too low to display"'><span class='priceSize'>Price: {{ itemDetail.Offers.Offer.OfferListing.Price.FormattedPrice }}</span></span>
-            <span ng-if='itemDetail.Offers.Offer.OfferListing.Price && itemDetail.Offers.Offer.OfferListing.Price.FormattedPrice == "Too low to display"'><span class='priceSize'>Check website for price</span></span>
-            <span ng-if='itemDetail.Offers.Offer.OfferListing.Price == undefined'><span class='priceSize'>Check website for price</span></span>
-            <span ng-if='itemDetail.Offers.Offer.OfferListing.IsEligibleForPrime == "1"'><img class='amazonPrimeIcon' src="images/amazonPrime1.png"></span>
+            <div style="height: 30px;">
+              <!-- {{ item.ASIN }} -->
+              <span ng-if='itemDetail.Offers.Offer.OfferListing.Price && itemDetail.Offers.Offer.OfferListing.Price.FormattedPrice != "Too low to display"'><span class='priceSize'>Price: {{ itemDetail.Offers.Offer.OfferListing.Price.FormattedPrice }}</span></span>
+              <span ng-if='itemDetail.Offers.Offer.OfferListing.Price && itemDetail.Offers.Offer.OfferListing.Price.FormattedPrice == "Too low to display"'><span class='priceSize'>Check website for price</span></span>
+              <span ng-if='itemDetail.Offers.Offer.OfferListing.Price == undefined'><span class='priceSize'>Check website for price</span></span>
+              <span ng-if='itemDetail.Offers.Offer.OfferListing.IsEligibleForPrime == "1"'><img class='amazonPrimeIcon' src="images/amazonPrime1.png"></span>
+            </div>
             <div style="height: 50px;">
               <form>
                 <input type="hidden" name="keywords" ng-init="keywords = item.keywords" ng-model="search.keywords">

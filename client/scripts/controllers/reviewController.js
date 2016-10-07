@@ -47,7 +47,7 @@ myAppModule.directive("averageStarRating", function() {
                "      <i class='fa fa-star'></i>" + //&#9733
                "    </li>" +
                "  </ul>" +
-               "  <ul class='rating foreground' class='readonly' style='width:{{filledInStarsContainerWidth}}%'>" +
+               "  <ul class='rating foreground' class='readonly' style='width:{{ filledInStarsContainerWidth }}%'>" +
                "    <li ng-repeat='star in stars' class='star filled'>" +
                "      <i class='fa fa-star'></i>" + //&#9733
                "    </li>" +
