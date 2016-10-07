@@ -320,6 +320,10 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 					// console.log("No condition", i, obj[i])
 				}
 
+				if(typeof list_Price === 'string' || isNaN(list_Price)){
+					list_Price = 0;
+				}
+
 				if(condition in $scope.conditions){
 					$scope.conditions[condition]++
 				}
@@ -351,6 +355,16 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 		}
 		return $scope.searchAmazonResult;
 	}
+
+	$scope.uncheckAll = function () {
+		console.log($scope.useCategory, $scope.useSeller, $scope.useCondition)
+		$scope.useCategory = {}
+		$scope.useSeller = {}
+		$scope.useCondition = {}
+    // angular.forEach($scope.Items, function (item) {
+    //     item.Selected = $scope.selectedAll;
+    // });
+  };
 
 	function shuffle(array) {
     var counter = array.length;

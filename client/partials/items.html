@@ -34,24 +34,27 @@
 						                  <b>Categories</b>
                             </div>
                             <ul class="sidebar-menu" ng-repeat='category in categoryGroup'>
-															<li><input type="checkbox" ng-model="useCategory[category]"/> {{ category }} ({{ (filteredSearchResult | filter:count('category', category)).length }})</li>
+															<li ng-if="(filteredSearchResult | filter:count('category', category)).length != 0"><input type="checkbox" ng-model="useCategory[category]"/> {{ category }} ({{ (filteredSearchResult | filter:count('category', category)).length }})</li>
                             </ul>
                             <div style="margin-top: 30px; margin-bottom: 7px;">
                               <b>Sellers</b>
                             </div>
                             <ul class="sidebar-menu" ng-repeat='seller in sellerGroup'>
-															<li><input type="checkbox" ng-model="useSeller[seller]"/> {{ seller }} ({{ (filteredSearchResult | filter:count('seller', seller)).length }})</li>
+															<li ng-if="(filteredSearchResult | filter:count('seller', seller)).length != 0"><input type="checkbox" ng-model="useSeller[seller]"/> {{ seller }} ({{ (filteredSearchResult | filter:count('seller', seller)).length }})</li>
                             </ul>
                             <div style="margin-top: 30px; margin-bottom: 7px;">
                               <b>Conditions</b>
                             </div>
                             <ul class="sidebar-menu" ng-repeat='condition in conditionGroup'>
-															<li><input type="checkbox" ng-model="useCondition[condition]"/> {{ condition }} ({{ (filteredSearchResult | filter:count('condition', condition)).length }})</li>
+															<li ng-if="(filteredSearchResult | filter:count('condition', condition)).length != 0"><input type="checkbox" ng-model="useCondition[condition]"/> {{ condition }} ({{ (filteredSearchResult | filter:count('condition', condition)).length }})</li>
                             </ul>
                             <div style="margin-top: 30px; margin-bottom: 7px;">
                               <b>Price Range</b>
                             </div>
 														<rzslider rz-slider-model="slider.minValue" rz-slider-high="slider.maxValue" rz-slider-options="slider.options"></rzslider>
+                            <div style="margin-top: 30px;">
+                              <button ng-model="selectedItem" ng-click="uncheckAll()">Reset filter</button>
+                            </div>
                         </aside>
                     </div>
 	              </div>
@@ -129,8 +132,9 @@
                                                   <div style='text-transform:capitalize' class="product-details text-center">
                                                     <span class="sellerInfo"><b>Seller:</b> {{ item.seller }}
                                                     <span ng-if='item.prime_item'><img class='amazonPrimeIcon' src="images/amazonPrime1.png"></span><br>
-                                                    <span ng-if='item.price != "Check Website" && item.percentage_Saved == "N/A"'><span class='priceSize'>${{ item.price | number:2 }} <br></span></span>
-                                                    <span ng-if='item.price != "Check Website" && item.percentage_Saved != "N/A"'><span class='priceSize'><strike>${{ item.price | number:2 }}</strike> ${{ item.sale_price }} (save {{ item.percentage_Saved }}%)<br></span></span>
+                                                    <span ng-if='item.price != 0 && item.percentage_Saved == "N/A"'><span class='priceSize'>${{ item.price | number:2 }} <br></span></span>
+                                                    <span ng-if='item.price != 0 && item.percentage_Saved != "N/A"'><span class='priceSize'><strike>${{ item.price | number:2 }}</strike> ${{ item.sale_price }} (save {{ item.percentage_Saved }}%)<br></span></span>
+                                                    <span ng-if='item.price == 0'><span class='priceSize'>Check website for price<br></span></span>
                                                   </div>
                                                   <span ng-if='amazonReview != undefined'><a target='blank' ng-init='getReviewURL(item.id,item.view)' href='{{ amazonReviewURL }}'>
                                                     <div class="average" align="center">
