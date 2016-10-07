@@ -356,6 +356,7 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 		return $scope.searchAmazonResult;
 	}
 
+
 	$scope.uncheckAll = function () {
 		console.log($scope.useCategory, $scope.useSeller, $scope.useCondition)
 		$scope.useCategory = {}

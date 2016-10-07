@@ -124,21 +124,6 @@ myAppModule.factory('itemsFactory', function ($http){
 		})
 	}
 
-	factory.getPopularEbaySingleItem = function(pID, callback){
-		// console.log(pID)
-		var URL = 'v1?OPERATION-NAME=findItemsByProduct&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=' + production_app_id + '&'
-		URL += 'RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&paginationInput.entriesPerPage=1&productId.@type=ReferenceID&productId=' + pID
-		URL += '&outputSelector(0)=PictureURLLarge&outputSelector(1)=PictureURLSuperSize'
-	// 	var URL = '/shopping?callname=Products&responseencoding=JSON&appid=' + production_app_id + '&'
-	//   URL += 'siteid=0&version=957&ProductID=' + pID + '&AvailableItemsOnly=true&MaxEntries=1'
-		$http.get(URL).success(function(res){
-			// console.log("Success:", res)
-			callback(res)
-		}).error(function(res){
-			console.log("error:", res)
-		})
-	}
-
 	factory.getPopularAmazonItems = function(department, callback){
 		// console.log("Department code:", department)
 		$http.get('/topSellers/' + department).then(function(res){
@@ -154,6 +139,16 @@ myAppModule.factory('itemsFactory', function ($http){
 		$http.get('/itemLookUp/' + data).success(function(output){
 			//run callback function to send data back to controller
 			callback(output)
+		})
+	}
+
+	factory.getEbayDailyDeals = function(callback){
+		var URL = 'deals/v1/country/us/feed/json?feedType=json&count=20'
+		$http.get(URL).success(function(res){
+			// console.log("Success:", res)
+			callback(res)
+		}).error(function(res){
+			console.log("error:", res)
 		})
 	}
 

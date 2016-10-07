@@ -43,6 +43,6 @@ myAppModule.controller('topEbaySellerController', function ($scope, itemsFactory
       $scope.ebayItems[i]['keywords'] = $scope.ebayItems[i].title.replace(/[&\\#+$~%'":*?<>{}]/g,'')
       $scope.ebayItems[i]['keywords'] = $scope.ebayItems[i]['keywords'].replace(/\//g,'-')
     }
-    console.log($scope.ebayItems)
+    // console.log($scope.ebayItems)
   })
 })

@@ -9,13 +9,15 @@ async = require("async");
 
 module.exports = {
 	itemSearch : function (req, res){
+		console.log("Searched keyword:", keywords);
 		var stack = [];
+		var data;
 		stack.push(testSearch1)
 		stack.push(testSearch2)
 		stack.push(testSearch3)
 		stack.push(testSearch4)
 		stack.push(testSearch5)
-		keywords = req.body.keywords;
+		var keywords = req.body.keywords;
 		console.log(keywords);
 		async.parallel(stack, function(err, results){
 			if(err){
@@ -26,38 +28,67 @@ module.exports = {
 		});
 
 		function testSearch1(callback){
-			console.log("Searched keyword:", keywords);
 			prodAdv.call("ItemSearch", {SearchIndex: "All", Keywords: keywords, ItemPage: 1,  ResponseGroup:"Images,ItemAttributes,Offers,Reviews"}, function(err, result) {
-				var res = {'item': result.Items.Item, 'page': 1}
-				callback(null, res)
+				if(result.Items == undefined){
+					data = {'item': result, 'page': 1}
+				}
+				else{
+					data = {'item': result.Items.Item, 'page': 1}
+				}
+				console.log(data)
+				callback(null, data)
 			})
 		}
 
 		function testSearch2(callback){
 			prodAdv.call("ItemSearch", {SearchIndex: "All", Keywords: keywords, ItemPage: 2,  ResponseGroup:"Images,ItemAttributes,Offers,Reviews"}, function(err, result) {
-				var res = {'item': result.Items.Item, 'page': 2}
-				callback(null, res)
+				if(result.Items == undefined){
+					data = {'item': result, 'page': 2}
+				}
+				else{
+					data = {'item': result.Items.Item, 'page': 2}
+				}
+				console.log(data)
+				callback(null, data)
 			})
 		}
 
 		function testSearch3(callback){
 			prodAdv.call("ItemSearch", {SearchIndex: "All", Keywords: keywords, ItemPage: 3,  ResponseGroup:"Images,ItemAttributes,Offers,Reviews"}, function(err, result) {
-				var res = {'item': result.Items.Item, 'page': 3}
-				callback(null, res)
+				if(result.Items == undefined){
+					data = {'item': result, 'page': 3}
+				}
+				else{
+					data = {'item': result.Items.Item, 'page': 3}
+				}
+				console.log(data)
+				callback(null, data)
 			})
 		}
 
 		function testSearch4(callback){
 			prodAdv.call("ItemSearch", {SearchIndex: "All", Keywords: keywords, ItemPage: 4,  ResponseGroup:"Images,ItemAttributes,Offers,Reviews"}, function(err, result) {
-				var res = {'item': result.Items.Item, 'page': 4}
-				callback(null, res)
+				if(result.Items == undefined){
+					data = {'item': result, 'page': 4}
+				}
+				else{
+					data = {'item': result.Items.Item, 'page': 4}
+				}
+				console.log(data)
+				callback(null, data)
 			})
 		}
 
 		function testSearch5(callback){
 			prodAdv.call("ItemSearch", {SearchIndex: "All", Keywords: keywords, ItemPage: 5,  ResponseGroup:"Images,ItemAttributes,Offers,Reviews"}, function(err, result) {
-				var res = {'item': result.Items.Item, 'page': 5}
-				callback(null, res)
+				if(result.Items == undefined){
+					data = {'item': result, 'page': 5}
+				}
+				else{
+					data = {'item': result.Items.Item, 'page': 5}
+				}
+				console.log(data)
+				callback(null, data)
 			})
 		}
 	},

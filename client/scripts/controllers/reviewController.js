@@ -28,6 +28,17 @@ myAppModule.controller('reviewController', function ($scope, itemsFactory){
     }
   }
 
+  if($scope.deal){
+    itemsFactory.getEbaySingleItem($scope.deal.ItemId, function(data){
+      $scope.dealDetail = data.Item;
+      itemsFactory.ebayReviewLookUp(data.Item.ViewItemURLForNaturalSearch, function(res){
+        $scope.reviewURL = data.Item.ViewItemURLForNaturalSearch + '#rwid'
+        $scope.dealReview = res
+        // console.log($scope.dealReview)
+      })
+    })
+  }
+
   $scope.getReviewURL = function(id,url){
     // console.log('in getReviewURL', url)
     var pattern = new UrlPattern('(http(s)\\://)(:subdomain.):domain.:tld(/:product)(/*)');

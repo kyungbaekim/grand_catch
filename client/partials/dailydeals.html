@@ -1,0 +1,46 @@
+<div ng-controller='dailyDealsController'>
+  <!-- <div ng-repeat='deal in deals' class="shop-single-product-area" ng-controller='topSingleItemController'> -->
+  <div ng-repeat='deal in deals' class="shop-single-product-area" ng-controller='reviewController'>
+    <div class="col-md-3 col-sm-3 col-xs-6" id='scroll'>
+      <div class="single-banner">
+        <div class="product-wrapper">
+          <div ng-mouseenter='hover = true' ng-mouseleave='hover = false' class="product-bg">
+            <span class="helper"></span>
+            <img class='product-img' ng-src="{{ deal.Image300URL }}">
+            <div class="functional-buttons">
+              <a href="#" title="Add to Wishlist">
+                <i class="fa fa-anchor"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="popularE-banner-bottom text-center">
+          <div class="banner-bottom-title">
+            <a href='{{ dealDetail.ViewItemURLForNaturalSearch }}' target="blank">{{ deal.title }}</a>
+          </div>
+          <div style='text-transform:capitalize' class="product-details text-center quick-add-to-cart">
+            <!-- {{ eItem.primaryCategoryId }}: {{ eItem.primaryCategoryName }} -->
+            <div style="height: 60px; margin-bottom: 10px;">
+              <span class='priceSize'>Price: ${{ deal.SalePrice | number:2 }} (saves {{ deal.SavingsRate }})</span>
+            </div>
+            <div style="height: 60px; margin-bottom: 10px;">
+              <span ng-if='dealReview != undefined'><a target='blank' href='{{ reviewURL }}'>
+              <div class="average" align="center">
+                <average-star-rating ng-model="dealReview" max="5"><average-star-rating>
+              </div>
+              {{ dealReview }} out of 5</a>
+              </span>
+              <span ng-if='dealReview == undefined'>No customer review available</span>
+            </div>
+            <div style="height: 50px;">
+              <form>
+                <input type="hidden" name="keywords" ng-init="keywords = deal.keywords" ng-model="search.keywords">
+          			<a href="#/search/{{ keywords }}"><button type="submit" class="single_add_to_cart_button">Search for similar products</button></a>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> <!-- end of single product listing -->
+  </div> <!-- end of products area -->
+</div>

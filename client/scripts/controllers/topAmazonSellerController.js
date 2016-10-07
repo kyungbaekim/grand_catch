@@ -43,6 +43,6 @@ myAppModule.controller('topAmazonSellerController', function ($scope, itemsFacto
       $scope.itemInfo[i]['keywords'] = $scope.itemInfo[i].Title.replace(/[&\\#+$~%'":*?<>{}]/g,'')
       $scope.itemInfo[i]['keywords'] = $scope.itemInfo[i]['keywords'].replace(/\//g,'-')
     }
-    console.log($scope.itemInfo)
+    // console.log($scope.itemInfo)
   })
 })

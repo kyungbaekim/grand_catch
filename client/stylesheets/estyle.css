@@ -656,7 +656,7 @@ body {
 
 .banner-bottom-title {
   /*border: 1px solid red;*/
-  height: 80px;
+  min-height: 60px;
 }
 
 .banner-bottom-title a {
