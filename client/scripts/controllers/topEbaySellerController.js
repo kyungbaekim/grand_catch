@@ -1,5 +1,5 @@
 myAppModule.controller('topEbaySellerController', function ($scope, itemsFactory){
-  console.log($scope.department);
+  // console.log($scope.department);
 
   var department = ''
   if($scope.department == 'e_home_garden'){
@@ -40,7 +40,8 @@ myAppModule.controller('topEbaySellerController', function ($scope, itemsFactory
     // console.log(res)
     $scope.ebayItems = res.getMostWatchedItemsResponse.itemRecommendations.item
     for(var i=0; i<$scope.ebayItems.length; i++){
-      $scope.ebayItems[i]['keywords'] = $scope.ebayItems[i].title.replace(/[&\/\\#+$~%'":*?<>{}]/g,'')
+      $scope.ebayItems[i]['keywords'] = $scope.ebayItems[i].title.replace(/[&\\#+$~%'":*?<>{}]/g,'')
+      $scope.ebayItems[i]['keywords'] = $scope.ebayItems[i]['keywords'].replace(/\//g,'-')
     }
     console.log($scope.ebayItems)
   })

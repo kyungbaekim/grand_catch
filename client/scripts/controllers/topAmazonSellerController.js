@@ -1,5 +1,5 @@
 myAppModule.controller('topAmazonSellerController', function ($scope, itemsFactory){
-  console.log($scope.department);
+  // console.log($scope.department);
 
   var department = ''
   if($scope.department == 'a_appliances'){
@@ -40,7 +40,8 @@ myAppModule.controller('topAmazonSellerController', function ($scope, itemsFacto
     // console.log(res.data.result.BrowseNodes.BrowseNode)
     $scope.itemInfo = res.data.result.BrowseNodes.BrowseNode.TopItemSet.TopItem
     for(var i=0; i<$scope.itemInfo.length; i++){
-      $scope.itemInfo[i]['keywords'] = $scope.itemInfo[i].Title.replace(/[&\/\\#+$~%'":*?<>{}]/g,'')
+      $scope.itemInfo[i]['keywords'] = $scope.itemInfo[i].Title.replace(/[&\\#+$~%'":*?<>{}]/g,'')
+      $scope.itemInfo[i]['keywords'] = $scope.itemInfo[i]['keywords'].replace(/\//g,'-')
     }
     console.log($scope.itemInfo)
   })
