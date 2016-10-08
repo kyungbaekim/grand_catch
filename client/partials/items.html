@@ -4,6 +4,20 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
+    <!-- Search Area Start -->
+    <div class="search-area">
+       <div class="container">
+          <div class="row">
+             <div class="col-md-12">
+                 <div class='searchBar'>
+                    <form>
+                      <input type="text" name="keywords" autofocus placeholder='{{ keywords }}' ng-model="search.keywords">
+                      <a href="#/search/{{search.keywords}}"><button type="submit"><i class="fa fa-search"></i></button></a>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
 <!-- Search Area Start -->
 <!-- Shop Area Start -->
