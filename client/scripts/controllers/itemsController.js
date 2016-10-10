@@ -1,4 +1,4 @@
-myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibModal, $interval, $routeParams){
+myAppModule.controller('itemsController', function ($scope, itemsFactory, wishlistFactory, $uibModal, $interval, $routeParams, $rootScope){
 	$scope.currentPage = 1;
   $scope.pageSize = 10;
 
@@ -203,7 +203,6 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 		$scope.searchProduct();
 	}
 
-
 	function createEbayList(obj){
 		var temp = obj.findItemsByKeywordsResponse[0].searchResult[0].item
 		// console.log("start converting the data...")
@@ -393,5 +392,18 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
       array[index] = temp;
     }
     return array;
+	}
+
+	$scope.wishlist = function(item){
+		if(!$rootScope.sessionUser.loggedIn){
+			// alert("Please log in first")
+		}
+		else{
+			var user_id = {id: $scope.sessionUser.user_id};
+			console.log(item, user_id)
+			wishlistFactory.addToWishlist(angular.extend(item, user_id), function(data){
+				console.log(data)
+			})
+		}
 	}
 })

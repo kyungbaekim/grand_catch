@@ -1,7 +1,7 @@
-myAppModule.controller('usersController', function ($scope, userFactory, $uibModal){
+myAppModule.controller('usersController', function ($scope, userFactory, $uibModal, $rootScope){
 	userFactory.getSession(function(data){
-		$scope.sessionUser = data;
-		console.log('latest sessionUser', $scope.sessionUser)
+		$rootScope.sessionUser = data;
+		console.log('latest sessionUser', $rootScope.sessionUser)
 	});
 
 	userFactory.getAllUser(function(data){
@@ -10,8 +10,8 @@ myAppModule.controller('usersController', function ($scope, userFactory, $uibMod
 
 	$scope.getSession = function(){
 		userFactory.getSession(function(data){
-			$scope.sessionUser = data;
-			console.log('latest sessionUser', $scope.sessionUser)
+			$rootScope.sessionUser = data;
+			console.log('latest sessionUser', $rootScope.sessionUser)
 		});
 	}
 
@@ -104,6 +104,11 @@ myAppModule.controller('usersController', function ($scope, userFactory, $uibMod
 			console.log("Cancel button clicked")
 			$uibModalInstance.dismiss('cancel');
 		};
+		// $scope.register = function () {
+		// 	console.log("register button clicked")
+		// 	$uibModalInstance.close();
+		// 	$scope.register()
+		// };
 	};
 
 	$scope.logout = function (){

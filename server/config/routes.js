@@ -39,4 +39,8 @@ module.exports = function(app){
 	app.get('/session_user', function (req,res){
 		users.getSession(req, res);
 	})
+
+	app.post('/addToWishlist', function (req, res){
+		wishlist.create(req, res)
+	})
 }
