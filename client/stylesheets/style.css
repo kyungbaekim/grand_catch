@@ -254,3 +254,13 @@ h2.sidebar-title{
 .ebay-topselling{
   margin-top: 40px;
 }
+
+.dailydeals{
+  width: 100%;
+}
+
+.pagination{
+  position: relative;
+  left: 30%;
+  margin-bottom: 0px;
+}

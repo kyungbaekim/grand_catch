@@ -1,4 +1,7 @@
 myAppModule.controller('dailyDealsController', function ($scope, itemsFactory){
+  $scope.currentPage = 1;
+  $scope.pageSize = 10;
+
   itemsFactory.getEbayDailyDeals(function(deals){
     $scope.deals = deals.entry
     // console.log($scope.deals)

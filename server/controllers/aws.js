@@ -35,7 +35,7 @@ module.exports = {
 				else{
 					data = {'item': result.Items.Item, 'page': 1}
 				}
-				console.log(data)
+				// console.log(data)
 				callback(null, data)
 			})
 		}
@@ -48,7 +48,7 @@ module.exports = {
 				else{
 					data = {'item': result.Items.Item, 'page': 2}
 				}
-				console.log(data)
+				// console.log(data)
 				callback(null, data)
 			})
 		}
@@ -61,7 +61,7 @@ module.exports = {
 				else{
 					data = {'item': result.Items.Item, 'page': 3}
 				}
-				console.log(data)
+				// console.log(data)
 				callback(null, data)
 			})
 		}
@@ -74,7 +74,7 @@ module.exports = {
 				else{
 					data = {'item': result.Items.Item, 'page': 4}
 				}
-				console.log(data)
+				// console.log(data)
 				callback(null, data)
 			})
 		}
@@ -87,7 +87,7 @@ module.exports = {
 				else{
 					data = {'item': result.Items.Item, 'page': 5}
 				}
-				console.log(data)
+				// console.log(data)
 				callback(null, data)
 			})
 		}

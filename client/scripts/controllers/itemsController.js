@@ -142,7 +142,7 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
         }
 
 				$scope.filteredSearchResult = filterAfterCondition;
-				console.log($scope.filteredSearchResult)
+				// console.log($scope.filteredSearchResult)
 
 				var price = Object.keys($scope.filteredSearchResult).map(function (key) {
 					if(typeof $scope.filteredSearchResult[key].price === 'string' || isNaN($scope.filteredSearchResult[key].price)){

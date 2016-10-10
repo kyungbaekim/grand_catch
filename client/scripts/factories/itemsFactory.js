@@ -143,7 +143,7 @@ myAppModule.factory('itemsFactory', function ($http){
 	}
 
 	factory.getEbayDailyDeals = function(callback){
-		var URL = 'deals/v1/country/us/feed/json?feedType=json&count=20'
+		var URL = 'deals/v1/country/us/feed/json?feedType=json&count=40'
 		$http.get(URL).success(function(res){
 			// console.log("Success:", res)
 			callback(res)

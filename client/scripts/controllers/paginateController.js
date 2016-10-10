@@ -7,11 +7,11 @@ myAppModule.controller('paginateController', function ($scope){
     var time_diff = ($scope.currTime - $scope.searchTime)/1000;
     console.log("The time difference:" + time_diff + "seconds")
 
+    $scope.scrollTop = function (){
+  	  console.log('clicked scroll')
+  	  document.getElementById("scroll").scrollIntoView()
+    }
 
-  $scope.scrollTop = function (){
-	  console.log('clicked scroll')
-	  document.getElementById("scroll").scrollIntoView()
-  }
     var timeRefreshInterval = 300;
     if(time_diff > timeRefreshInterval){
      	$scope.searchProduct();

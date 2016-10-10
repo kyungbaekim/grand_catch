@@ -1,6 +1,6 @@
-<div ng-controller='dailyDealsController'>
+<div ng-controller='dailyDealsController' class='dailydeals'>
   <!-- <div ng-repeat='deal in deals' class="shop-single-product-area" ng-controller='topSingleItemController'> -->
-  <div ng-repeat='deal in deals' class="shop-single-product-area" ng-controller='reviewController'>
+  <div dir-paginate="deal in deals | itemsPerPage: 8" current-page='currentPage' class="shop-single-product-area" ng-controller='reviewController'>
     <div class="col-md-3 col-sm-3 col-xs-6" id='scroll'>
       <div class="single-banner">
         <div class="product-wrapper">
@@ -43,4 +43,9 @@
       </div>
     </div> <!-- end of single product listing -->
   </div> <!-- end of products area -->
+  <div scroll-to='scroll' class='pagination'>
+      <div ng-click='scrollTop()' ng-controller="paginateController">
+          <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="dirPagination.tpl.html"></dir-pagination-controls>
+      </div>
+  </div>
 </div>
