@@ -6,7 +6,8 @@ var UserSchema = new mongoose.Schema({
 	lname: {type: String, required: [true, 'Last name cannot be blank']},
 	email: {type: String, required: [true, 'Email cannot be blank'], unique: true},
 	password: {type: String, required: [true, 'Password cannot be blank']},
-},{timestamps: true})
+	wishlist: [{type: mongoose.Schema.Types.ObjectId, ref: 'Wishlist'}]
+}, {timestamps: true})
 
 UserSchema.pre('save', function (done){
 	var user = this;

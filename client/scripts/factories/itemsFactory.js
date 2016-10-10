@@ -126,9 +126,11 @@ myAppModule.factory('itemsFactory', function ($http){
 
 	factory.getPopularAmazonItems = function(department, callback){
 		// console.log("Department code:", department)
-		$http.get('/topSellers/' + department).then(function(res){
+		$http.get('/topSellers/' + department).success(function(res){
 			// console.log("From factory...:", res)
 			callback(res)
+		}).error(function(res){
+			console.log("error:", res)
 		})
 	}
 

@@ -21,7 +21,7 @@ myAppModule.controller('modalController', function ($scope, itemsFactory, $uibMo
 
 	var ebayDisplayModalInstanceCtrl = function ($uibModalInstance, $scope, item, $interval) {
     $scope.itemDetail = item
-    // console.log(item, $scope.itemDetail)
+    console.log($scope.itemDetail)
 
     $scope.itemLoaded = true;
     $scope.timeTill = ''

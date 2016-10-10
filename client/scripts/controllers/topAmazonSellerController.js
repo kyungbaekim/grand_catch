@@ -37,8 +37,8 @@ myAppModule.controller('topAmazonSellerController', function ($scope, itemsFacto
   }
 
   itemsFactory.getPopularAmazonItems(department, function(res){
-    // console.log(res.data.result.BrowseNodes.BrowseNode)
-    $scope.itemInfo = res.data.result.BrowseNodes.BrowseNode.TopItemSet.TopItem
+    // console.log(res.result)
+    $scope.itemInfo = res.result.BrowseNodes.BrowseNode.TopItemSet.TopItem
     for(var i=0; i<$scope.itemInfo.length; i++){
       $scope.itemInfo[i]['keywords'] = $scope.itemInfo[i].Title.replace(/[&\\#+$~%'":*?<>{}]/g,'')
       $scope.itemInfo[i]['keywords'] = $scope.itemInfo[i]['keywords'].replace(/\//g,'-')

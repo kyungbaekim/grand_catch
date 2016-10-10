@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 // instantiate customer model
+// var deepPopulate = require('mongoose-deep-populate')(mongoose);
 var User = mongoose.model('User');
 var sessionUser = {loggedIn: false};
 
@@ -60,16 +61,16 @@ module.exports = {
 		console.log('login in server', req.body)
 		if(req.body.email && req.body.password){
 			User.findOne({email: req.body.email}, function (err, user){
-				if(user){ //user found
+				if(user){ // if user found
 					if(user.validPassword(req.body.password)){
 						sessionUser = {
 							loggedIn: true,
 							user_id: user._id,
-							fname: user.fname,
-							lname: user.lname,
+							user_name: user.fname + " " + user.lname,
 							email: user.email,
 						}
 						//password matched, return login status true
+						console.log(sessionUser, user)
 						res.json({status:true, sessionUser: sessionUser})
 					} else {
 						res.json({status: false, errors: ["Incorrect Email or Password"]})

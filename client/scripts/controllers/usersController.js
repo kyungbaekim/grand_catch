@@ -87,6 +87,7 @@ myAppModule.controller('usersController', function ($scope, userFactory, $uibMod
 	var LoginModalInstanceCtrl = function ($uibModalInstance, userForm, $scope) {
 		$scope.login = function () {
 			userFactory.login($scope.user, function(data){
+				console.log(data)
 				if(data.status){
 					userFactory.getSession(function(data){
 						$uibModalInstance.close(data)

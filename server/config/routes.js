@@ -1,6 +1,7 @@
 //go back up 2 folders and to controllers routes
 var users = require('../controllers/users.js')
 var aws = require('../controllers/aws.js')
+var wishlist = require('../controllers/wishlists.js')
 
 module.exports = function(app){
 	app.post('/search', function(req, res){

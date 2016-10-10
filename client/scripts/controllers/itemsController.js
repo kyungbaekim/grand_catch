@@ -7,6 +7,10 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 	$scope.keywords = '';
 	var temp = [];
 
+	var affiliateTrackingId = 5337944795;
+	var affiliateNetworkId = 9;
+	var affiliateCustomId = 'tylenguye_6';
+
 	var uniqueItems = function (data, key) {
     var result = [];
     for (var i = 0; i < data.length; i++) {
@@ -208,7 +212,7 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 			for(var i=0; i<temp.length; i++){
 				var data = {};
 				var title = temp[i].title[0];
-				var viewURL = temp[i].viewItemURL[0];
+				var viewURL = temp[i].viewItemURL[0] + '&affiliate.trackingId=' + affiliateTrackingId + '&affiliate.networkId=' + affiliateNetworkId + '&affiliate.customId=' + affiliateCustomId;
 				var imgURL;
 				if(temp[i].pictureURLSuperSize != undefined){
 					imgURL = temp[i].pictureURLLarge[0]
@@ -281,11 +285,12 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 				var PercentageSaved = 'N/A';
 				var condition;
 				var features;
-				if(obj[i].ItemAttributes.Feature != undefined){
+
+				if(obj[i].ItemAttributes != undefined && obj[i].ItemAttributes.Feature != undefined){
 					features = obj[i].ItemAttributes.Feature
 				}
 
-				if(obj[i].ItemAttributes.ListPrice != undefined){
+				if(obj[i].ItemAttributes != undefined && obj[i].ItemAttributes.ListPrice != undefined){
 					list_Price = parseFloat(obj[i].ItemAttributes.ListPrice.Amount) / 100;
 				}
 				else{
@@ -338,7 +343,11 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 				else{
 					view = null
 				}
-				var categoryName = obj[i].ItemAttributes.ProductGroup;
+
+				var categoryName;
+				if(obj[i].ItemAttributes != undefined && obj[i].ItemAttributes.ProductGroup != undefined){
+					categoryName = obj[i].ItemAttributes.ProductGroup;
+				}
 				if(categoryName == undefined){
 					console.log(obj[i])
 				}
@@ -348,7 +357,13 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 				else{
 					$scope.categories[categoryName] = 1;
 				}
-				data = { 'seller': 'amazon', 'id': obj[i].ASIN, 'title': obj[i].ItemAttributes.Title, 'view': obj[i].DetailPageURL, 'img': view, 'price': list_Price, 'sale_price': sale_Price, 'percentage_Saved': PercentageSaved, 'prime_item': prime_item, 'features': features, 'condition':  condition, 'category': categoryName,'CustomerReviews' : obj[i].CustomerReviews}
+
+				var title;
+				if(obj[i].ItemAttributes != undefined && obj[i].ItemAttributes.Title != undefined){
+					title = obj[i].ItemAttributes.Title;
+				}
+
+				data = { 'seller': 'amazon', 'id': obj[i].ASIN, 'title': title, 'view': obj[i].DetailPageURL, 'img': view, 'price': list_Price, 'sale_price': sale_Price, 'percentage_Saved': PercentageSaved, 'prime_item': prime_item, 'features': features, 'condition':  condition, 'category': categoryName,'CustomerReviews' : obj[i].CustomerReviews}
 				$scope.searchAmazonResult[i] = data
 			}
 			// console.log("Amazon search result", $scope.searchAmazonResult)
@@ -362,10 +377,7 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, $uibMo
 		$scope.useCategory = {}
 		$scope.useSeller = {}
 		$scope.useCondition = {}
-    // angular.forEach($scope.Items, function (item) {
-    //     item.Selected = $scope.selectedAll;
-    // });
-  };
+  }
 
 	function shuffle(array) {
     var counter = array.length;

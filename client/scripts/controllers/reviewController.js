@@ -1,4 +1,6 @@
 myAppModule.controller('reviewController', function ($scope, itemsFactory){
+  var production_app_id = 'TylerNgu-smarterc-PRD-a9a6113e8-7679c966';
+
   // check if scope.item is available
   if($scope.item){
     // call getReview if seller is Amazon
@@ -10,20 +12,24 @@ myAppModule.controller('reviewController', function ($scope, itemsFactory){
     }
 
     function getAmazonReview (){
-      var reviewURL = $scope.item.CustomerReviews.IFrameURL
-      itemsFactory.amazonReviewLookUp(reviewURL, function(data){
-        $scope.amazonReview = data;
-      })
+      var reviewURL;
+      if($scope.item.CustomerReviews != undefined && $scope.item.CustomerReviews.IFrameURL != undefined){
+        reviewURL = $scope.item.CustomerReviews.IFrameURL
+        itemsFactory.amazonReviewLookUp(reviewURL, function(data){
+          $scope.amazonReview = data;
+        })
+      }
     }
 
     function getEbayReview (){
       itemsFactory.getEbaySingleItem($scope.item.id, function(data){
         // console.log('reviewLookUp data', data.Item)
         $scope.itemDetail = data.Item;
-        itemsFactory.ebayReviewLookUp(data.Item.ViewItemURLForNaturalSearch, function(res){
+        itemsFactory.ebayReviewLookUp($scope.itemDetail.ViewItemURLForNaturalSearch, function(res){
           $scope.reviewURL = data.Item.ViewItemURLForNaturalSearch + '#rwid'
           $scope.ebayReview = res
         })
+        $scope.itemDetail.ViewItemURLForNaturalSearch = $scope.itemDetail.ViewItemURLForNaturalSearch + '?SECURITY-APPNAME=' + production_app_id
       })
     }
   }
