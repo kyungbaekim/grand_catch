@@ -732,10 +732,10 @@ body {
   line-height: 42px;
 }
 .functional-buttons {
-  text-align: center;
+  width: 20px;
   position: relative;
-  top: -270px;
-  left: 95px;
+  top: -275px;
+  left: 205px;
 }
 
 /*.product-description {
@@ -1662,7 +1662,6 @@ p.form-row-phone {
 .shop-tab-list {
   border: 1px solid #dddddd;
   padding: 10px 10px 40px;
-  /*min-height: 70px;*/
 }
 .shop-tab-pill li#left, .shop-tab-pill li#left-top {
   margin-right: 28px;

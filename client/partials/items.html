@@ -25,7 +25,7 @@
                               <b>Sellers</b>
                             </div>
                             <ul class="sidebar-menu" ng-repeat='seller in sellerGroup'>
-															<li ng-if="(filteredSearchResult | filter:count('seller', seller)).length != 0"><input type="checkbox" ng-model="useSeller[seller]"/> {{ seller }} ({{ (filteredSearchResult | filter:count('seller', seller)).length }})</li>
+															<li ng-if="(filteredSearchResult | filter:count('seller', seller)).length != 0"><input type="checkbox" ng-model="useSeller[seller]"/>{{ seller }} ({{ (filteredSearchResult | filter:count('seller', seller)).length }})</li>
                             </ul>
                             <div style="margin-top: 30px; margin-bottom: 7px;">
                               <b>Conditions</b>
@@ -38,7 +38,7 @@
                             </div>
 														<rzslider rz-slider-model="slider.minValue" rz-slider-high="slider.maxValue" rz-slider-options="slider.options"></rzslider>
                             <div style="margin-top: 30px;">
-                              <button ng-model="selectedItem" ng-click="uncheckAll()">Reset filter</button>
+                              <button ng-model="selectedItem" ng-click="uncheckAll()" class="btn btn-default">Reset filter</button>
                             </div>
                         </aside>
                     </div>
@@ -137,10 +137,12 @@
                         </div>
                     </div>
                 </div>
-                <div scroll-to='scroll'>
+                <div ng-show="dataLoaded">
+                  <div scroll-to='scroll'>
                     <div ng-click='scrollTop()' ng-controller="paginateController">
                         <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="dirPagination.tpl.html"></dir-pagination-controls>
                     </div>
+                  </div>
                 </div>
             </div> <!-- end of content -->
 						</div>
