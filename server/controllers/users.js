@@ -45,8 +45,7 @@ module.exports = {
 							sessionUser = {
 								loggedIn: true,
 								user_id: user._id,
-								fname: user.fname,
-								lname: user.lname,
+								user_name: user.fname + " " + user.lname,
 								email: user.email
 							}
 							res.json({status: true, sessionUser: sessionUser})
@@ -62,12 +61,16 @@ module.exports = {
 		if(req.body.email && req.body.password){
 			User.findOne({email: req.body.email}, function (err, user){
 				if(user){ // if user found
+					console.log("User found:", user)
+					// user.validPassword(req.body.password, function(res){
+						console.log(req.body.password, user.validPassword(req.body.password))
+					// })
 					if(user.validPassword(req.body.password)){
 						sessionUser = {
 							loggedIn: true,
 							user_id: user._id,
 							user_name: user.fname + " " + user.lname,
-							email: user.email,
+							email: user.email
 						}
 						//password matched, return login status true
 						console.log(sessionUser, user)

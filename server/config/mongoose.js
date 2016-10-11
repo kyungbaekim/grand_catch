@@ -3,7 +3,7 @@ var fs = require('fs');
 var path = require('path');
 
 //connect to mongoose
-mongoose.connect('mongodb://localhost/planner');
+mongoose.connect('mongodb://localhost/grandcatch');
 
 var models_path = path.join(__dirname, './../models');
 

@@ -1,4 +1,4 @@
-myAppModule.controller('usersController', function ($scope, userFactory, $uibModal, $rootScope){
+myAppModule.controller('usersController', function ($scope, userFactory, $uibModal, $uibModalStack, $rootScope){
 	userFactory.getSession(function(data){
 		$rootScope.sessionUser = data;
 		console.log('latest sessionUser', $rootScope.sessionUser)
@@ -15,6 +15,10 @@ myAppModule.controller('usersController', function ($scope, userFactory, $uibMod
 		});
 	}
 
+	$rootScope.$on("CallRegister", function(){
+    $scope.register();
+  });
+
 	$scope.register = function () {
     $scope.message = "Register Button Clicked";
     console.log($scope.message);
@@ -30,7 +34,7 @@ myAppModule.controller('usersController', function ($scope, userFactory, $uibMod
     });
 
     modalInstance.result.then(function (data) {
-        $scope.sessionUser = data;
+      $rootScope.sessionUser = data;
     }, function () {
         console.log('Modal dismissed at: ' + new Date());
     });
@@ -42,6 +46,7 @@ myAppModule.controller('usersController', function ($scope, userFactory, $uibMod
 				console.log('returned data user created', data)
 				if(data.status){
 					userFactory.getSession(function(data){
+						console.log(data)
 						$uibModalInstance.close(data)
 					})
 				}
@@ -59,9 +64,27 @@ myAppModule.controller('usersController', function ($scope, userFactory, $uibMod
     };
 		$scope.cancel = function () {
 			console.log("Cancel button clicked")
-			$uibModalInstance.dismiss('cancel');
+			// $uibModalInstance.dismiss('cancel');
+			$uibModalStack.dismissAll('closed');
+		};
+		$scope.login = function () {
+			console.log("login clicked")
+			$uibModalInstance.dismiss('close');
+	    var modalInstanceSecond = $uibModal.open({
+	      templateUrl: 'partials/login.html',
+	      controller: LoginModalInstanceCtrl,
+				resolve: {
+	        userForm: function () {
+	          return $scope.loginForm;
+	        }
+	      }
+	    });
 		};
 	};
+
+	$rootScope.$on("CallLogin", function(){
+  	$scope.login();
+  });
 
 	$scope.login = function () {
 		$scope.message = "Login Button Clicked";
@@ -78,7 +101,7 @@ myAppModule.controller('usersController', function ($scope, userFactory, $uibMod
 		});
 
 		modalInstance.result.then(function (data) {
-			$scope.sessionUser = data;
+			$rootScope.sessionUser = data;
 		}, function () {
 			console.log('Modal dismissed at: ' + new Date());
 		});
@@ -102,13 +125,22 @@ myAppModule.controller('usersController', function ($scope, userFactory, $uibMod
 		};
 		$scope.cancel = function () {
 			console.log("Cancel button clicked")
-			$uibModalInstance.dismiss('cancel');
+			// $uibModalInstance.dismiss('cancel');
+			$uibModalStack.dismissAll('closed');
 		};
-		// $scope.register = function () {
-		// 	console.log("register button clicked")
-		// 	$uibModalInstance.close();
-		// 	$scope.register()
-		// };
+		$scope.register = function () {
+			console.log("register button clicked")
+			$uibModalInstance.dismiss('close');
+	    var modalInstanceSecond = $uibModal.open({
+	      templateUrl: 'partials/signup.html',
+	      controller: RegModalInstanceCtrl,
+				resolve: {
+	        userForm: function () {
+	          return $scope.regForm;
+	        }
+	      }
+	    });
+		};
 	};
 
 	$scope.logout = function (){

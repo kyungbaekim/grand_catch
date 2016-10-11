@@ -13,7 +13,7 @@ UserSchema.pre('save', function (done){
 	var user = this;
 	console.log('user.password in UserSchema', user.password)
 	if(user.password){
-		bcrypt.genSalt(10, function (err,salt){
+		bcrypt.genSalt(10, function (err, salt){
 			console.log(salt, "salt in pre save function")
 			bcrypt.hash(user.password, salt, function (err, hash){
 				console.log(hash, 'hash in pre save')
@@ -25,7 +25,7 @@ UserSchema.pre('save', function (done){
 });
 
 UserSchema.methods.validPassword = function (password){
-	return bcrypt.compareSync(password,this.password)
+	return bcrypt.compareSync(password, this.password)
 }
 
 mongoose.model('User', UserSchema)

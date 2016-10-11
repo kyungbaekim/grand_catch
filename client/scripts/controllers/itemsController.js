@@ -1,3 +1,4 @@
+
 myAppModule.controller('itemsController', function ($scope, itemsFactory, wishlistFactory, $uibModal, $interval, $routeParams, $rootScope){
 	$scope.currentPage = 1;
   $scope.pageSize = 10;
@@ -395,11 +396,13 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, wishli
 	}
 
 	$scope.wishlist = function(item){
+		console.log($rootScope.sessionUser)
 		if(!$rootScope.sessionUser.loggedIn){
-			// alert("Please log in first")
+			// $scope.login()
+      $rootScope.$emit("CallLogin", {});
 		}
 		else{
-			var user_id = {id: $scope.sessionUser.user_id};
+			var user_id = {uid: $rootScope.sessionUser.user_id};
 			console.log(item, user_id)
 			wishlistFactory.addToWishlist(angular.extend(item, user_id), function(data){
 				console.log(data)

@@ -3,7 +3,9 @@ myAppModule.controller('topSingleItemController', function ($scope, itemsFactory
     // console.log($scope.item.ASIN)
     itemsFactory.itemLookUp($scope.item.ASIN, function(res){
       // console.log(res)
-      $scope.itemDetail = res.result.Items.Item
+      if(res.result != undefined && res.result.Items != undefined){
+        $scope.itemDetail = res.result.Items.Item
+      }
     })
   }
 

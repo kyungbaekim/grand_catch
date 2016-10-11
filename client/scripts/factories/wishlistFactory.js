@@ -12,6 +12,7 @@ myAppModule.factory('wishlistFactory', function ($http){
 	factory.addToWishlist = function(data, callback){
 		console.log('data to save to wishlist', data)
 		$http.post('/addToWishlist', data).success(function (output){
+      console.log(output)
 			callback(output)
 		});
 	}
