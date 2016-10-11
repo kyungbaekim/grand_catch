@@ -1,4 +1,7 @@
-
+img#logo{
+   width: 175px;
+   height: 150px;
+}
 div.quickview{
   position: absolute;
   width: 260px;
@@ -260,8 +263,18 @@ h2.sidebar-title{
   width: 100%;
 }
 
-.pagination{
-  position: relative;
-  left: 30%;
-  margin-bottom: 0px;
+/*table and desktop*/
+@media screen and (min-width: 768px) {
+  .paginationDeals{
+    position: relative;
+    left: 35%;
+    margin-bottom: 0px;
+  }
+}
+
+/*large mobile phone*/
+@media screen and (max-width: 479px) {
+  .shop-tab-list {
+      min-height: 70px;
+  }
 }
