@@ -1,5 +1,6 @@
-span.amazonUpper {
-  text-transform: capitalize;
+img#logo{
+   width: 175px;
+   height: 150px;
 }
 div.quickview{
   position: absolute;
