@@ -3,17 +3,12 @@ var	myAppModule = angular.module('myApp', ['ngRoute', 'angularMoment', 'angularU
 myAppModule.config(function ($routeProvider) {
 	$routeProvider
 	.when('/',{
-		templateUrl: 'partials/main.html',
-		// controller:'mainController'
+		templateUrl: 'partials/main.html'
 	})
-	// .when('/signup',{
-	// 	templateUrl:'partials/signup.html',
-	// 	controller:'usersController'
-	// })
-	// .when('/login',{
-	// 	templateUrl:'partials/login.html',
-	// 	controller:'usersController'
-	// })
+	.when('/wishlist/:user_id',{
+		templateUrl:'partials/wishlist.html',
+		controller:'wishlistController'
+	})
 	.when('/search/:keywords',{
 		templateUrl:'partials/items.html',
 		controller: 'itemsController'

@@ -1,4 +1,3 @@
-
 <!--[if lt IE 8]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -83,14 +82,14 @@
                                             <div class="single-banner">
                                                 <div class="product-wrapper">
                                                     <div ng-mouseenter='hover = true' ng-mouseleave='hover = false' class="product-bg">
-                                                        <span class="helper"></span><img class='product-img' ng-src="{{ item.img }}"></a>
-                                                        <div ng-if='isWishlist(item.id)' class="functional-buttons-wishlist">
-                                                          <a href="" ng-click="removeWishlist(item)" title="Remove from Wishlist">
+                                                        <span class="helper"></span><img class='product-img' ng-src="{{ item.img }}">
+                                                        <div ng-if='!isWishlist(item.id)' class="functional-buttons">
+                                                          <a href="" ng-click="wishlist(item)" title="Add to Wishlist">
                                                             <i class="fa fa-anchor"></i>
                                                           </a>
                                                         </div>
-                                                        <div ng-if='!isWishlist(item.id)' class="functional-buttons">
-                                                          <a href="" ng-click="wishlist(item)" title="Add to Wishlist">
+                                                        <div ng-if='isWishlist(item.id)' class="functional-buttons-wishlist">
+                                                          <a href="" ng-click="removeWishlist(item)" title="Remove from Wishlist">
                                                             <i class="fa fa-anchor"></i>
                                                           </a>
                                                         </div>

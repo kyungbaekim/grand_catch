@@ -5,22 +5,22 @@ var wishlist = require('../controllers/wishlists.js')
 
 module.exports = function(app){
 	app.post('/search', function(req, res){
-		console.log('req.body in routes', req.body)
+		// console.log('req.body in routes', req.body)
 		aws.itemSearch(req, res);
 	})
 
 	app.get('/topSellers/:department', function (req,res){
-		console.log("From routes.js:", req.params)
+		// console.log("From routes.js:", req.params)
 		aws.topSellers(req, res);
 	})
 
 	app.get('/itemLookUp/:asin', function (req,res){
-		console.log("From routes.js:", req.params)
+		// console.log("From routes.js:", req.params)
 		aws.itemLookUp(req, res);
 	})
 
 	app.post('/user', function (req, res){
-		console.log('calling user controller in server side')
+		// console.log('calling user controller in server side')
 		users.create(req, res);
 	})
 
@@ -45,7 +45,12 @@ module.exports = function(app){
 	})
 
 	app.get('/getUserWishlist/:uid', function (req, res){
-		console.log("From routes.js:", req.params)
+		// console.log("From routes.js:", req.params)
 		wishlist.index(req, res)
+	})
+
+	app.post('/wishlist/delete/:wid', function (req, res){
+		// console.log("From routes.js:", req.params)
+		wishlist.delete(req, res)
 	})
 }

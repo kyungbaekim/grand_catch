@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="wishlist-right-area table-responsive">
+      <table class="wish-list-table">
+        <thead>
+          <tr>
+            <th class="t-product-name">Products</th>
+            <th class="product-details-comment">Product Details</th>
+            <!-- <th class="product-price-cart">Add To Cart</th> -->
+            <th class="w-product-remove">Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in wishlist">
+            <td class="product-image">
+              <img ng-src="{{ item.product_img_url }}" alt="Product image">
+            </td>
+            <td class="product-details">
+              <h4>{{ item.product_name }}</h4>
+              <p><a href="{{ item.product_url }}" target="blank">Go to product page</a></p>
+            </td>
+            <!-- <td class="product-cart">
+              <div class="product-cart-details">
+                <span>$ 200.00</span>
+                <input type="number" value="1">
+                <input type="submit" value="ADD TO CART">
+              </div>
+            </td> -->
+            <td class="product-remove">
+              <a href="" ng-click="removeFromWishlist(item._id)">
+                <i class="flaticon-delete"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

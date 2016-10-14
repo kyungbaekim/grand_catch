@@ -17,10 +17,14 @@ myAppModule.factory('wishlistFactory', function ($http){
 		});
 	}
 
-	factory.removeFromWishlist = function(){
-		$http.get('/removeFromWishlist').success(function (output){
-			// sessionUser = output;
-		})
+	factory.removeFromWishlist = function(wid, uid, callback){
+		$http.post('/wishlist/delete/' + wid).success(function(res) {
+			// console.log(res)
+      $http.get('/getUserWishlist/' + uid).success(function(data) {
+        // console.log(data)
+        callback(data);
+      })
+    })
 	}
 
 	return factory;
