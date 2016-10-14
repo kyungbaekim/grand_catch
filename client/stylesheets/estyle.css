@@ -737,7 +737,8 @@ body {
   text-align: center;
   position: relative;
   top: -270px;
-  left: 95px;
+  left: 210px;
+  width: 42px;
 }
 
 .functional-buttons-wishlist > a {
