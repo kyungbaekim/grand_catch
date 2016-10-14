@@ -3,7 +3,7 @@ myAppModule.controller('usersController', function ($scope, userFactory, wishlis
 
 	userFactory.getSession(function(data){
 		$rootScope.sessionUser = data;
-		console.log('latest sessionUser', $rootScope.sessionUser)
+		console.log('current sessionUser', $rootScope.sessionUser)
 	});
 
 	userFactory.getAllUser(function(data){
@@ -97,10 +97,11 @@ myAppModule.controller('usersController', function ($scope, userFactory, wishlis
 		});
 
 		modalInstance.result.then(function (data) {
+			console.log(data)
 			$rootScope.sessionUser = data;
-			wishlistFactory.getUserWishlist($rootScope.sessionUser.user_id, function (data){
-				console.log(data)
-				$rootScope.wishlist = data
+			wishlistFactory.getUserWishlist($rootScope.sessionUser.user_id, function (res){
+				console.log(res)
+				$rootScope.wishlist = res
 			})
 		}, function () {
 			console.log('Modal dismissed at: ' + new Date());

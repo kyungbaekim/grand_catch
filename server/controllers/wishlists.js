@@ -62,12 +62,13 @@ module.exports = {
   },
 
   delete: function(req, res) {
-    Wishlist.remove({_id: req.params.id}, function(err){
+    // console.log("requested wishlist id:", req.params.wid)
+    Wishlist.remove({_id: req.params.wid}, function(err){
       if(err){
-        console.log(err);
+        res.json(err);
       }
       else {
-        res.redirect('/');
+        res.json('successfully removed');
       }
     })
   }
