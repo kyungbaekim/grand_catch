@@ -723,6 +723,7 @@ body {
   text-align: center;
   width: 42px;
 }
+
 .functional-buttons > a:hover {
   background: #2C486C none repeat scroll 0 0;
   border: 1px solid #2C486C;
@@ -732,11 +733,28 @@ body {
   line-height: 42px;
 }
 
-.functional-buttons .functional-buttons-wishlist {
-  width: 20px;
+.functional-buttons, .functional-buttons-wishlist {
+  text-align: center;
   position: relative;
-  top: -275px;
-  left: 205px;
+  top: -270px;
+  left: 95px;
+}
+
+.functional-buttons-wishlist > a {
+  border: 1px solid #2C486C;
+  border-radius: 50px;
+  color: #2C486C;
+  display: inline-block;
+  font-size: 18px;
+  height: 42px;
+  margin-left: 5px;
+  text-align: center;
+  width: 42px;
+  background-color: #2C486C;
+}
+
+.functional-buttons-wishlist > a i {
+  line-height: 42px;
 }
 
 /*.product-description {

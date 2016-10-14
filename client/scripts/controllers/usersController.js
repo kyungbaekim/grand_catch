@@ -134,5 +134,6 @@ myAppModule.controller('usersController', function ($scope, userFactory, wishlis
 	$scope.logout = function (){
 		userFactory.logout();
 		$scope.getSession();
+		$rootScope.wishlist = []
 	}
 });

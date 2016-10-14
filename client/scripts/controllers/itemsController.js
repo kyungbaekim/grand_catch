@@ -423,12 +423,11 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, wishli
 	$scope.isWishlist = function(id) {
 		for(var i=0; i<$rootScope.wishlist.length; i++){
 			if($rootScope.wishlist[i].product_id == id){
-				console.log("In wishlist:", id, $rootScope.wishlist[i].product_id)
+				// console.log("In wishlist:", id, $rootScope.wishlist[i].product_id)
 				return true;
 			}
 		}
-		console.log("Not in wishlist:", id)
+		// console.log("Not in wishlist:", id)
 		return false;
-    // return $rootScope.wishlist.indexOf(id) !== -1;
   }
 })
