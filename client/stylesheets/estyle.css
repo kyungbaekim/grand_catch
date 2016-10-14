@@ -734,11 +734,11 @@ body {
 }
 
 .functional-buttons, .functional-buttons-wishlist {
-  text-align: center;
-  position: relative;
-  top: -270px;
-  left: 210px;
-  width: 42px;
+  position: absolute;
+  top: 4px;
+  right: 2px;
+  width: 52px;
+  /*border: 1px solid green;*/
 }
 
 .functional-buttons-wishlist > a {
