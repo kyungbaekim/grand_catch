@@ -113,10 +113,23 @@
 						</div>
 						<div class="col-md-2 hidden-sm">
 							<div class="header-right">
-								<ul>
+								<ul ng-if="!sessionUser.loggedIn">
 									<li>
-										<span ng-if="!sessionUser.loggedIn"><a href="" ng-click="login()"><i class="flaticon-people"></i></a>&nbsp;<a href="" ng-click="register()">Register</a></span>
-										<span ng-if="sessionUser.loggedIn">Welcome, {{ sessionUser.user_name }}! <a href="" ng-click="logout()"><i class="flaticon-people"></i></a></span>
+										<a href="" ng-click="login()" title="Log in"><i class="flaticon-people"></i></a>
+									</li>
+									<li>
+										<a href="" ng-click="register()">Register</a>
+									</li>
+								</ul>
+								<ul ng-if="sessionUser.loggedIn">
+									<li>
+										Welcome, {{ sessionUser.user_name }}!
+									</li>
+									<li>
+										<a href="#/wishlist/{{ sessionUser.user_id }}" title="Go to wishlist page"><i class="fa fa-heart"></i></a>
+									</li>
+									<li>
+										<a href="" ng-click="logout()"><i class="flaticon-people" title="Log out"></i>
 									</li>
 								</ul>
 							</div>
