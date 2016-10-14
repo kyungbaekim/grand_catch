@@ -92,7 +92,7 @@ div.pagination{
 
 div.product-bg{
  /* border: 1px solid red;*/
-  width: 260px;
+  max-width: 260px;
   height: 280px;
   position: relative;
   /*background-color: white;*/
