@@ -84,8 +84,13 @@
                                                 <div class="product-wrapper">
                                                     <div ng-mouseenter='hover = true' ng-mouseleave='hover = false' class="product-bg">
                                                         <span class="helper"></span><img class='product-img' ng-src="{{ item.img }}"></a>
+                                                        <div class="functional-buttons-wishlist">
+                                                          <a ng-if='isWishlist(item.id)' href="" ng-click="removeWishlist(item)" title="Remove from Wishlist">
+                                                            <i class="fa fa-anchor"></i>
+                                                          </a>
+                                                        </div>
                                                         <div class="functional-buttons">
-                                                          <a href="" ng-click="wishlist(item)" title="Add to Wishlist">
+                                                          <a ng-if='!isWishlist(item.id)' href="" ng-click="wishlist(item)" title="Add to Wishlist">
                                                             <i class="fa fa-anchor"></i>
                                                           </a>
                                                         </div>

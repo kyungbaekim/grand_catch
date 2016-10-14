@@ -43,4 +43,9 @@ module.exports = function(app){
 	app.post('/addToWishlist', function (req, res){
 		wishlist.create(req, res)
 	})
+
+	app.get('/getUserWishlist/:uid', function (req, res){
+		console.log("From routes.js:", req.params)
+		wishlist.index(req, res)
+	})
 }

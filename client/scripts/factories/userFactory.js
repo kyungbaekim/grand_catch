@@ -4,9 +4,9 @@ myAppModule.factory('userFactory', function ($http){
 	var sessionUser = {loggedIn: false};
 
 	factory.newUser = function (data, callback){
-		console.log("I am in factory")
+		// console.log("I am in factory")
 		$http.post('/user', data).success(function (output){
-			console.log('add user output', output);
+			console.log('add new user output', output);
 			//if status is true, set sessionUser
 			if(output.status){
 				sessionUser = output.sessionUser;
@@ -24,11 +24,11 @@ myAppModule.factory('userFactory', function ($http){
 	}
 
 	factory.login = function(data, callback){
-		console.log('login data', data)
+		// console.log('login data', data)
 		$http.post('/login', data).success(function (output){
 			if(output.status){
 				sessionUser = output.sessionUser;
-				console.log('sessionUser in factory', sessionUser)
+				// console.log('sessionUser in factory', sessionUser)
 			}
 			callback(output)
 		});

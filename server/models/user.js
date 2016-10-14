@@ -28,4 +28,6 @@ UserSchema.methods.validPassword = function (password){
 	return bcrypt.compareSync(password, this.password)
 }
 
+var deepPopulate = require('mongoose-deep-populate')(mongoose);
+UserSchema.plugin(deepPopulate);
 mongoose.model('User', UserSchema)

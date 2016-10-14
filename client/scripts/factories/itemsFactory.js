@@ -114,7 +114,7 @@ myAppModule.factory('itemsFactory', function ($http){
    	URL += 'SERVICE-NAME=MerchandisingService&'
    	URL += 'SERVICE-VERSION=1.1.0&'
    	URL += 'CONSUMER-ID=' + production_app_id
-   	URL += '&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&maxResults=12&categoryId=' + cID
+   	URL += '&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&maxResults=8&categoryId=' + cID
 		URL += '&affiliate.trackingId=' + affiliateTrackingId + '&affiliate.networkId=' + affiliateNetworkId + '&affiliate.customId=' + affiliateCustomId
 		$http.get(URL).success(function(res){
 			// console.log("Success:", res)

@@ -61,7 +61,7 @@
 	<script src='scripts/controllers/topSingleItemController.js'></script>
 
 	<!-- Factories -->
-	<script src='scripts/factories/user.js'></script>
+	<script src='scripts/factories/userFactory.js'></script>
 	<script src='scripts/factories/itemsFactory.js'></script>
 	<script src='scripts/factories/wishlistFactory.js'></script>
 
@@ -115,7 +115,7 @@
 							<div class="header-right">
 								<ul>
 									<li>
-										<span ng-if="!sessionUser.loggedIn"><a href="" ng-click="login()"><i class="flaticon-people"></i></a></span>
+										<span ng-if="!sessionUser.loggedIn"><a href="" ng-click="login()"><i class="flaticon-people"></i></a>&nbsp;<a href="" ng-click="register()">Register</a></span>
 										<span ng-if="sessionUser.loggedIn">Welcome, {{ sessionUser.user_name }}! <a href="" ng-click="logout()"><i class="flaticon-people"></i></a></span>
 									</li>
 								</ul>

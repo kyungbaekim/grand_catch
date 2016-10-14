@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 // instantiate customer model
-// var deepPopulate = require('mongoose-deep-populate')(mongoose);
+var deepPopulate = require('mongoose-deep-populate')(mongoose);
 var User = mongoose.model('User');
+var Wishlist = mongoose.model('Wishlist');
 var sessionUser = {loggedIn: false};
 
 module.exports = {
@@ -62,9 +63,6 @@ module.exports = {
 			User.findOne({email: req.body.email}, function (err, user){
 				if(user){ // if user found
 					console.log("User found:", user)
-					// user.validPassword(req.body.password, function(res){
-						console.log(req.body.password, user.validPassword(req.body.password))
-					// })
 					if(user.validPassword(req.body.password)){
 						sessionUser = {
 							loggedIn: true,
@@ -87,6 +85,17 @@ module.exports = {
 			res.json({status: false, errors: ["Incorrect Email or Password"]})
 		}
 	},
+
+	find: function(req, res) {
+    User.find({_id: req.params.id}).deepPopulate('_wishlist').exec(function(err, user){
+      if(err){
+        res.json(err);
+      }
+      else {
+        res.json(user);
+      }
+    })
+  },
 
 	getSession : function(req,res){
 		res.json(sessionUser);

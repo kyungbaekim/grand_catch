@@ -634,7 +634,7 @@ body {
   border-top: 1px solid #ddd;
   /*overflow: scroll;*/
   padding: 10px 10px;
-  height: 250px;
+  height: 230px;
 /*  width: 200px; */
 }
 .popularA-banner-bottom {
@@ -731,7 +731,8 @@ body {
 .functional-buttons > a i {
   line-height: 42px;
 }
-.functional-buttons {
+
+.functional-buttons .functional-buttons-wishlist {
   width: 20px;
   position: relative;
   top: -275px;
@@ -953,6 +954,7 @@ body {
 /*  11.	Footer Area CSS
 /*----------------------------------------*/
 .footer-top-area {
+  margin-top: 35px;
   background: #333333 none repeat scroll 0 0;
   color: #d4d4d4;
   padding: 35px 0;
@@ -1716,7 +1718,7 @@ p.form-row-phone {
 }
 .shop-single-product-area .single-banner {
   float: left;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 .shop-single-product-area .single-banner:last-child {
   margin-right: 0;

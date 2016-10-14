@@ -1,4 +1,6 @@
-myAppModule.controller('usersController', function ($scope, userFactory, $uibModal, $uibModalStack, $rootScope){
+myAppModule.controller('usersController', function ($scope, userFactory, wishlistFactory, $uibModal, $uibModalStack, $rootScope){
+	$rootScope.wishlist = []
+
 	userFactory.getSession(function(data){
 		$rootScope.sessionUser = data;
 		console.log('latest sessionUser', $rootScope.sessionUser)
@@ -11,7 +13,7 @@ myAppModule.controller('usersController', function ($scope, userFactory, $uibMod
 	$scope.getSession = function(){
 		userFactory.getSession(function(data){
 			$rootScope.sessionUser = data;
-			console.log('latest sessionUser', $rootScope.sessionUser)
+			console.log('current sessionUser data:', $rootScope.sessionUser)
 		});
 	}
 
@@ -34,7 +36,12 @@ myAppModule.controller('usersController', function ($scope, userFactory, $uibMod
     });
 
     modalInstance.result.then(function (data) {
+			console.log(data)
       $rootScope.sessionUser = data;
+			wishlistFactory.getSession(function(data){
+				$rootScope.sessionUser = data;
+				console.log('current sessionUser data:', $rootScope.sessionUser)
+			});
     }, function () {
         console.log('Modal dismissed at: ' + new Date());
     });
@@ -43,14 +50,16 @@ myAppModule.controller('usersController', function ($scope, userFactory, $uibMod
 	var RegModalInstanceCtrl = function ($uibModalInstance, userForm, $scope) {
     $scope.register = function () {
 			userFactory.newUser($scope.user, function(data){
-				console.log('returned data user created', data)
+				console.log('returned data user created:', data)
 				if(data.status){
+					console.log("data.status is true")
 					userFactory.getSession(function(data){
 						console.log(data)
 						$uibModalInstance.close(data)
 					})
 				}
 				else{
+					console.log("data.status is not true")
 					if(data.dup_email){
 						$scope.register_email_error = data.dup_email;
 						console.log('register email error', $scope.register_email_error)
@@ -66,19 +75,6 @@ myAppModule.controller('usersController', function ($scope, userFactory, $uibMod
 			console.log("Cancel button clicked")
 			// $uibModalInstance.dismiss('cancel');
 			$uibModalStack.dismissAll('closed');
-		};
-		$scope.login = function () {
-			console.log("login clicked")
-			$uibModalInstance.dismiss('close');
-	    var modalInstanceSecond = $uibModal.open({
-	      templateUrl: 'partials/login.html',
-	      controller: LoginModalInstanceCtrl,
-				resolve: {
-	        userForm: function () {
-	          return $scope.loginForm;
-	        }
-	      }
-	    });
 		};
 	};
 
@@ -102,6 +98,10 @@ myAppModule.controller('usersController', function ($scope, userFactory, $uibMod
 
 		modalInstance.result.then(function (data) {
 			$rootScope.sessionUser = data;
+			wishlistFactory.getUserWishlist($rootScope.sessionUser.user_id, function (data){
+				console.log(data)
+				$rootScope.wishlist = data
+			})
 		}, function () {
 			console.log('Modal dismissed at: ' + new Date());
 		});
@@ -110,7 +110,7 @@ myAppModule.controller('usersController', function ($scope, userFactory, $uibMod
 	var LoginModalInstanceCtrl = function ($uibModalInstance, userForm, $scope) {
 		$scope.login = function () {
 			userFactory.login($scope.user, function(data){
-				console.log(data)
+				// console.log('returned user data:', data)
 				if(data.status){
 					userFactory.getSession(function(data){
 						$uibModalInstance.close(data)
@@ -123,23 +123,11 @@ myAppModule.controller('usersController', function ($scope, userFactory, $uibMod
 				}
 			});
 		};
+
 		$scope.cancel = function () {
 			console.log("Cancel button clicked")
 			// $uibModalInstance.dismiss('cancel');
 			$uibModalStack.dismissAll('closed');
-		};
-		$scope.register = function () {
-			console.log("register button clicked")
-			$uibModalInstance.dismiss('close');
-	    var modalInstanceSecond = $uibModal.open({
-	      templateUrl: 'partials/signup.html',
-	      controller: RegModalInstanceCtrl,
-				resolve: {
-	        userForm: function () {
-	          return $scope.regForm;
-	        }
-	      }
-	    });
 		};
 	};
 

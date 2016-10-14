@@ -23,6 +23,13 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, wishli
     return result;
 	};
 
+	if($rootScope.sessionUser.loggedIn){
+		wishlistFactory.getUserWishlist($rootScope.sessionUser.user_id, function(res){
+			console.log(res)
+			$rootScope.wishlist = res;
+		})
+	}
+
 	$scope.searchProduct = function (){
 		console.log($scope.keywords);
 		$scope.dataLoaded = false;
@@ -147,7 +154,7 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, wishli
         }
 
 				$scope.filteredSearchResult = filterAfterCondition;
-				// console.log($scope.filteredSearchResult)
+				console.log($scope.filteredSearchResult)
 
 				var price = Object.keys($scope.filteredSearchResult).map(function (key) {
 					if(typeof $scope.filteredSearchResult[key].price === 'string' || isNaN($scope.filteredSearchResult[key].price)){
@@ -396,17 +403,32 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, wishli
 	}
 
 	$scope.wishlist = function(item){
-		console.log($rootScope.sessionUser)
+		// console.log($rootScope.sessionUser)
 		if(!$rootScope.sessionUser.loggedIn){
-			// $scope.login()
       $rootScope.$emit("CallLogin", {});
 		}
 		else{
 			var user_id = {uid: $rootScope.sessionUser.user_id};
-			console.log(item, user_id)
+			// console.log(item, user_id)
 			wishlistFactory.addToWishlist(angular.extend(item, user_id), function(data){
-				console.log(data)
+				// console.log(data)
+				wishlistFactory.getUserWishlist(user_id.uid, function(res){
+					console.log(res)
+					$rootScope.wishlist = res;
+				})
 			})
 		}
 	}
+
+	$scope.isWishlist = function(id) {
+		for(var i=0; i<$rootScope.wishlist.length; i++){
+			if($rootScope.wishlist[i].product_id == id){
+				console.log("In wishlist:", id, $rootScope.wishlist[i].product_id)
+				return true;
+			}
+		}
+		console.log("Not in wishlist:", id)
+		return false;
+    // return $rootScope.wishlist.indexOf(id) !== -1;
+  }
 })
