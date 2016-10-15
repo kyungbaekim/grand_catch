@@ -1,6 +1,5 @@
 @import url('_homePage.css');
 
-
 img#logo{
    width: 175px;
    height: 150px;
@@ -117,7 +116,7 @@ img.product-img{
 }
 
 div.searchBar{
-  margin-top: 20px;
+  margin-top: 30px;
   text-align: center
 }
 
@@ -267,11 +266,16 @@ h2.sidebar-title{
 }
 
 /*table and desktop*/
-@media screen and (min-width: 768px) {
+/*@media screen and (min-width: 768px) {
   .paginationDeals{
     position: relative;
     left: 35%;
     margin-bottom: 0px;
+  }
+}*/
+@media(min-width: 480px) and (max-width: 1200px) {
+  div.searchBar input {
+    width: 300px !important;
   }
 }
 
@@ -279,5 +283,13 @@ h2.sidebar-title{
 @media screen and (max-width: 479px) {
   .shop-tab-list {
       min-height: 70px;
+  }
+  div.searchBar input {
+    width: 75% !important;
+  }
+
+  div.searchBar form {
+    position: relative;;
+    left: -35px;
   }
 }
