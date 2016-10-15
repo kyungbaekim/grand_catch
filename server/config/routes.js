@@ -49,7 +49,7 @@ module.exports = function(app){
 		wishlist.index(req, res)
 	})
 
-	app.post('/wishlist/delete/:wid', function (req, res){
+	app.post('/wishlist/delete/:wid/:uid', function (req, res){
 		// console.log("From routes.js:", req.params)
 		wishlist.delete(req, res)
 	})

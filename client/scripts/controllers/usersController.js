@@ -36,9 +36,9 @@ myAppModule.controller('usersController', function ($scope, userFactory, wishlis
     });
 
     modalInstance.result.then(function (data) {
-			console.log(data)
+			// console.log(data)
       $rootScope.sessionUser = data;
-			wishlistFactory.getSession(function(data){
+			userFactory.getSession(function(data){
 				$rootScope.sessionUser = data;
 				console.log('current sessionUser data:', $rootScope.sessionUser)
 			});
@@ -50,9 +50,9 @@ myAppModule.controller('usersController', function ($scope, userFactory, wishlis
 	var RegModalInstanceCtrl = function ($uibModalInstance, userForm, $scope) {
     $scope.register = function () {
 			userFactory.newUser($scope.user, function(data){
-				console.log('returned data user created:', data)
+				// console.log('returned data user created:', data)
 				if(data.status){
-					console.log("data.status is true")
+					// console.log("data.status is true")
 					userFactory.getSession(function(data){
 						console.log(data)
 						$uibModalInstance.close(data)

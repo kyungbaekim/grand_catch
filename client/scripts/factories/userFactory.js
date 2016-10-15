@@ -6,7 +6,7 @@ myAppModule.factory('userFactory', function ($http){
 	factory.newUser = function (data, callback){
 		// console.log("I am in factory")
 		$http.post('/user', data).success(function (output){
-			console.log('add new user output', output);
+			// console.log('add new user output', output);
 			//if status is true, set sessionUser
 			if(output.status){
 				sessionUser = output.sessionUser;

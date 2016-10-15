@@ -9,7 +9,7 @@ myAppModule.controller('wishlistController', function ($scope, userFactory, wish
   });
 
   wishlistFactory.getUserWishlist($routeParams.user_id, function (data){
-    // console.log(data)
+    console.log(data)
     $rootScope.wishlist = data
   })
 

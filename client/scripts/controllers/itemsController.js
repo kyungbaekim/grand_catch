@@ -409,8 +409,8 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, wishli
 		}
 		else{
 			var user_id = {uid: $rootScope.sessionUser.user_id};
-			// console.log(item, user_id)
-			wishlistFactory.addToWishlist(angular.extend(item, user_id), function(data){
+			console.log(item, user_id)
+			wishlistFactory.addToWishlist(item, user_id, function(data){
 				// console.log(data)
 				wishlistFactory.getUserWishlist(user_id.uid, function(res){
 					console.log(res)
