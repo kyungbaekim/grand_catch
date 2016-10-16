@@ -29,7 +29,7 @@ myAppModule.controller('reviewController', function ($scope, itemsFactory){
           $scope.reviewURL = data.Item.ViewItemURLForNaturalSearch + '#rwid'
           $scope.ebayReview = res
         })
-        $scope.itemDetail.ViewItemURLForNaturalSearch = $scope.itemDetail.ViewItemURLForNaturalSearch + '?SECURITY-APPNAME=' + production_app_id
+        $scope.itemDetail.ViewItemURLForNaturalSearch += '?SECURITY-APPNAME=' + production_app_id
       })
     }
   }
@@ -37,6 +37,8 @@ myAppModule.controller('reviewController', function ($scope, itemsFactory){
   if($scope.deal){
     itemsFactory.getEbaySingleItem($scope.deal.ItemId, function(data){
       $scope.dealDetail = data.Item;
+      $scope.dealDetail.ViewItemURLForNaturalSearch += '?SECURITY-APPNAME=' + production_app_id
+      // console.log($scope.dealDetail)
       itemsFactory.ebayReviewLookUp(data.Item.ViewItemURLForNaturalSearch, function(res){
         $scope.reviewURL = data.Item.ViewItemURLForNaturalSearch + '#rwid'
         $scope.dealReview = res

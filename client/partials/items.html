@@ -83,13 +83,16 @@
                                                 <div class="product-wrapper">
                                                     <div ng-mouseenter='hover = true' ng-mouseleave='hover = false' class="product-bg">
                                                         <span class="helper"></span><img class='product-img' ng-src="{{ item.img }}">
-                                                        <div ng-if='!isWishlist(item.id)' class="functional-buttons">
-                                                          <a href="" ng-click="wishlist(item)" title="Add to Wishlist">
+                                                        <div ng-if='!isWishlist(item)' class="functional-buttons">
+                                                          <a ng-if="item.seller == 'amazon'" href="" ng-click="wishlist(item)" title="Add to Wishlist">
+                                                            <i class="fa fa-anchor"></i>
+                                                          </a>
+                                                          <a ng-if="item.seller == 'ebay'" href="" ng-click="wishlist(itemDetail)" title="Add to Wishlist">
                                                             <i class="fa fa-anchor"></i>
                                                           </a>
                                                         </div>
-                                                        <div ng-if='isWishlist(item.id)' class="functional-buttons-wishlist">
-                                                          <a href="" ng-click="removeWishlist(item)" title="Remove from Wishlist">
+                                                        <div ng-if='isWishlist(item)' class="functional-buttons-wishlist">
+                                                          <a href="" ng-click="removeWishlist(item.wid)" title="Remove from Wishlist">
                                                             <i class="fa fa-anchor"></i>
                                                           </a>
                                                         </div>

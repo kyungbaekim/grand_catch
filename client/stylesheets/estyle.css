@@ -2038,7 +2038,7 @@ a.wish-btn {
   border-style: solid;
   border-width: 1px 0 0 1px;
   margin: 0 0 10px;
-  text-align: center;
+  /*text-align: center;*/
   width: 100%;
 }
 .wishlist-right-area table th, .wishlist-right-area table td, .shopping-cart-area table th, .shopping-cart-area table td {
@@ -2057,6 +2057,7 @@ a.wish-btn {
 }
 .product-remove {
   width: 130px;
+  text-align: center;
 }
 .shopping-cart-area .product-image {
   width: 265px;

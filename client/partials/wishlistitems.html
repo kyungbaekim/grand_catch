@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-md-12 col-sm-12 col-xs-12">
-    <div class="wishlist-right-area table-responsive">
-      <table class="wish-list-table">
-        <thead>
+    <div class="wishlist-right-area">
+      <table class="table">
+        <thead class="thead-default">
           <tr>
             <th class="t-product-name">Products</th>
             <th class="product-details-comment">Product Details</th>
@@ -11,21 +11,57 @@
         </thead>
         <tbody>
           <tr ng-repeat="item in wishlist">
-            <td class="product-image">
-              <img ng-src="{{ item.product_img_url }}" alt="Product image">
+            <td class="product-image" width="20%" style="vertical-align: middle;">
+              <img ng-if="item.product_detail[0].seller == 'amazon'" ng-src="{{ item.product_detail[0].img }}" alt="Product image" width="100%" height="auto">
+              <img ng-if="item.product_detail[0].seller == undefined" ng-src="{{ item.product_detail[0].PictureURL[0] }}" alt="Product image" width="100%"  height="auto">
             </td>
-            <td class="product-details">
-              <h4>{{ item.product_name }}</h4>
-              <p><a href="{{ item.product_url }}" target="blank">Go to product page</a></p>
+            <td class="product-details" width="70%" ng-if="item.product_detail[0].seller == 'amazon'">
+              <h4>{{ item.product_detail[0].title }}</h4>
+              <span ng-if='item.product_detail[0].price != 0 && item.product_detail[0].percentage_Saved == "N/A"'><span class='priceSize'>${{ item.product_detail[0].price | number:2 }} <br></span></span>
+              <span ng-if='item.product_detail[0].price != 0 && item.product_detail[0].percentage_Saved != "N/A"'><span class='priceSize'><strike>${{ item.product_detail[0].price | number:2 }}</strike> ${{ item.product_detail[0].sale_price }} (save {{ item.product_detail[0].percentage_Saved }}%)<br></span></span><br>
+              <b>Seller:</b> {{ item.product_detail[0].seller }} <span ng-if='item.product_detail[0].prime_item'><img class='amazonPrimeIcon' src="images/amazonPrime1.png"></span><br>
+              <b>Condition:</b> {{ item.product_detail[0].condition }}<br>
+              <span ng-if='item.product_detail[0].price == 0'><span class='priceSize'>Check website for price<br></span></span>
+              <span ng-if='isArray(item.product_detail[0].features)'>
+                <b>Features:</b>
+        				<ul class='feature' ng-repeat="feature in item.product_detail[0].features track by $index">
+        					<li>{{ feature }}</li>
+        				</ul>
+              </span>
+              <span ng-if='!isArray(item.product_detail[0].features)'>
+                <b>Features:</b><br>
+                {{ item.product_detail[0].features }}
+              <br></span><br>
+              <a href="{{ item.product_detail[0].view }}" target="blank">Go to product page</a>
             </td>
-            <td class="product-remove">
-              <a href="" ng-click="removeFromWishlist(item._id)">
+            <td class="product-details" width="70%" ng-if="item.product_detail[0].seller == undefined">
+              <h4>{{ item.product_detail[0].Title }}</h4>
+              <span class='priceSize'>${{ item.product_detail[0].ConvertedCurrentPrice.Value | number:2 }}</span></span><br><br>
+              <b>Shipping cost:</b> ${{ item.product_detail[0].ShippingCostSummary.ShippingServiceCost.Value | number:2 }}<br>
+              <span ng-if="item.product_detail[0].Storefront && item.product_detail[0].Seller"><b>Seller:</b> <a href="{{ item.product_detail[0].Storefront.StoreURL }}" target="blank">{{ item.product_detail[0].Storefront.StoreName }}</a>(positive feedback: {{ item.product_detail[0].Seller.PositiveFeedbackPercent }}%)<br></span>
+              <span ng-if="item.product_detail[0].Seller && !item.product_detail[0].Storefront"><b>Seller:</b> {{ item.product_detail[0].Seller.UserID }} (positive feedback: {{ item.product_detail[0].Seller.PositiveFeedbackPercent }}%)<br></span>
+              <b>Condition:</b> {{ item.product_detail[0].ConditionDisplayName }}<br>
+              <b>Features:</b><br>
+              <ul class='feature' ng-repeat="feature in item.product_detail[0].ItemSpecifics.NameValueList">
+                <li>{{ feature.Name }}: {{ feature.Value[0] }}</li>
+              </ul><br>
+    					<span><b>Expires at:</b> {{ item.product_detail[0].EndTime | amUtc | amLocal | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a' }}</span><br><br>
+    					<!-- <span><b>Time left:</b> {{ timeTill }}</span><br><br> -->
+              <a href="{{ item.product_detail[0].ViewItemURLForNaturalSearch }}" target="blank">Go to product page</a>
+            </td>
+            <td class="product-remove" width="10%" style="vertical-align: middle;">
+              <a href="" ng-click="removeFromWishlist(item._id)" title="Remove">
                 <i class="flaticon-delete"></i>
               </a>
             </td>
           </tr>
         </tbody>
       </table>
+    </div>
+    <div class="wishlist-bottom-link">
+      <a class="wishlist-single-link" href="" ng-click="goBack()" title="Go back">
+        <i class="fa fa-angle-double-left"></i>Back
+      </a>
     </div>
   </div>
 </div>

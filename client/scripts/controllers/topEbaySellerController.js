@@ -42,6 +42,7 @@ myAppModule.controller('topEbaySellerController', function ($scope, itemsFactory
     for(var i=0; i<$scope.ebayItems.length; i++){
       $scope.ebayItems[i]['keywords'] = $scope.ebayItems[i].title.replace(/[&\\#+$~%'":*?<>{}]/g,'')
       $scope.ebayItems[i]['keywords'] = $scope.ebayItems[i]['keywords'].replace(/\//g,'-')
+      // $scope.ebayItems[i].viewItemURL[0] + '&affiliate.trackingId=' + affiliateTrackingId + '&affiliate.networkId=' + affiliateNetworkId + '&affiliate.customId=' + affiliateCustomId;
     }
     // console.log($scope.ebayItems)
   })

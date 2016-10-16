@@ -154,7 +154,7 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, wishli
         }
 
 				$scope.filteredSearchResult = filterAfterCondition;
-				console.log($scope.filteredSearchResult)
+				// console.log($scope.filteredSearchResult)
 
 				var price = Object.keys($scope.filteredSearchResult).map(function (key) {
 					if(typeof $scope.filteredSearchResult[key].price === 'string' || isNaN($scope.filteredSearchResult[key].price)){
@@ -420,10 +420,33 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, wishli
 		}
 	}
 
-	$scope.isWishlist = function(id) {
+	$scope.removeWishlist = function(wid){
+		// console.log($rootScope.sessionUser)
+		if(!$rootScope.sessionUser.loggedIn){
+      $rootScope.$emit("CallLogin", {});
+		}
+		else{
+			var user_id = {uid: $rootScope.sessionUser.user_id};
+			// console.log(item, user_id)
+			wishlistFactory.removeFromWishlist(wid, user_id.uid, function(data){
+				// console.log(data)
+				wishlistFactory.getUserWishlist(user_id.uid, function(res){
+					console.log(res)
+					$rootScope.wishlist = res;
+				})
+			})
+		}
+	}
+
+	$scope.isWishlist = function(item) {
 		for(var i=0; i<$rootScope.wishlist.length; i++){
-			if($rootScope.wishlist[i].product_id == id){
-				// console.log("In wishlist:", id, $rootScope.wishlist[i].product_id)
+			if($rootScope.wishlist[i].product_detail[0].id == item.id){
+				item['wid'] = $rootScope.wishlist[i]._id
+				// console.log(item)
+				return true;
+			}
+			else if($rootScope.wishlist[i].product_detail[0].ItemID == item.id){
+				item['wid'] = $rootScope.wishlist[i]._id
 				return true;
 			}
 		}

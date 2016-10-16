@@ -1,5 +1,6 @@
 myAppModule.controller('wishlistController', function ($scope, userFactory, wishlistFactory, $rootScope, $routeParams, $location){
   // console.log($routeParams.user_id, $rootScope.sessionUser.user_id)
+  $scope.isArray = angular.isArray;
 
   $scope.$watch('$root.sessionUser', function() {
     // console.log($rootScope.sessionUser)
@@ -20,4 +21,8 @@ myAppModule.controller('wishlistController', function ($scope, userFactory, wish
       $rootScope.wishlist = data;
     });
   }
+
+  $scope.goBack = function() {
+    window.history.back();
+  };
 });
