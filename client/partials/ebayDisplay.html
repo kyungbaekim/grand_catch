@@ -22,8 +22,9 @@
           <ul class='feature' ng-repeat="feature in itemDetail.ItemSpecifics.NameValueList">
             <li>{{ feature.Name }}: {{ feature.Value[0] }}</li>
           </ul><br>
-					<span><b>Expires at:</b> {{ itemDetail.EndTime | amUtc | amLocal | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a' }}</span><br>
-					<span><b>Time left:</b> {{ timeTill }}</span><br><br>
+          <span><b>Expires at:</b> {{ itemDetail.EndTime | amUtc | amLocal | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a' }}</span><br>
+					<span><b>Time left:</b> {{ timeTill }}</span><br>
+          <span class='buyIte'><a href='{{ itemDetail.ViewItemURLForNaturalSearch }}' target='blank'><button class='btn btn-success buyItem'>Buy</button></a></span>
           <div class="social-sharing">
             <div class="widget widget_socialsharing_widget">
               <h3 class="widget-title-modal">Share this product</h3>
@@ -31,7 +32,7 @@
                 <li><a target="_blank" title="Facebook" href="#" class="facebook social-icon"><i class="fa fa-facebook"></i></a></li>
                 <li><a target="_blank" title="Twitter" href="#" class="twitter social-icon"><i class="fa fa-twitter"></i></a></li>
                 <li><a target="_blank" title="Pinterest" href="#" class="pinterest social-icon"><i class="fa fa-pinterest"></i></a></li>
-                <li><a target="_blank" title="Google +" href="#" class="gplus social-icon"><i class="fa fa-google-plus"></i></a></li>
+                <li><a target="_blank" title="Google +" href="#" cla`ss="gplus social-icon"><i class="fa fa-google-plus"></i></a></li>
                 <li><a target="_blank" title="LinkedIn" href="#" class="linkedin social-icon"><i class="fa fa-linkedin"></i></a></li>
               </ul>
             </div>
@@ -40,7 +41,7 @@
       </div>
     </div>
     <div class="modal-footer">
-  	  <button class="btn btn-primary" ng-click="ok()">Close</button>
+  	  <button class="btn btn-danger" ng-click="ok()">Close</button>
   	</div>
   </div>
 </div>
