@@ -23,6 +23,7 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, wishli
     return result;
 	};
 
+
 	if($rootScope.sessionUser.loggedIn){
 		wishlistFactory.getUserWishlist($rootScope.sessionUser.user_id, function(res){
 			console.log(res)
@@ -211,68 +212,87 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, wishli
 		$scope.searchProduct();
 	}
 
+	var isIDunique = function(itemID){
+		for(var i=0; i<$scope.searchEbayResult.length; i++) {
+			// console.log($scope.searchEbayResult.length, $scope.searchEbayResult)
+			if($scope.searchEbayResult.length == 0){
+				return true;
+			}
+      else{
+				if($scope.searchEbayResult[i]['id'] == itemID) {
+					// console.log($scope.searchEbayResult[i]['id'], itemID)
+					return false;
+				}
+			}
+    }
+		return true;
+	}
+
 	function createEbayList(obj){
 		var temp = obj.findItemsByKeywordsResponse[0].searchResult[0].item
+		// console.log(temp)
 		// console.log("start converting the data...")
 		$scope.searchEbayResult = [];
 		if(temp != null){
 			for(var i=0; i<temp.length; i++){
-				var data = {};
-				var title = temp[i].title[0];
-				var viewURL = temp[i].viewItemURL[0] + '&affiliate.trackingId=' + affiliateTrackingId + '&affiliate.networkId=' + affiliateNetworkId + '&affiliate.customId=' + affiliateCustomId;
-				var imgURL;
-				if(temp[i].pictureURLSuperSize != undefined){
-					imgURL = temp[i].pictureURLLarge[0]
-				}
-				else if(temp[i].PictureURLLarge != undefined){
-					imgURL = temp[i].PictureURLSuperSize[0]
-				}
-				else if(temp[i].galleryURL != undefined){
-					imgURL = temp[i].galleryURL[0]
-				}
-				else{
-					imgURL = ''
-				}
-				var price = parseFloat(temp[i].sellingStatus[0].currentPrice[0].__value__).toFixed(2);
-				var condition;
-				if(temp[i].condition == undefined){
-					condition = 'Not available'
-				}
-				else{
-					condition = temp[i].condition[0].conditionDisplayName[0];
-				}
-				if(condition in $scope.conditions){
-					$scope.conditions[condition]++
-				}
-				else{
-					$scope.conditions[condition] = 1;
-				}
-				var categoryId = temp[i].primaryCategory[0].categoryId[0];
-				var categoryName = temp[i].primaryCategory[0].categoryName[0];
-				if(categoryName in $scope.categories){
-					$scope.categories[categoryName]++
-				}
-				else{
-					$scope.categories[categoryName] = 1;
-				}
-				var itemID = temp[i].itemId[0]
-				var shipping;
-				// var total_cost;
-				if(temp[i].shippingInfo[0].shippingServiceCost === undefined){
-					shipping = 'Check website';
-				}
-				else{
-					if(temp[i].shippingInfo[0].shippingServiceCost[0].__value__ == '0.0'){
-						shipping = parseFloat(0.00).toFixed(2);
+				if(isIDunique(temp[i].itemId[0])){
+					var data = {};
+					var title = temp[i].title[0];
+					var viewURL = temp[i].viewItemURL[0] + '&affiliate.trackingId=' + affiliateTrackingId + '&affiliate.networkId=' + affiliateNetworkId + '&affiliate.customId=' + affiliateCustomId;
+					var imgURL;
+					if(temp[i].pictureURLSuperSize != undefined){
+						imgURL = temp[i].pictureURLLarge[0]
+					}
+					else if(temp[i].PictureURLLarge != undefined){
+						imgURL = temp[i].PictureURLSuperSize[0]
+					}
+					else if(temp[i].galleryURL != undefined){
+						imgURL = temp[i].galleryURL[0]
 					}
 					else{
-						shipping = parseFloat(temp[i].shippingInfo[0].shippingServiceCost[0].__value__).toFixed(2);
+						imgURL = ''
 					}
+					var price = parseFloat(temp[i].sellingStatus[0].currentPrice[0].__value__).toFixed(2);
+					var condition;
+					if(temp[i].condition == undefined){
+						condition = 'Not available'
+					}
+					else{
+						condition = temp[i].condition[0].conditionDisplayName[0];
+					}
+					if(condition in $scope.conditions){
+						$scope.conditions[condition]++
+					}
+					else{
+						$scope.conditions[condition] = 1;
+					}
+					var categoryId = temp[i].primaryCategory[0].categoryId[0];
+					var categoryName = temp[i].primaryCategory[0].categoryName[0];
+					if(categoryName in $scope.categories){
+						$scope.categories[categoryName]++
+					}
+					else{
+						$scope.categories[categoryName] = 1;
+					}
+					var itemID = temp[i].itemId[0]
+					var shipping;
+					// var total_cost;
+					if(temp[i].shippingInfo[0].shippingServiceCost === undefined){
+						shipping = 'Check website';
+					}
+					else{
+						if(temp[i].shippingInfo[0].shippingServiceCost[0].__value__ == '0.0'){
+							shipping = parseFloat(0.00).toFixed(2);
+						}
+						else{
+							shipping = parseFloat(temp[i].shippingInfo[0].shippingServiceCost[0].__value__).toFixed(2);
+						}
+					}
+					// var start = temp[i].listingInfo[0].startTime[0];
+					var end = temp[i].listingInfo[0].endTime[0];
+					data = { 'seller': 'ebay', 'id': itemID, 'title': title, 'view': viewURL, 'img': imgURL, 'price': parseFloat(price), 'shipping': shipping, 'condition': condition, 'category': categoryName, 'endTime': end }
+					$scope.searchEbayResult.push(data)
 				}
-				// var start = temp[i].listingInfo[0].startTime[0];
-				var end = temp[i].listingInfo[0].endTime[0];
-				data = { 'seller': 'ebay', 'id': itemID, 'title': title, 'view': viewURL, 'img': imgURL, 'price': parseFloat(price), 'shipping': shipping, 'condition': condition, 'category': categoryName, 'endTime': end }
-				$scope.searchEbayResult[i] = data
 			}
 			// console.log("Ebay search result", $scope.searchEbayResult)
 		}

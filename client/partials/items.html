@@ -24,7 +24,7 @@
                               <b>Sellers</b>
                             </div>
                             <ul class="sidebar-menu" ng-repeat='seller in sellerGroup'>
-															<li ng-if="(filteredSearchResult | filter:count('seller', seller)).length != 0"><input type="checkbox" ng-model="useSeller[seller]"/>{{ seller }} ({{ (filteredSearchResult | filter:count('seller', seller)).length }})</li>
+															<li ng-if="(filteredSearchResult | filter:count('seller', seller)).length != 0"><input type="checkbox" ng-model="useSeller[seller]"/> {{ seller }} ({{ (filteredSearchResult | filter:count('seller', seller)).length }})</li>
                             </ul>
                             <div style="margin-top: 30px; margin-bottom: 7px;">
                               <b>Conditions</b>

@@ -17,8 +17,8 @@
             </td>
             <td class="product-details" width="70%" ng-if="item.product_detail[0].seller == 'amazon'">
               <h4>{{ item.product_detail[0].title }}</h4>
-              <span ng-if='item.product_detail[0].price != 0 && item.product_detail[0].percentage_Saved == "N/A"'><span class='priceSize'>${{ item.product_detail[0].price | number:2 }} <br></span></span>
-              <span ng-if='item.product_detail[0].price != 0 && item.product_detail[0].percentage_Saved != "N/A"'><span class='priceSize'><strike>${{ item.product_detail[0].price | number:2 }}</strike> ${{ item.product_detail[0].sale_price }} (save {{ item.product_detail[0].percentage_Saved }}%)<br></span></span><br>
+              <span ng-if='item.product_detail[0].price != 0 && item.product_detail[0].percentage_Saved == "N/A"'><span class='priceSize'>Price: ${{ item.product_detail[0].price | number:2 }} <br></span></span>
+              <span ng-if='item.product_detail[0].price != 0 && item.product_detail[0].percentage_Saved != "N/A"'><span class='priceSize'>Price: <strike>${{ item.product_detail[0].price | number:2 }}</strike> ${{ item.product_detail[0].sale_price }} (save {{ item.product_detail[0].percentage_Saved }}%)<br></span></span><br>
               <b>Seller:</b> {{ item.product_detail[0].seller }} <span ng-if='item.product_detail[0].prime_item'><img class='amazonPrimeIcon' src="images/amazonPrime1.png"></span><br>
               <b>Condition:</b> {{ item.product_detail[0].condition }}<br>
               <span ng-if='item.product_detail[0].price == 0'><span class='priceSize'>Check website for price<br></span></span>
@@ -32,11 +32,24 @@
                 <b>Features:</b><br>
                 {{ item.product_detail[0].features }}
               <br></span><br>
-              <a href="{{ item.product_detail[0].view }}" target="blank">Go to product page</a>
+              <table style="border:0px;">
+                <tr style="border:0px;">
+                  <td style="border:0px; text-align: right;">
+                    <a href="{{ item.product_detail[0].view }}" target="blank"><button type="button" class="btn btn-primary">Go to product page</button></a>
+                  </td>
+                  <td style="border:0px;">
+                    <form>
+                      <input type="hidden" name="keywords" ng-init="keywords = item.product_detail[0].keywords" ng-model="search.keywords">
+                      <!-- {{ keywords }} -->
+                      <a href="#/search/{{ keywords }}"><button type="submit" class="btn btn-primary">Search for similar products</button></a>
+                    </form>
+                  </td>
+                </tr>
+              </table>
             </td>
             <td class="product-details" width="70%" ng-if="item.product_detail[0].seller == undefined">
               <h4>{{ item.product_detail[0].Title }}</h4>
-              <span class='priceSize'>${{ item.product_detail[0].ConvertedCurrentPrice.Value | number:2 }}</span></span><br><br>
+              <span class='priceSize'>Price: ${{ item.product_detail[0].ConvertedCurrentPrice.Value | number:2 }}</span></span><br><br>
               <b>Shipping cost:</b> ${{ item.product_detail[0].ShippingCostSummary.ShippingServiceCost.Value | number:2 }}<br>
               <span ng-if="item.product_detail[0].Storefront && item.product_detail[0].Seller"><b>Seller:</b> <a href="{{ item.product_detail[0].Storefront.StoreURL }}" target="blank">{{ item.product_detail[0].Storefront.StoreName }}</a>(positive feedback: {{ item.product_detail[0].Seller.PositiveFeedbackPercent }}%)<br></span>
               <span ng-if="item.product_detail[0].Seller && !item.product_detail[0].Storefront"><b>Seller:</b> {{ item.product_detail[0].Seller.UserID }} (positive feedback: {{ item.product_detail[0].Seller.PositiveFeedbackPercent }}%)<br></span>
@@ -46,8 +59,20 @@
                 <li>{{ feature.Name }}: {{ feature.Value[0] }}</li>
               </ul><br>
     					<span><b>Expires at:</b> {{ item.product_detail[0].EndTime | amUtc | amLocal | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a' }}</span><br><br>
-    					<!-- <span><b>Time left:</b> {{ timeTill }}</span><br><br> -->
-              <a href="{{ item.product_detail[0].ViewItemURLForNaturalSearch }}" target="blank">Go to product page</a>
+              <table style="border:0px;">
+                <tr style="border:0px;">
+                  <td style="border:0px; text-align: right;">
+                    <a href="{{ item.product_detail[0].ViewItemURLForNaturalSearch }}" target="blank"><button type="button" class="btn btn-primary">Go to product page</button></a>
+                  </td>
+                  <td style="border:0px;">
+                    <form>
+                      <input type="hidden" name="keywords" ng-init="keywords = item.product_detail[0].keywords" ng-model="search.keywords">
+                      <!-- {{ keywords }} -->
+                      <a href="#/search/{{ keywords }}"><button type="submit" class="btn btn-primary">Search for similar products</button></a>
+                    </form>
+                  </td>
+                </tr>
+              </table>
             </td>
             <td class="product-remove" width="10%" style="vertical-align: middle;">
               <a href="" ng-click="removeFromWishlist(item._id)" title="Remove">
