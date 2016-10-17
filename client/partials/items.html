@@ -82,7 +82,7 @@
                                             <div class="single-banner">
                                                 <div class="product-wrapper">
                                                     <div ng-mouseenter='hover = true' ng-mouseleave='hover = false' class="product-bg">
-                                                        <span class="helper"></span><img class='product-img' ng-src="{{ item.img }}">
+                                                        <span class="helper"></span><a href='{{ item.view }}' target='_blank'><img class='product-img' ng-src="{{ item.img }}"></a>
                                                         <div ng-if='!isWishlist(item)' class="functional-buttons">
                                                           <a ng-if="item.seller == 'amazon'" href="" ng-click="wishlist(item)" title="Add to Wishlist">
                                                             <i class="fa fa-anchor"></i>

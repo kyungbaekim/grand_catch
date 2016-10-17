@@ -1,0 +1,30 @@
+
+div.quickview{
+  position: absolute;
+  width: 260px;
+  height: 40px;
+  background-color: grey;
+  bottom: 0;
+  opacity: 0.8;
+}
+
+div.quickview p {
+  font-family: 'Poppins', 'Montserrat', sans-serif;
+  color: white;
+  font-size: 18px;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  right: 0; left: 0;
+  bottom: 8px;
+  }
+
+span.priceSize{
+  font-size: 18px;
+  position: relative;
+  top: 8px;
+}
+
+button.buyItem {
+  margin: 10px 0;
+}
