@@ -538,8 +538,8 @@ body {
 /*  6.	Featured Products Area CSS
 /*----------------------------------------*/
 .section-title {
-  border-bottom: 1px solid #bbbbbb;
-  border-top: 1px solid #bbbbbb;
+  /*border-bottom: 1px solid #bbbbbb;
+  border-top: 1px solid #bbbbbb;*/
   color: #555555;
   font-size: 21px;
   font-weight: 600;
@@ -551,7 +551,7 @@ body {
   text-transform: uppercase;
 }
 .section-title::before {
-  background: #bbbbbb none repeat scroll 0 0;
+  /*background: #bbbbbb none repeat scroll 0 0;*/
   content: "";
   height: 58px;
   position: absolute;
@@ -560,7 +560,7 @@ body {
   width: 1px;
 }
 .section-title::after {
-  background: #bbbbbb none repeat scroll 0 0;
+  /*background: #bbbbbb none repeat scroll 0 0;*/
   content: "";
   height: 58px;
   left: 524px;
@@ -2284,7 +2284,7 @@ a.wish-btn {
 }
 
 .modal-product {
-  height: 500px;
+  height: 800px;
   overflow: scroll;;
 }
 .modal-product .product-images {
