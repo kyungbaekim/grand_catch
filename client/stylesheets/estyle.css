@@ -2290,7 +2290,7 @@ a.wish-btn {
 }
 
 .modal-product {
-  height: 800px;
+  /*height: 800px;*/
   overflow: scroll;;
 }
 .modal-product .product-images {

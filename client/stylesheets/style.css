@@ -1,6 +1,10 @@
 @import url('_homePage.css');
 @import url('_itemPage.css');
 
+.btn-success {
+  font-size: 20px;
+  width: 90px;
+}
 .wishlist {
   color: red;
 }
@@ -162,7 +166,7 @@ tr:nth-child(even) {
   height: 100px;
   position: relative;
   top: 250px;
-  left: 400px;
+  left: 380px;
   /*background: url('/images/loading-blue.gif') no-repeat;*/
   background: url('/images/octo.gif') no-repeat;
   background-size: contain;
