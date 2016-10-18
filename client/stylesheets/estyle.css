@@ -205,6 +205,11 @@ body {
   font-size: 20px;
   position: relative;
 }
+.header-right {
+  position: absolute;
+  top: 10px;
+  right: 80px;
+}
 .cart-product {
   border-top: 1px solid #cccccc;
   font-weight: normal;
