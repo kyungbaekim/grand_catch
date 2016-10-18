@@ -85,15 +85,15 @@
                                                         <span class="helper"></span><a href='{{ item.view }}' target='_blank'><img class='product-img' ng-src="{{ item.img }}"></a>
                                                         <div ng-if='!isWishlist(item)' class="functional-buttons">
                                                           <a ng-if="item.seller == 'amazon'" href="" ng-click="wishlist(item)" title="Add to Wishlist">
-                                                            <i class="fa fa-anchor"></i>
+                                                            <i class="fa fa-heart"></i>
                                                           </a>
                                                           <a ng-if="item.seller == 'ebay'" href="" ng-click="wishlist(itemDetail)" title="Add to Wishlist">
-                                                            <i class="fa fa-anchor"></i>
+                                                            <i class="fa fa-heart"></i>
                                                           </a>
                                                         </div>
                                                         <div ng-if='isWishlist(item)' class="functional-buttons-wishlist">
                                                           <a href="" ng-click="removeWishlist(item.wid)" title="Remove from Wishlist">
-                                                            <i class="fa fa-anchor"></i>
+                                                            <i class="fa fa-heart"></i>
                                                           </a>
                                                         </div>
                                                         <a ng-if="item.seller == 'amazon'" href="" ng-click="amazonDisplay(item, 'lg')"><div ng-class='{quickview: hover}'><p>Quick View</p></div></a>

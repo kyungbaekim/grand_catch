@@ -1,7 +1,7 @@
 <div ng-controller='dailyDealsController' class='dailydeals'>
   <!-- <div ng-repeat='deal in deals' class="shop-single-product-area" ng-controller='topSingleItemController'> -->
   <div dir-paginate="deal in deals | itemsPerPage: 8" current-page='currentPage' class="shop-single-product-area" ng-controller='reviewController'>
-    <div class="col-md-3 col-sm-3" id='scroll'>
+    <div class="col-md-3 col-sm-4" id='scroll'>
       <div class="single-banner">
         <div class="product-wrapper">
           <div ng-mouseenter='hover = true' ng-mouseleave='hover = false' class="product-bg">
@@ -9,7 +9,7 @@
             <img class='product-img' ng-src="{{ deal.Image300URL }}">
             <div class="functional-buttons">
               <a href="#" title="Add to Wishlist">
-                <i class="fa fa-anchor"></i>
+                <i class="fa fa-heart"></i>
               </a>
             </div>
           </div>
