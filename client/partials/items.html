@@ -103,7 +103,8 @@
                                                 <div class="banner-bottom text-center">
                                                   <div ng-if="item.seller == 'ebay'">
                                                     <div class="banner-bottom-title">
-                                                      <a href="" ng-click="ebayDisplay(itemDetail, 'lg')">{{ item.title }}</a>
+                                                      <!-- <a href="" ng-click="ebayDisplay(itemDetail, 'lg')">{{ item.title }}</a> -->
+                                                      {{ item.title }}
                                                     </div>
                                                   <div class="product-details text-center">
                                                     <span class="sellerInfo"><b>Seller:</b> {{ item.seller }} <br>
@@ -119,7 +120,8 @@
                                                 </div>
                                                 <div ng-if="item.seller == 'amazon'">
                                                   <div class="banner-bottom-title">
-                                                    <a href="" ng-click="amazonDisplay(item, 'lg')">{{ item.title }}</a>
+                                                    <!-- <a href="" ng-click="amazonDisplay(item, 'lg')">{{ item.title }}</a> -->
+                                                    {{ item.title }}
                                                   </div>
                                                   <div style='text-transform:capitalize' class="product-details text-center">
                                                     <span class="sellerInfo"><b>Seller:</b> {{ item.seller }}
