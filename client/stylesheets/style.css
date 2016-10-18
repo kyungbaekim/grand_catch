@@ -1,6 +1,9 @@
 @import url('_homePage.css');
 @import url('_itemPage.css');
 
+.wishlist {
+  color: red;
+}
 img#logo{
    width: 175px;
    height: 150px;

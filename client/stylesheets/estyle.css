@@ -730,8 +730,9 @@ body {
 }
 
 .functional-buttons > a:hover {
-  background: #2C486C none repeat scroll 0 0;
-  border: 1px solid #2C486C;
+  background: red none repeat scroll 0 0;
+  border: 1px solid red;
+  color: white;
 }
 
 .functional-buttons > a i {
@@ -747,16 +748,16 @@ body {
 }
 
 .functional-buttons-wishlist > a {
-  border: 1px solid #2C486C;
+  border: 1px solid #E1E1E1;
   border-radius: 50px;
-  color: #2C486C;
+  color: red;
   display: inline-block;
   font-size: 18px;
   height: 42px;
   margin-left: 5px;
   text-align: center;
   width: 42px;
-  background-color: #2C486C;
+  background-color: white;
 }
 
 .functional-buttons-wishlist > a i {
