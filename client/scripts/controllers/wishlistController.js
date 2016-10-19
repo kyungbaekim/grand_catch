@@ -1,4 +1,4 @@
-myAppModule.controller('wishlistController', function ($scope, userFactory, wishlistFactory, $rootScope, $routeParams, $location){
+myAppModule.controller('wishlistController', function ($scope, userFactory, wishlistFactory, $rootScope, $location){
   // console.log($routeParams.user_id, $rootScope.sessionUser.user_id)
   $scope.isArray = angular.isArray;
 

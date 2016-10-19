@@ -1,4 +1,3 @@
-
 myAppModule.controller('itemsController', function ($scope, itemsFactory, wishlistFactory, $uibModal, $interval, $routeParams, $rootScope){
 	$scope.currentPage = 1;
   $scope.pageSize = 10;
@@ -7,6 +6,9 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, wishli
 	$scope.dataLoaded = true;
 	$scope.keywords = '';
 	var temp = [];
+
+	// $scope.search_keywords = $scope.search_keywords.replace(/[&\\#+$~%'":*?<>{}]/g,'')
+	// $scope.search_keywords = $scope.saerch_keywords.replace(/\//g,'-')
 
 	var affiliateTrackingId = 5337944795;
 	var affiliateNetworkId = 9;
@@ -22,7 +24,6 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, wishli
     }
     return result;
 	};
-
 
 	if($rootScope.sessionUser.loggedIn){
 		wishlistFactory.getUserWishlist($rootScope.sessionUser.user_id, function(res){
@@ -206,7 +207,7 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, wishli
 	}
 
 	if($routeParams){
-		// console.log('routeParams keyword',$routeParams.keywords)
+		console.log('routeParams keyword',$routeParams.keywords)
 		$scope.keywords = $routeParams.keywords
 		//perform searchProduct function based on url param keyword
 		$scope.searchProduct();

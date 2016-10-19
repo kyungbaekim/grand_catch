@@ -30,7 +30,6 @@ app.use(proxy.initialize({
       '/reviews': 'https://www.amazon.com/',
       '/itm': 'http://www.ebay.com/',
       '/MerchandisingService': "http://svcs.ebay.com/",
-      // '/v1': 'http://svcs.ebay.com/services/search/FindingService/',
       '/deals': 'http://api.epn.ebay.com/',
     }
   }

@@ -1,4 +1,4 @@
-myAppModule.controller('usersController', function ($scope, userFactory, wishlistFactory, $uibModal, $uibModalStack, $rootScope){
+myAppModule.controller('usersController', function ($scope, userFactory, wishlistFactory, $uibModal, $uibModalStack, $rootScope, $location){
 	$rootScope.wishlist = []
 
 	userFactory.getSession(function(data){
@@ -9,6 +9,13 @@ myAppModule.controller('usersController', function ($scope, userFactory, wishlis
 	userFactory.getAllUser(function(data){
 		console.log("All users:", data);
 	})
+
+	$scope.searchKey = function(){
+		console.log("Searched keyword:", $scope.search.keywords)
+		$scope.search.keywords = $scope.search.keywords.replace(/[&\\#+$~%'":*?<>{}]/g,'')
+		$scope.search.keywords = $scope.search.keywords.replace(/\//g,'')
+		$location.url('search/' + $scope.search.keywords)
+	}
 
 	$scope.getSession = function(){
 		userFactory.getSession(function(data){
@@ -110,6 +117,7 @@ myAppModule.controller('usersController', function ($scope, userFactory, wishlis
 
 	var LoginModalInstanceCtrl = function ($uibModalInstance, userForm, $scope) {
 		$scope.login = function () {
+			console.log("userFor, data:", $scope.user)
 			userFactory.login($scope.user, function(data){
 				// console.log('returned user data:', data)
 				if(data.status){

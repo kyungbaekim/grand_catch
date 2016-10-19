@@ -29,6 +29,7 @@ module.exports = function(app){
 	})
 
 	app.post('/login', function (req, res){
+		console.log("Header X-CSRF token info:", req.header('X-CSRFToken'))
 		users.login(req, res);
 	})
 

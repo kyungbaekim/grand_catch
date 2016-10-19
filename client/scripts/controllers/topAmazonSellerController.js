@@ -44,6 +44,6 @@ myAppModule.controller('topAmazonSellerController', function ($scope, itemsFacto
       $scope.itemInfo[i]['keywords'] = $scope.itemInfo[i]['keywords'].replace(/\//g,'-')
     }
     $scope.itemInfo = $scope.itemInfo.slice(0, -2)
-    console.log($scope.itemInfo)
+    // console.log($scope.itemInfo)
   })
 })

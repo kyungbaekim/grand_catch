@@ -20,10 +20,10 @@ module.exports = {
 	create : function (req, res){
 		console.log('req.body', req.body)
 		User.findOne({email: req.body.email}, function (err, user){
-			console.log('user in registration', user)
-			console.log('error in registration', err)
+			// console.log('user in registration', user)
+			// console.log('error in registration', err)
 			//if user email exist, return false
-			if(user) { res.json({status: false, dup_email: ["Email already exist"]}) }
+			if(user) { res.json({status: false, dup_email: ["Entered email address already exists!"]}) }
 			else {
 				if(req.body.password == req.body.cpassword){
 					//save user info
@@ -74,15 +74,15 @@ module.exports = {
 						console.log(sessionUser, user)
 						res.json({status:true, sessionUser: sessionUser})
 					} else {
-						res.json({status: false, errors: ["Incorrect Email or Password"]})
+						res.json({status: false, errors: ["Invalid Email address and/or Password"]})
 					}
 				}
 				else { //user not found
-					res.json({status: false, errors: ["Incorrect Email or Password"]})
+					res.json({status: false, errors: ["Invalid Email address and/or Password"]})
 				}
 			})
 		} else { //email or password is empty
-			res.json({status: false, errors: ["Incorrect Email or Password"]})
+			res.json({status: false, errors: ["Invalid Email address and/or Password"]})
 		}
 	},
 

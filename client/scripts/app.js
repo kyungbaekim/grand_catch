@@ -19,22 +19,21 @@ myAppModule.config(function ($routeProvider) {
 });
 
 myAppModule.config(['$httpProvider', function($httpProvider) {
-    $httpProvider.defaults.useXDomain = true;
-    delete $httpProvider.defaults.headers.common['X-Requested-With'];
-  }
-]);
-
-myAppModule.filter('to_trusted', ['$sce', function($sce){
-	return function(text) {
-		return $sce.trustAsHtml(text);
-	};
+	$httpProvider.defaults.xsrfCookieName = 'csrftoken';
+	$httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
 }]);
 
-myAppModule.filter('htmlToPlaintext', function(){
-	return function(text) {
-		return  text ? String(text).replace(/<[^>]+>/gm, '') : '';
-	};
-});
+// myAppModule.filter('to_trusted', ['$sce', function($sce){
+// 	return function(text) {
+// 		return $sce.trustAsHtml(text);
+// 	};
+// }]);
+
+// myAppModule.filter('htmlToPlaintext', function(){
+// 	return function(text) {
+// 		return  text ? String(text).replace(/<[^>]+>/gm, '') : '';
+// 	};
+// });
 
 // Custom validator based on expressions.
 myAppModule.directive("passwordVerify", function() {
