@@ -21,13 +21,6 @@ app.use('/fonts', express.static(__dirname + '/node_modules/bootstrap/fonts')); 
 app.use('/pattern', express.static(__dirname + '/node_modules/url-pattern/lib')); // redirect url pattern
 
 app.use(cookieParser());
-// var cookieSettings = {path: '/', httpOnly: false, maxAge: 3600000};
-// app.use(session({
-//   secret: 'GrAnD_CaTcH',
-//   resave: false,
-//   saveUninitialized: true,
-//   cookie: cookieSettings
-// }))
 
 app.use(session({
   cookieName: 'session',
