@@ -617,12 +617,13 @@ body {
   margin-bottom: 0;
   margin-top: 10px;
 }
+/*wrapper for both product and description panel*/
 .single-banner {
   border: 1px solid #ddd;
   margin-top: 30px;
   position: relative;
   transition: all 0.4s ease 0s;
-  max-width: 262px;
+  max-width: 270px;
 }
 .featured-product-list .banner-bottom > a , .shop-single-product-area .banner-bottom > a {
   font-size: 14px;
@@ -777,7 +778,7 @@ body {
 /*image box wrapper*/
 .product-wrapper {
   position: relative;
-  max-width: 260px;
+  max-width: 270px;
 }
 .single-banner-image-wrapper {
 /*  display: block;*/
