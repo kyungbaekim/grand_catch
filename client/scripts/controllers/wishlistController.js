@@ -1,10 +1,13 @@
-myAppModule.controller('wishlistController', function ($scope, userFactory, wishlistFactory, $rootScope, $location){
-  // console.log($routeParams.user_id, $rootScope.sessionUser.user_id)
+myAppModule.controller('wishlistController', function ($scope, userFactory, wishlistFactory, $rootScope, $routeParams, $location){
+  console.log($rootScope.sessionUser, $routeParams.user_id)
+  if($rootScope.sessionUser.user.info.id != $routeParams.user_id){
+    window.history.back();
+  }
+
   $scope.isArray = angular.isArray;
 
   $scope.$watch('$root.sessionUser', function() {
-    // console.log($rootScope.sessionUser)
-    if(!$rootScope.sessionUser.loggedIn){
+    if(!$rootScope.sessionUser.user.loggedIn){
       $location.path('/');
     }
   });
@@ -24,9 +27,7 @@ myAppModule.controller('wishlistController', function ($scope, userFactory, wish
   })
 
   $scope.removeFromWishlist = function(wid, data){
-    // console.log(wid)
     wishlistFactory.removeFromWishlist(wid, $routeParams.user_id, function(data){
-      // console.log(data)
       $rootScope.wishlist = data;
     });
   }

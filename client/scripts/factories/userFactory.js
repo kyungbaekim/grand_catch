@@ -1,49 +1,42 @@
 myAppModule.factory('userFactory', function ($http){
 	var users = [];
 	var factory = {};
-	var sessionUser = {loggedIn: false};
+	var sessionUser = {};
 
 	factory.newUser = function (data, callback){
-		// console.log("I am in factory")
 		$http.post('/user', data).success(function (output){
-			// console.log('add new user output', output);
-			//if status is true, set sessionUser
-			if(output.status){
-				sessionUser = output.sessionUser;
-			}
+			sessionUser = output;
 			//run callback to pass data from factory to controller after getting http resp
-			callback(output);
+			callback(sessionUser);
 		})
 	}
 
 	factory.getAllUser = function(callback){
-		$http.get('/getUsers').success(function(output){
-			users = output;
+		$http.get('/getUsers').success(function(users){
 			callback(users);
 		})
 	}
 
 	factory.login = function(data, callback){
-		// console.log('login data', data)
 		$http.post('/login', data).success(function (output){
-			if(output.status){
-				sessionUser = output.sessionUser;
-				// console.log('sessionUser in factory', sessionUser)
-			}
-			callback(output)
-		});
-	}
-
-	factory.logout = function(){
-		$http.get('/logout').success(function (output){
+			console.log(output)
 			sessionUser = output;
-		})
+			callback(sessionUser)
+		});
 	}
 
 	factory.getSession = function(callback){
 		//make full http get request to get the latest sessionUser status
 		$http.get('/session_user').success(function (output){
-			callback(output);
+			sessionUser = output
+			console.log(sessionUser)
+			callback(sessionUser);
+		})
+	}
+
+	factory.logout = function(){
+		$http.get('/logout').success(function (output){
+			sessionUser = output;
 		})
 	}
 

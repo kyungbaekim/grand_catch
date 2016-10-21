@@ -1,14 +1,25 @@
-myAppModule.controller('itemsController', function ($scope, itemsFactory, wishlistFactory, $uibModal, $interval, $routeParams, $rootScope){
+myAppModule.controller('itemsController', function ($scope, itemsFactory, userFactory, wishlistFactory, $uibModal, $interval, $routeParams, $rootScope){
 	$scope.currentPage = 1;
   $scope.pageSize = 10;
+	$scope.wishlist = [];
+	var user;
+
+	$scope.$watch('$root.sessionUser.user', function() {
+		if($rootScope.sessionUser.user.loggedIn){
+			wishlistFactory.getUserWishlist($rootScope.sessionUser.user.info.id, function(res){
+				console.log(res)
+				$scope.wishlist = res;
+			})
+		}
+		else{
+			$scope.wishlist = [];
+		}
+  });
 
 	// boolean flag to indicate api call success
 	$scope.dataLoaded = true;
 	$scope.keywords = '';
 	var temp = [];
-
-	// $scope.search_keywords = $scope.search_keywords.replace(/[&\\#+$~%'":*?<>{}]/g,'')
-	// $scope.search_keywords = $scope.saerch_keywords.replace(/\//g,'-')
 
 	var affiliateTrackingId = 5337944795;
 	var affiliateNetworkId = 9;
@@ -25,13 +36,6 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, wishli
     return result;
 	};
 
-	if($rootScope.sessionUser.loggedIn){
-		wishlistFactory.getUserWishlist($rootScope.sessionUser.user_id, function(res){
-			console.log(res)
-			$rootScope.wishlist = res;
-		})
-	}
-
 	$scope.searchProduct = function (){
 		console.log($scope.keywords);
 		$scope.dataLoaded = false;
@@ -43,7 +47,7 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, wishli
 		$scope.searchTime = new Date();
 
 		itemsFactory.getItems($scope.keywords, function(data){
-			// console.log(data);
+			console.log(data);
 			createEbayList(data[0])
 			var temp = [];
 			for(var i=0; i<data[1].length; i++){
@@ -318,15 +322,6 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, wishli
 					features = obj[i].ItemAttributes.Feature
 				}
 
-				if(obj[i].ItemAttributes != undefined && obj[i].ItemAttributes.ListPrice != undefined){
-					list_Price = parseFloat(obj[i].ItemAttributes.ListPrice.Amount) / 100;
-				}
-				else{
-					if(obj[i].Offers != undefined && obj[i].Offers.Offer != undefined){
-						list_Price = parseFloat(obj[i].Offers.Offer.OfferListing.Price.Amount) / 100
-					}
-				}
-
 				if(obj[i].Offers != undefined && obj[i].Offers.Offer != undefined){
 					condition = obj[i].Offers.Offer.OfferAttributes.Condition
 					if(obj[i].Offers.Offer.OfferListing != undefined){
@@ -341,7 +336,11 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, wishli
 							}
 							else{
 								sale_Price = parseFloat(obj[i].Offers.Offer.OfferListing.Price.Amount) / 100
+								list_Price = parseFloat(obj[i].ItemAttributes.ListPrice.Amount) / 100
 							}
+						}
+						else{
+							list_Price = parseFloat(obj[i].Offers.Offer.OfferListing.Price.Amount) / 100
 						}
 					}
 					else{
@@ -352,6 +351,17 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, wishli
 					condition = 'Not available'
 					// console.log("No condition", i, obj[i])
 				}
+
+				// if(list_Price == 'Check Website'){
+				// 	if(obj[i].ItemAttributes != undefined && obj[i].ItemAttributes.ListPrice != undefined){
+				// 		list_Price = parseFloat(obj[i].ItemAttributes.ListPrice.Amount) / 100;
+				// 	}
+				// 	else{
+				// 		if(obj[i].Offers != undefined && obj[i].Offers.Offer != undefined){
+				// 			list_Price = parseFloat(obj[i].Offers.Offer.OfferListing.Price.Amount) / 100
+				// 		}
+				// 	}
+				// }
 
 				if(typeof list_Price === 'string' || isNaN(list_Price)){
 					list_Price = 0;
@@ -423,55 +433,51 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, wishli
     return array;
 	}
 
-	$scope.wishlist = function(item){
-		// console.log($rootScope.sessionUser)
-		if(!$rootScope.sessionUser.loggedIn){
+	$scope.addToWishlist = function(item){
+		console.log($rootScope.sessionUser)
+		if(!$rootScope.sessionUser.user.loggedIn){
       $rootScope.$emit("CallLogin", {});
 		}
 		else{
-			var user_id = {uid: $rootScope.sessionUser.user_id};
+			var user_id = {uid: $rootScope.sessionUser.user.info.id};
 			console.log(item, user_id)
 			wishlistFactory.addToWishlist(item, user_id, function(data){
-				// console.log(data)
 				wishlistFactory.getUserWishlist(user_id.uid, function(res){
 					console.log(res)
-					$rootScope.wishlist = res;
+					$scope.wishlist = res;
 				})
 			})
 		}
 	}
 
 	$scope.removeWishlist = function(wid){
-		// console.log($rootScope.sessionUser)
-		if(!$rootScope.sessionUser.loggedIn){
+		if(!$rootScope.sessionUser.user.loggedIn){
       $rootScope.$emit("CallLogin", {});
 		}
 		else{
-			var user_id = {uid: $rootScope.sessionUser.user_id};
-			// console.log(item, user_id)
+			var user_id = {uid: $rootScope.sessionUser.user.info.id};
 			wishlistFactory.removeFromWishlist(wid, user_id.uid, function(data){
-				// console.log(data)
 				wishlistFactory.getUserWishlist(user_id.uid, function(res){
 					console.log(res)
-					$rootScope.wishlist = res;
+					$scope.wishlist = res;
 				})
 			})
 		}
 	}
 
 	$scope.isWishlist = function(item) {
-		for(var i=0; i<$rootScope.wishlist.length; i++){
-			if($rootScope.wishlist[i].product_detail[0].id == item.id){
-				item['wid'] = $rootScope.wishlist[i]._id
-				// console.log(item)
-				return true;
+		if($scope.wishlist.length > 0){
+			for(var i=0; i<$scope.wishlist.length; i++){
+				if($scope.wishlist[i].product_detail[0].id == item.id){
+					item['wid'] = $scope.wishlist[i]._id
+					return true;
+				}
+				else if($scope.wishlist[i].product_detail[0].ItemID == item.id){
+					item['wid'] = $scope.wishlist[i]._id
+					return true;
+				}
 			}
-			else if($rootScope.wishlist[i].product_detail[0].ItemID == item.id){
-				item['wid'] = $rootScope.wishlist[i]._id
-				return true;
-			}
+			return false;
 		}
-		// console.log("Not in wishlist:", id)
-		return false;
   }
 })

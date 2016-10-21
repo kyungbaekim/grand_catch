@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var deepPopulate = require('mongoose-deep-populate')(mongoose);
 var User = mongoose.model('User');
 var Wishlist = mongoose.model('Wishlist');
-var sessionUser = {loggedIn: false};
+// var sessionUser = {loggedIn: false};
 
 module.exports = {
 	index: function(req, res) {
@@ -17,11 +17,9 @@ module.exports = {
     })
   },
 
-	create : function (req, res){
+	create: function (req, res){
 		console.log('req.body', req.body)
 		User.findOne({email: req.body.email}, function (err, user){
-			// console.log('user in registration', user)
-			// console.log('error in registration', err)
 			//if user email exist, return false
 			if(user) { res.json({status: false, dup_email: ["Entered email address already exists!"]}) }
 			else {
@@ -43,13 +41,19 @@ module.exports = {
 							res.json({status: false, errors: errors})
 						}else{
 							//user saved successfully, set session info
-							sessionUser = {
-								loggedIn: true,
-								user_id: user._id,
-								user_name: user.fname + " " + user.lname,
+							req.session.info = {
+								id: user._id,
+								name: user.fname + " " + user.lname,
 								email: user.email
 							}
-							res.json({status: true, sessionUser: sessionUser})
+							req.session.loggedIn = true;
+							var hour = 3600000
+							req.session.cookie.expires = new Date(Date.now() + hour)
+							req.session.cookie.maxAge = hour
+							// password matched, return login status true
+							console.log("session info:", req.session)
+							console.log("session id:", req.session.id)
+							res.json({status: true, user: user})
 						}//end of user save
 					})
 				} //end of password validation
@@ -57,31 +61,39 @@ module.exports = {
 		})
 	},
 
-	login : function (req,res){
+	login: function (req, res){
 		console.log('login in server', req.body)
 		if(req.body.email && req.body.password){
 			User.findOne({email: req.body.email}, function (err, user){
 				if(user){ // if user found
-					console.log("User found:", user)
 					if(user.validPassword(req.body.password)){
-						sessionUser = {
-							loggedIn: true,
-							user_id: user._id,
-							user_name: user.fname + " " + user.lname,
+						// password matched, set session info
+						req.session.info = {
+							id: user._id,
+							name: user.fname + " " + user.lname,
 							email: user.email
 						}
-						//password matched, return login status true
-						console.log(sessionUser, user)
-						res.json({status:true, sessionUser: sessionUser})
+						req.session.loggedIn = true;
+						var hour = 3600000
+						req.session.cookie.expires = new Date(Date.now() + hour)
+						req.session.cookie.maxAge = hour
+						// password matched, return login status true
+						console.log("session info:", req.session)
+						console.log("session id:", req.session.id)
+						res.json({status: true, user: user})
 					} else {
+						// password does not match
+						req.session.error = 'Authentication failed, please check your entered email address and password';
 						res.json({status: false, errors: ["Invalid Email address and/or Password"]})
 					}
 				}
-				else { //user not found
+				else { // user not found
+					req.session.error = 'Authentication failed, please check your entered email address and password';
 					res.json({status: false, errors: ["Invalid Email address and/or Password"]})
 				}
 			})
-		} else { //email or password is empty
+		} else { // email or password is empty
+			req.session.error = 'Authentication failed, please check your entered email address and password';
 			res.json({status: false, errors: ["Invalid Email address and/or Password"]})
 		}
 	},
@@ -97,12 +109,20 @@ module.exports = {
     })
   },
 
-	getSession : function(req,res){
-		res.json(sessionUser);
+	getSession: function(req,res){
+		// console.log(req.session.id)
+		res.json({user: req.session, sessionID: req.session.id})
+		// res.json({status: true, sessionUser: sessionUser});
 	},
 
-	logout : function(req,res){
-		sessionUser = {loggedIn: false}
-		res.json({status: true, sessionUser : sessionUser})
+	logout: function(req,res){
+		// sessionUser = {loggedIn: false}
+		req.session.destroy(function(err) {
+		  // cannot access session here
+			if(!err){
+				// req.session.loggedIn = false;
+				res.json({status: true, message: "Successfully logged out."})
+			}
+		})
 	}
 }

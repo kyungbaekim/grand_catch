@@ -1,9 +1,10 @@
-myAppModule.controller('usersController', function ($scope, userFactory, wishlistFactory, $uibModal, $uibModalStack, $rootScope, $location){
-	$rootScope.wishlist = []
+myAppModule.controller('usersController', function ($scope, $rootScope, userFactory, wishlistFactory, $uibModal, $uibModalStack, $location, $cookies){
+	// console.log($cookies['connect.sid'])
 
 	userFactory.getSession(function(data){
 		$rootScope.sessionUser = data;
-		console.log('current sessionUser', $rootScope.sessionUser)
+		// console.log('current sessionUser', $rootScope.sessionUser)
+		console.log(data)
 	});
 
 	userFactory.getAllUser(function(data){
@@ -20,7 +21,6 @@ myAppModule.controller('usersController', function ($scope, userFactory, wishlis
 	$scope.getSession = function(){
 		userFactory.getSession(function(data){
 			$rootScope.sessionUser = data;
-			console.log('current sessionUser data:', $rootScope.sessionUser)
 		});
 	}
 
@@ -43,11 +43,10 @@ myAppModule.controller('usersController', function ($scope, userFactory, wishlis
     });
 
     modalInstance.result.then(function (data) {
-			// console.log(data)
-      $rootScope.sessionUser = data;
+			console.log(data)
 			userFactory.getSession(function(data){
-				$rootScope.sessionUser = data;
-				console.log('current sessionUser data:', $rootScope.sessionUser)
+				$rootScope.sessionUser = data.sessionUser;
+				console.log('current sessionUser', $rootScope.sessionUser)
 			});
     }, function () {
         console.log('Modal dismissed at: ' + new Date());
@@ -57,13 +56,8 @@ myAppModule.controller('usersController', function ($scope, userFactory, wishlis
 	var RegModalInstanceCtrl = function ($uibModalInstance, userForm, $scope) {
     $scope.register = function () {
 			userFactory.newUser($scope.user, function(data){
-				// console.log('returned data user created:', data)
 				if(data.status){
-					// console.log("data.status is true")
-					userFactory.getSession(function(data){
-						console.log(data)
-						$uibModalInstance.close(data)
-					})
+					$uibModalInstance.close(data.sessionUser)
 				}
 				else{
 					console.log("data.status is not true")
@@ -105,11 +99,10 @@ myAppModule.controller('usersController', function ($scope, userFactory, wishlis
 
 		modalInstance.result.then(function (data) {
 			console.log(data)
-			$rootScope.sessionUser = data;
-			wishlistFactory.getUserWishlist($rootScope.sessionUser.user_id, function (res){
-				console.log(res)
-				$rootScope.wishlist = res
-			})
+			userFactory.getSession(function(data){
+				$rootScope.sessionUser = data;
+				console.log('current sessionUser', $rootScope.sessionUser)
+			});
 		}, function () {
 			console.log('Modal dismissed at: ' + new Date());
 		});
@@ -117,16 +110,12 @@ myAppModule.controller('usersController', function ($scope, userFactory, wishlis
 
 	var LoginModalInstanceCtrl = function ($uibModalInstance, userForm, $scope) {
 		$scope.login = function () {
-			console.log("userFor, data:", $scope.user)
+			// console.log("userForm data:", $scope.user)
 			userFactory.login($scope.user, function(data){
-				// console.log('returned user data:', data)
 				if(data.status){
-					userFactory.getSession(function(data){
-						$uibModalInstance.close(data)
-					})
+					$uibModalInstance.close(data.user)
 				}
 				else{
-					console.log('login errors', data.errors)
 					$scope.login_errors = data.errors;
 					console.log('login errors', $scope.login_errors)
 				}
@@ -135,14 +124,13 @@ myAppModule.controller('usersController', function ($scope, userFactory, wishlis
 
 		$scope.cancel = function () {
 			console.log("Cancel button clicked")
-			// $uibModalInstance.dismiss('cancel');
 			$uibModalStack.dismissAll('closed');
 		};
 	};
 
 	$scope.logout = function (){
 		userFactory.logout();
-		$scope.getSession();
 		$rootScope.wishlist = []
+		$scope.getSession();
 	}
 });

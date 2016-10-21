@@ -9,12 +9,12 @@ module.exports = function(app){
 		aws.itemSearch(req, res);
 	})
 
-	app.get('/topSellers/:department', function (req,res){
+	app.get('/topSellers/:department', function (req, res){
 		// console.log("From routes.js:", req.params)
 		aws.topSellers(req, res);
 	})
 
-	app.get('/itemLookUp/:asin', function (req,res){
+	app.get('/itemLookUp/:asin', function (req, res){
 		// console.log("From routes.js:", req.params)
 		aws.itemLookUp(req, res);
 	})
@@ -41,17 +41,28 @@ module.exports = function(app){
 		users.getSession(req, res);
 	})
 
-	app.post('/addToWishlist', function (req, res){
+	app.post('/addToWishlist', restrict, function (req, res){
 		wishlist.create(req, res)
 	})
 
-	app.get('/getUserWishlist/:uid', function (req, res){
+	app.get('/getUserWishlist/:uid', restrict, function (req, res){
 		// console.log("From routes.js:", req.params)
 		wishlist.index(req, res)
 	})
 
-	app.post('/wishlist/delete/:wid/:uid', function (req, res){
+	app.post('/wishlist/delete/:wid/:uid', restrict, function (req, res){
 		// console.log("From routes.js:", req.params)
 		wishlist.delete(req, res)
 	})
+
+	function restrict(req, res, next) {
+		console.log(req.session)
+	  if (req.session.info) {
+	    next();
+	  } else {
+	    req.session.error = 'Access denied! Please log in first to access to your wishlist';
+			console.log(req.session.error)
+	    req.redirect('/');
+	  }
+	}
 }

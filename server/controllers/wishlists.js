@@ -5,10 +5,10 @@ var User = mongoose.model('User');
 
 module.exports = {
   index: function(req, res) {
-    console.log("requested user ID:", req.params.uid)
-    Wishlist.find({_user: req.params.uid}, function(err, wishlist){
+    console.log("requested user ID:", req.session.info.id)
+    Wishlist.find({_user: req.session.info.id}, function(err, wishlist){
       if(err){
-        res.json('error from index:', err);
+        res.status(500).json({error: err});
       }
       else {
         res.json(wishlist);
@@ -41,7 +41,7 @@ module.exports = {
               if (!err) {
                 res.json(user);
               } else {
-                res.json(err);
+                res.status(500).json({error: err});
               }
             });
           }
@@ -49,6 +49,7 @@ module.exports = {
       }
       else{
         console.log(err)
+        res.status(500).json({error: err});
       }
     })
   },
@@ -56,7 +57,8 @@ module.exports = {
   find: function(req, res) {
     Wishlist.find({_id: req.user_id}).deepPopulate('_user').exec(function(err, wishlist){
       if(err){
-        res.json(err);
+        // res.json(err);
+        res.status(500).json({error: err});
       }
       else {
         res.json(wishlist);
@@ -68,12 +70,14 @@ module.exports = {
     console.log("requested data:", req.params)
     Wishlist.remove({_id: req.params.wid}, function(err){
       if(err){
-        res.json(err);
+        // res.json(err);
+        res.status(500).json({error: err});
       }
       else {
         User.findOneAndUpdate({_id: req.params.uid}, {$pull: {wishlist: req.params.wid}}, {new: true}, function(err, user){
           if (err) {
-            res.json(err);
+            // res.json(err);
+            res.status(500).json({error: err});
           }
           else {
             res.json('Successfully deleted')

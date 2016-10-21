@@ -9,6 +9,6 @@ myAppModule.controller('dailyDealsController', function ($scope, itemsFactory){
       $scope.deals[i]['keywords'] = $scope.deals[i].title.replace(/[&\\#+$~%'":*?<>{}]/g,'')
       $scope.deals[i]['keywords'] = $scope.deals[i]['keywords'].replace(/\//g,'-')
     }
-    console.log($scope.deals)
+    // console.log($scope.deals)
 	})
 })
