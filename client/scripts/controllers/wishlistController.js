@@ -1,7 +1,13 @@
 myAppModule.controller('wishlistController', function ($scope, userFactory, wishlistFactory, $rootScope, $routeParams, $location){
   console.log($rootScope.sessionUser, $routeParams.user_id)
   if($rootScope.sessionUser.user.info.id != $routeParams.user_id){
-    window.history.back();
+    if(window.history.back() != undefined){
+      window.history.back()
+    }
+    else{
+      console.log('going back')
+      $location.path('/')
+    }
   }
 
   $scope.isArray = angular.isArray;

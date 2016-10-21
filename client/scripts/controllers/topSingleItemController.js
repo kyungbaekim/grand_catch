@@ -1,12 +1,23 @@
-myAppModule.controller('topSingleItemController', function ($scope, itemsFactory){
+myAppModule.controller('topSingleItemController', function ($scope, itemsFactory, $timeout){
+  var MAX_REQUESTS = 5;
+  var counter = 0;
+
   if($scope.item){
     // console.log($scope.item.ASIN)
-    itemsFactory.itemLookUp($scope.item.ASIN, function(res){
-      // console.log(res)
-      if(res.result != undefined && res.result.Items != undefined){
-        $scope.itemDetail = res.result.Items.Item
-      }
-    })
+    var getItem = function(){
+      itemsFactory.itemLookUp($scope.item.ASIN, function(res){
+        // console.log(res)
+        if(res.result.Error && counter < MAX_REQUESTS){
+          console.log('error occurred', counter)
+          $timeout(function(){getItem()}, 1000);
+          counter++;
+        }
+        if(res.result != undefined && res.result.Items != undefined){
+          $scope.itemDetail = res.result.Items.Item
+        }
+      })
+    }
+    getItem()
   }
 
   if($scope.eItem){

@@ -57,11 +57,11 @@ module.exports = function(app){
 
 	function restrict(req, res, next) {
 		console.log(req.session)
-	  if (req.session.info) {
+	  if (req.session.info || req.session.info.id == req.params.user_id) {
 	    next();
 	  } else {
 	    req.session.error = 'Access denied! Please log in first to access to your wishlist';
-			console.log(req.session.error)
+			console.log(req.session.info.id, req.params.user_id, req.session.error)
 	    req.redirect('/');
 	  }
 	}

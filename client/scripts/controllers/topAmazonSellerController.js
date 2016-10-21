@@ -1,4 +1,4 @@
-myAppModule.controller('topAmazonSellerController', function ($scope, itemsFactory){
+myAppModule.controller('topAmazonSellerController', function ($scope, itemsFactory, $timeout){
   // console.log($scope.department);
 
   var department = ''
@@ -36,14 +36,25 @@ myAppModule.controller('topAmazonSellerController', function ($scope, itemsFacto
     department = '165795011'
   }
 
-  itemsFactory.getPopularAmazonItems(department, function(res){
-    console.log(res)
-    $scope.itemInfo = res.result.BrowseNodes.BrowseNode.TopItemSet.TopItem
-    for(var i=0; i<$scope.itemInfo.length; i++){
-      $scope.itemInfo[i]['keywords'] = $scope.itemInfo[i].Title.replace(/[&\\#+$~%'":*?<>{}]/g,'')
-      $scope.itemInfo[i]['keywords'] = $scope.itemInfo[i]['keywords'].replace(/\//g,'-')
-    }
-    $scope.itemInfo = $scope.itemInfo.slice(0, -2)
-    // console.log($scope.itemInfo)
-  })
+  var MAX_REQUESTS = 5;
+  var counter = 0;
+  var getItems = function(){
+    itemsFactory.getPopularAmazonItems(department, function(res){
+      console.log(res)
+      if(res.result.Error && counter < MAX_REQUESTS){
+        console.log('error occurred', counter)
+        $timeout(function(){getItems()}, 1000);
+        // getItems();
+        counter++;
+      }
+      $scope.itemInfo = res.result.BrowseNodes.BrowseNode.TopItemSet.TopItem
+      for(var i=0; i<$scope.itemInfo.length; i++){
+        $scope.itemInfo[i]['keywords'] = $scope.itemInfo[i].Title.replace(/[&\\#+$~%'":*?<>{}]/g,'')
+        $scope.itemInfo[i]['keywords'] = $scope.itemInfo[i]['keywords'].replace(/\//g,'-')
+      }
+      $scope.itemInfo = $scope.itemInfo.slice(0, -2)
+    })
+  }
+
+  getItems()
 })
