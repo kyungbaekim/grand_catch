@@ -1,14 +1,14 @@
 <div class='srow'>
-	<div class='container-fuid'>
+	<div class='col-md-12'>
 
 		<!-- Daily Deals Area Start -->
 		<div class="ss">
       <h2 class="section-title">DAILY DEALS</h2>
       <div class="container">
           <div class="row">
-						<div ng-controller='dailyDealsController' class='s'>
+						<div ng-controller='dailyDealsController' class='shop-single-product-area'>
 						  <!-- <div ng-repeat='deal in deals' class="shop-single-product-area" ng-controller='topSingleItemController'> -->
-						  <div dir-paginate="deal in deals | itemsPerPage: 8" current-page='currentPage' class="shop-single-product-area" ng-controller='reviewController'>
+						  <div dir-paginate="deal in deals | itemsPerPage: 8" current-page='currentPage' ng-controller='reviewController'>
 						    <div class="col-md-3 col-sm-4" id='scroll'>
 						      <div class="single-banner">
 						        <div class="product-wrapper">
@@ -22,7 +22,7 @@
 						            </div>
 						          </div>
 						        </div>
-						        <div class="popularE-banner-bottom text-center">
+						        <div class="popular-banner-bottom text-center">
 						          <div class="banner-bottom-title">
 						            <a href='{{ dealDetail.ViewItemURLForNaturalSearch }}' target="blank">{{ deal.title }}</a>
 						          </div>
