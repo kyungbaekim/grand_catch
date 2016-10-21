@@ -42,7 +42,7 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, wishli
 		$scope.searchTime = new Date();
 
 		itemsFactory.getItems($scope.keywords, function(data){
-			// console.log(data);
+			console.log(data);
 			createEbayList(data[0])
 			var temp = [];
 			for(var i=0; i<data[1].length; i++){

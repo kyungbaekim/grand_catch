@@ -40,9 +40,6 @@
 													<li ng-class="{active: main.active.tab == 'a_home_kitchen'}">
                               <a ng-click="main.active.tab = 'a_home_kitchen'">HOME & KITCHEN</a>
                           </li>
-													<!-- <li ng-class="{active: main.active.tab == 'luggage_travel'}">
-                              <a ng-click="main.active.tab = 'luggage_travel'">LUGGAGE & TRAVEL GEAR</a>
-                          </li> -->
 													<li ng-class="{active: main.active.tab == 'a_office_product'}">
                               <a ng-click="main.active.tab = 'a_office_product'">OFFICE PRODUCT</a>
                           </li>
@@ -133,18 +130,9 @@
 												<li ng-class="{active: main.eactive.tab == 'e_jewelry_watches'}">
 														<a ng-click="main.eactive.tab = 'e_jewelry_watches'">JEWELRY & WATCHES</a>
 												</li>
-												<!-- <li ng-class="{active: main.eactive.tab == 'luggage_travel'}">
-														<a ng-click="main.eactive.tab = 'luggage_travel'">LUGGAGE & TRAVEL GEAR</a>
-												</li> -->
-												<!-- <li ng-class="{active: main.eactive.tab == 'e_office_product'}">
-														<a ng-click="main.eactive.tab = 'e_office_product'">OFFICE PRODUCT</a>
-												</li> -->
 												<li ng-class="{active: main.eactive.tab == 'e_sporting_goods'}">
 														<a ng-click="main.eactive.tab = 'e_sporting_goods'">SPORTING GOODS</a>
 												</li>
-												<!-- <li ng-class="{active: main.eactive.tab == 'e_home_improvement'}">
-														<a ng-click="main.eactive.tab = 'e_home_improvement'">TOOLS & HOME IMPROVEMENT</a>
-												</li> -->
 												<li ng-class="{active: main.eactive.tab == 'e_toys_hobbies'}">
 														<a ng-click="main.eactive.tab = 'e_toys_hobbies'">TOYS & HOBBIES</a>
 												</li>
@@ -185,9 +173,6 @@
 										<div ng-switch-when='e_sporting_goods'>
 											<ng-include src='"partials/popularEbayItem.html"' ng-init="department = 'e_sporting_goods'"></ng-include>
 										</div>
-										<!-- <div ng-switch-when='e_home_improvement'>
-											<ng-include src='"partials/popularEbayItem.html"' ng-init="department = 'e_home_improvement'"></ng-include>
-										</div> -->
 										<div ng-switch-when='e_toys_hobbies'>
 											<ng-include src='"partials/popularEbayItem.html"' ng-init="department = 'e_toys_hobbies'"></ng-include>
 										</div>
@@ -199,4 +184,4 @@
 		<!-- Featured Product Area End -->
 	</div>
 </div>
-<script type="text/javascript" src='scripts/angular-smooth-scroll.min.js'></script>
+<!-- <script type="text/javascript" src='scripts/angular-smooth-scroll.min.js'></script> -->
