@@ -28,4 +28,5 @@ span.priceSize{
 
 button.buyItem {
   margin: 10px 0;
+  padding-bottom: 2px;
 }
