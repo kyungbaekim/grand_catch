@@ -6,7 +6,9 @@ var UserSchema = new mongoose.Schema({
 	lname: {type: String, required: [true, 'Last name cannot be blank'], minlength: [2, 'Last name is too short'], maxlength: [20, 'Last name is too long']},
 	email: {type: String, required: [true, 'Email cannot be blank'], unique: true},
 	password: {type: String, required: [true, 'Password cannot be blank'], minlength: [8, 'Password is too short']},
-	wishlist: [{type: mongoose.Schema.Types.ObjectId, ref: 'Wishlist'}]
+	wishlist: [{type: mongoose.Schema.Types.ObjectId, ref: 'Wishlist'}],
+	resetPasswordToken: String,
+	resetPasswordExpires: Date
 }, {timestamps: true})
 
 UserSchema.pre('save', function (done){
@@ -25,6 +27,9 @@ UserSchema.pre('save', function (done){
 });
 
 UserSchema.methods.validPassword = function (password){
+	console.log('password validation', password)
+	console.log('this.password is', this.password)
+	console.log('this UserSchema', this)
 	return bcrypt.compareSync(password, this.password)
 }
 
