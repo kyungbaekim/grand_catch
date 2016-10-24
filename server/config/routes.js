@@ -33,6 +33,10 @@ module.exports = function(app){
 		users.login(req, res);
 	})
 
+	app.post('/forgot', function (req, res, next){
+		users.forgot(req, res, next);
+	})
+
 	app.get('/logout', function (req, res){
 		users.logout(req, res)
 	})

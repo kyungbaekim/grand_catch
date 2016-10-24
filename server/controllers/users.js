@@ -98,6 +98,20 @@ module.exports = {
 		}
 	},
 
+	forgot: function (req,res,next){
+		console.log('forgot body', req.body);
+		
+
+		User.findOne({email:req.body.email}, function(err,user){
+			if(user){
+				console.log('user found', user)
+			}else {
+				req.session.error = 'Authentication failed, please check your entered email address';
+				res.json({status: false, errors: ["Invalid Email address"]})
+			}
+		});
+	},
+
 	find: function(req, res) {
     User.find({_id: req.params.id}).deepPopulate('_wishlist').exec(function(err, user){
       if(err){
