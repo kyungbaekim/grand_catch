@@ -37,7 +37,7 @@ myAppModule.factory('userFactory', function ($http){
 		//make full http get request to get the latest sessionUser status
 		$http.get('/session_user').success(function (output){
 			sessionUser = output
-			console.log(sessionUser)
+			// console.log(sessionUser)
 			callback(sessionUser);
 		})
 	}

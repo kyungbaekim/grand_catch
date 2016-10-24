@@ -29,7 +29,10 @@ module.exports = function(app){
 	})
 
 	app.post('/login', function (req, res){
-		console.log("Header X-CSRF token info:", req.header('X-CSRFToken'))
+		// console.log("Header X-CSRF token info:", req.header('X-CSRFToken'))
+		console.log("req.body from login:", req.body)
+		console.log("req.headers from login:", req.headers)
+		console.log("req.session from login:", req.session)
 		users.login(req, res);
 	})
 
@@ -38,35 +41,43 @@ module.exports = function(app){
 	})
 
 	app.get('/logout', function (req, res){
+		console.log("req.body from logout:", req.body)
+		console.log("req.headers from logout:", req.headers)
+		console.log("req.session from logout:", req.session)
 		users.logout(req, res)
 	})
 
-	app.get('/session_user', function (req,res){
+	app.get('/session_user', function (req, res){
 		users.getSession(req, res);
 	})
 
-	app.post('/addToWishlist', restrict, function (req, res){
+	app.post('/addToWishlist/:uid', restrict, function (req, res){
+		console.log(req.body)
 		wishlist.create(req, res)
 	})
 
 	app.get('/getUserWishlist/:uid', restrict, function (req, res){
-		// console.log("From routes.js:", req.params)
 		wishlist.index(req, res)
 	})
 
 	app.post('/wishlist/delete/:wid/:uid', restrict, function (req, res){
-		// console.log("From routes.js:", req.params)
 		wishlist.delete(req, res)
 	})
 
 	function restrict(req, res, next) {
-		console.log('checking current session',req.session)
-	  if (req.session.info || req.session.info.id == req.params.user_id) {
-	    next();
+		// console.log(req.body)
+		// console.log("In restrict function:", req.session)
+		// console.log(req.params)
+	  if (req.session.loggedIn && req.session.info && req.session.info.id == req.params.uid) {
+			next();
 	  } else {
-	    req.session.error = 'Access denied! Please log in first to access to your wishlist';
-			console.log(req.session.info.id, req.params.user_id, req.session.error)
-	    req.redirect('/');
+			console.log(req.session)
+			console.log('Access denied! Please log in again!')
+	    // req.session.error = 'Access denied! Please log in first to access to your wishlist';
+			// console.log("session info ID:", req.session.info.id)
+			// console.log(typeof(req.session.info.id), typeof(req.params.uid))
+			// console.log(req.params.uid, 'Access denied! Please log in first to access to your wishlist')
+			// res.json({message: 'Access denied! Please log in first to access to your wishlist'})
 	  }
 	}
 }
