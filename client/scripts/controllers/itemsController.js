@@ -5,8 +5,8 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, userFa
 	var user;
 
 	$scope.$watch('$root.sessionUser.user', function() {
-		if($rootScope.sessionUser.user.loggedIn){
-			wishlistFactory.getUserWishlist($rootScope.sessionUser.user.info.id, function(res){
+		if($rootScope.sessionUser.user){
+			wishlistFactory.getUserWishlist($rootScope.sessionUser.user.id, function(res){
 				console.log(res)
 				$scope.wishlist = res;
 			})
@@ -435,11 +435,12 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, userFa
 
 	$scope.addToWishlist = function(item){
 		console.log($rootScope.sessionUser)
-		if(!$rootScope.sessionUser.user.loggedIn){
+		if(!$rootScope.sessionUser.user){
       $rootScope.$emit("CallLogin", {});
 		}
 		else{
-			var user_id = {uid: $rootScope.sessionUser.user.info.id};
+			var user_id = {uid: $rootScope.sessionUser.user.id};
+			console.log($rootScope.sessionUser.token)
 			console.log(item, user_id)
 			wishlistFactory.addToWishlist(item, user_id, function(data){
 				wishlistFactory.getUserWishlist(user_id.uid, function(res){
@@ -451,11 +452,11 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, userFa
 	}
 
 	$scope.removeWishlist = function(wid){
-		if(!$rootScope.sessionUser.user.loggedIn){
+		if(!$rootScope.sessionUser.user){
       $rootScope.$emit("CallLogin", {});
 		}
 		else{
-			var user_id = {uid: $rootScope.sessionUser.user.info.id};
+			var user_id = {uid: $rootScope.sessionUser.user.id};
 			wishlistFactory.removeFromWishlist(wid, user_id.uid, function(data){
 				wishlistFactory.getUserWishlist(user_id.uid, function(res){
 					console.log(res)

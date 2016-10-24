@@ -11,8 +11,8 @@ myAppModule.factory('wishlistFactory', function ($http){
 
 	factory.addToWishlist = function(item, uid, callback){
 		console.log('data to save to wishlist', item, uid)
-		data = {item: item, uid: uid}
-		$http.post('/addToWishlist', data).success(function (output){
+		// data = {item: item, uid: uid}
+		$http.post('/addToWishlist/' + uid.uid, item).success(function (output){
       // console.log(output)
 			callback(output)
 		});

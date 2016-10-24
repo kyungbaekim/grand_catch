@@ -1,12 +1,14 @@
-var express = require("express");
-var app = express();
 var path = require("path");
 var bodyParser= require("body-parser");
-var mongoose = require('mongoose');
+// var mongoose = require('mongoose');
 var morgan = require('morgan');
 var proxy = require('json-proxy/lib/proxy');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
+var expressJwt = require('express-jwt');
+// var jwt = require('jsonwebtoken');
+var express = require("express");
+var app = express();
 
 app.use(bodyParser.json({limit: '1mb'}));
 app.use(bodyParser.urlencoded({extended: false, limit: '1mb'}));
@@ -35,7 +37,7 @@ app.use(session({
 require("./server/config/mongoose.js");
 require("./server/config/routes.js")(app);
 
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 app.use(proxy.initialize({
   proxy: {
     'forward': {
@@ -49,26 +51,10 @@ app.use(proxy.initialize({
 }));
 
 app.use(function(req, res, next) {
-  if (req.session && req.session.user) {
-    User.findOne({ email: req.session.user.email }, function(err, user) {
-      if (user) {
-        req.session.user = {
-          id: user._id,
-          name: user.fname + " " + user.lname,
-          email: user.email
-        }
-        // req.user = user;
-        // delete req.user.password; // delete the password from the session
-        // req.session.user = user;  //refresh the session value
-        res.locals.user = user;
-        console.log("locals.user data:", res.locals.user)
-      }
-      // finishing processing the middleware and run the route
-      next();
-    });
-  } else {
-    next();
-  }
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type, Authorization');
+  next();
 });
 
 port = 8000;

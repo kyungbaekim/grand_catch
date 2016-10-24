@@ -115,7 +115,7 @@
 						</div>
 						<div class="col-m-2">
 							<div class="header-right">
-								<ul ng-if="!sessionUser.user.loggedIn">
+								<ul ng-if="!sessionUser.user">
 									<li>
 										<a href="" ng-click="login()" title="Log in"><i class="flaticon-people"></i></a>
 									</li>
@@ -123,12 +123,12 @@
 										<a href="" ng-click="register()">Register</a>
 									</li>
 								</ul>
-								<ul ng-if="sessionUser.user.loggedIn">
+								<ul ng-if="sessionUser.user && sessionUser.loggedIn">
 									<li>
-										Welcome, {{ sessionUser.user.info.name }}!
+										Welcome, {{ sessionUser.user.name }}!
 									</li>
 									<li>
-										<a href="#/wishlist/{{ sessionUser.user.info.id }}" title="Go to wishlist page"><i class="fa fa-heart wishlist"></i></a>
+										<a href="#/wishlist/{{ sessionUser.user.id }}" title="Go to wishlist page"><i class="fa fa-heart wishlist"></i></a>
 									</li>
 									<li>
 										<a href="" ng-click="logout()"><i class="fa fa-sign-out" title="Log out"></i></a>

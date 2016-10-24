@@ -1,5 +1,5 @@
 //import angular module
-var	myAppModule = angular.module('myApp', ['ngRoute', 'angularMoment', 'angularUtils.directives.dirPagination', 'ui.bootstrap', 'rzModule', 'ngCookies']);
+var	myAppModule = angular.module('myApp', ['ngRoute', 'angularMoment', 'angularUtils.directives.dirPagination', 'ui.bootstrap', 'rzModule']);
 myAppModule.config(function ($routeProvider) {
 	$routeProvider
 	.when('/',{

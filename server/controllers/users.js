@@ -1,9 +1,12 @@
 var mongoose = require('mongoose');
 // instantiate customer model
 var deepPopulate = require('mongoose-deep-populate')(mongoose);
+var jwt = require('jsonwebtoken');
+var consts = require('../config/constant.js');
+var secret = consts.jwtTokenSecret;
 var User = mongoose.model('User');
 var Wishlist = mongoose.model('Wishlist');
-// var sessionUser = {loggedIn: false};
+var token;
 
 module.exports = {
 	index: function(req, res) {
@@ -40,20 +43,26 @@ module.exports = {
 							}
 							res.json({status: false, errors: errors})
 						}else{
+							//user saved successfully, set web token
+							token = jwt.sign({
+								email: user.email,
+								password: user.password
+							}, secret, { expiresIn: 60 * 60 });
+							console.log({token: token})
 							//user saved successfully, set session info
 							req.session.info = {
 								id: user._id,
 								name: user.fname + " " + user.lname,
-								email: user.email
+								token: token
 							}
 							req.session.loggedIn = true;
-							var hour = 3600000
+							var hour = 3600000 // an hour
 							req.session.cookie.expires = new Date(Date.now() + hour)
 							req.session.cookie.maxAge = hour
 							// password matched, return login status true
 							console.log("session info:", req.session)
 							console.log("session id:", req.session.id)
-							res.json({status: true, user: user})
+							res.json({status: true, loggedIn: true, user: user})
 						}//end of user save
 					})
 				} //end of password validation
@@ -67,20 +76,26 @@ module.exports = {
 			User.findOne({email: req.body.email}, function (err, user){
 				if(user){ // if user found
 					if(user.validPassword(req.body.password)){
+						// password matched, set web token
+						token = jwt.sign({
+							email: user.email,
+							password: user.password
+						}, secret, { expiresIn: 60 });
+						console.log({token: token})
 						// password matched, set session info
 						req.session.info = {
 							id: user._id,
 							name: user.fname + " " + user.lname,
-							email: user.email
+							token: token
 						}
 						req.session.loggedIn = true;
-						var hour = 3600000
+						var hour = 3600000 / 60 // an hour
 						req.session.cookie.expires = new Date(Date.now() + hour)
 						req.session.cookie.maxAge = hour
 						// password matched, return login status true
 						console.log("session info:", req.session)
 						console.log("session id:", req.session.id)
-						res.json({status: true, user: user})
+						res.json({status: true, loggedIn: true, user: user})
 					} else {
 						// password does not match
 						req.session.error = 'Authentication failed, please check your entered email address and password';
@@ -109,19 +124,20 @@ module.exports = {
     })
   },
 
-	getSession: function(req,res){
-		// console.log(req.session.id)
-		res.json({user: req.session, sessionID: req.session.id})
-		// res.json({status: true, sessionUser: sessionUser});
+	getSession: function(req, res){
+		if(req.session.info){
+			res.json({sessionID: req.session.id, loggedIn: true, user: req.session.info})
+		}
+		else{
+			res.json({sessionID: req.session.id})
+		}
 	},
 
-	logout: function(req,res){
-		// sessionUser = {loggedIn: false}
-		req.session.destroy(function(err) {
+	logout: function(req, res){
+		req.session.destroy(function(err){
 		  // cannot access session here
 			if(!err){
-				// req.session.loggedIn = false;
-				res.json({status: true, message: "Successfully logged out."})
+				res.json({status: true, loggedIn: false, message: "Successfully logged out."})
 			}
 		})
 	}
