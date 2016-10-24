@@ -1,9 +1,19 @@
 .dealsPriceSize {
   height: 60px;
   margin-bottom: 10px;
+  text-transform:capitalize;
 }
 
 h1.dealsTitle {
   margin-top: 35px;
   text-align: center;
+}
+
+.dealsReview {
+   height: 60px;
+   margin-bottom: 10px;
+}
+
+.similarItems {
+  height: 50px;
 }

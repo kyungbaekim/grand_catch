@@ -56,7 +56,7 @@ module.exports = function(app){
 	})
 
 	function restrict(req, res, next) {
-		console.log(req.session)
+		console.log('checking current session',req.session)
 	  if (req.session.info || req.session.info.id == req.params.user_id) {
 	    next();
 	  } else {
