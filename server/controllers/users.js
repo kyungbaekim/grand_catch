@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 // instantiate customer model
 var deepPopulate = require('mongoose-deep-populate')(mongoose);
+var sanitize = require('mongo-sanitize');
 var jwt = require('jsonwebtoken');
 var consts = require('../config/constant.js');
 var secret = consts.jwtTokenSecret;
@@ -22,17 +23,22 @@ module.exports = {
 
 	create: function (req, res){
 		console.log('req.body', req.body)
-		User.findOne({email: req.body.email}, function (err, user){
+		var fname = sanitize(req.body.fname);
+		var lname = sanitize(req.body.lname);
+		var email = sanitize(req.body.email);
+		var password = sanitize(req.body.password);
+		var cpassword = sanitize(req.body.cpassword);
+		User.findOne({email: email}, function (err, user){
 			//if user email exist, return false
 			if(user) { res.json({status: false, dup_email: ["Entered email address already exists!"]}) }
 			else {
-				if(req.body.password == req.body.cpassword){
+				if(password == cpassword){
 					//save user info
 					var user = new User({
-						fname: req.body.fname,
-						lname: req.body.lname,
-						email: req.body.email,
-						password: req.body.password
+						fname: fname,
+						lname: lname,
+						email: email,
+						password: password
 					})
 					user.save(function(err){
 						//save user, if errors push them to errors array
@@ -62,7 +68,7 @@ module.exports = {
 							// password matched, return login status true
 							console.log("session info:", req.session)
 							console.log("session id:", req.session.id)
-							res.json({status: true, loggedIn: true, user: user})
+							res.json({status: true, loggedIn: true, user: user._id})
 						}//end of user save
 					})
 				} //end of password validation
@@ -72,10 +78,12 @@ module.exports = {
 
 	login: function (req, res){
 		console.log('login in server', req.body)
-		if(req.body.email && req.body.password){
-			User.findOne({email: req.body.email}, function (err, user){
+		var email = sanitize(req.body.email);
+		var password = sanitize(req.body.password);
+		if(email && password){
+			User.findOne({email: email}, function (err, user){
 				if(user){ // if user found
-					if(user.validPassword(req.body.password)){
+					if(user.validPassword(password)){
 						// password matched, set web token
 						token = jwt.sign({
 							email: user.email,
@@ -95,7 +103,7 @@ module.exports = {
 						// password matched, return login status true
 						console.log("session info:", req.session)
 						console.log("session id:", req.session.id)
-						res.json({status: true, loggedIn: true, user: user})
+						res.json({status: true, loggedIn: true, user: user._id})
 					} else {
 						// password does not match
 						req.session.error = 'Authentication failed, please check your entered email address and password';
@@ -115,9 +123,8 @@ module.exports = {
 
 	forgot: function (req,res,next){
 		console.log('forgot body', req.body);
-		
-
-		User.findOne({email:req.body.email}, function(err,user){
+		var email = sanitize(req.body.email);
+		User.findOne({email: email}, function(err,user){
 			if(user){
 				console.log('user found', user)
 			}else {
@@ -128,7 +135,8 @@ module.exports = {
 	},
 
 	find: function(req, res) {
-    User.find({_id: req.params.id}).deepPopulate('_wishlist').exec(function(err, user){
+		var id = sanitize(req.params.id);
+    User.find({_id: id}).deepPopulate('_wishlist').exec(function(err, user){
       if(err){
         res.json(err);
       }

@@ -440,8 +440,7 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, userFa
 		}
 		else{
 			var user_id = {uid: $rootScope.sessionUser.user.id};
-			console.log($rootScope.sessionUser.token)
-			console.log(item, user_id)
+			// console.log(item, user_id)
 			wishlistFactory.addToWishlist(item, user_id, function(data){
 				wishlistFactory.getUserWishlist(user_id.uid, function(res){
 					console.log(res)

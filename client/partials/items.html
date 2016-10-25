@@ -108,7 +108,7 @@
                                                     </div>
                                                   <div class="product-details text-center">
                                                     <span class="sellerInfo"><b>Seller:</b> {{ item.seller }} <br>
-                                                    <span class='priceSize'><span>$</span>{{ item.price | number:2 }} <br></span>
+                                                    <span class='priceSize'>${{ item.price | number:2 }} <br></span>
                                                   </div>
                                                   <span ng-if='ebayReview != undefined'><a target='blank' href='{{ reviewURL }}'>
                                                   <div class="average" align="center">

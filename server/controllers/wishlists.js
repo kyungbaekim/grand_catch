@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var deepPopulate = require('mongoose-deep-populate')(mongoose);
 var Wishlist = mongoose.model('Wishlist');
 var User = mongoose.model('User');
+var sanitize = require('mongo-sanitize');
 var jwt = require('jsonwebtoken');
 var consts = require('../config/constant.js');
 var secret = consts.jwtTokenSecret;
@@ -33,9 +34,11 @@ module.exports = {
 
   create: function(req, res) {
     console.log("body data:", req.body);
+    var product = sanitize(req.body);
+    var user = sanitize(req.params.uid);
     var data = {
-      product_detail: req.body,
-      _user: req.params.uid
+      product_detail: product,
+      _user: user
     }
 
     User.find({_id: req.session.info.id}, function(err, user){
@@ -74,13 +77,14 @@ module.exports = {
   },
 
   find: function(req, res) {
+    var id = sanitize(req.user_id);
     User.find({_id: req.session.info.id}, function(err, user){
       if(err){
         res.json(err);
       }
       else {
         if(req.decoded.email == user[0].email && req.decoded.password == user[0].password){
-          Wishlist.find({_id: req.user_id}).deepPopulate('_user').exec(function(err, wishlist){
+          Wishlist.find({_id: id}).deepPopulate('_user').exec(function(err, wishlist){
             if(err){
               res.status(500).json({error: err});
             }
@@ -95,18 +99,20 @@ module.exports = {
 
   delete: function(req, res) {
     console.log("requested data:", req.params)
+    var wid = sanitize(req.params.wid);
+    var uid = sanitize(req.params.uid);
     User.find({_id: req.session.info.id}, function(err, user){
       if(err){
         res.json(err);
       }
       else {
         if(req.decoded.email == user[0].email && req.decoded.password == user[0].password){
-          Wishlist.remove({_id: req.params.wid}, function(err){
+          Wishlist.remove({_id: wid}, function(err){
             if(err){
               res.status(500).json({error: err});
             }
             else {
-              User.findOneAndUpdate({_id: req.params.uid}, {$pull: {wishlist: req.params.wid}}, {new: true}, function(err, user){
+              User.findOneAndUpdate({_id: uid}, {$pull: {wishlist: wid}}, {new: true}, function(err, user){
                 if (err) {
                   res.status(500).json({error: err});
                 }

@@ -1,7 +1,7 @@
 myAppModule.controller('wishlistController', function ($scope, userFactory, wishlistFactory, $rootScope, $routeParams, $location){
-  console.log($rootScope.sessionUser)
+  // console.log($rootScope.sessionUser)
   if($rootScope.sessionUser.user == undefined || $rootScope.sessionUser.user.id != $routeParams.user_id){
-    console.log($rootScope.sessionUser, $routeParams.user_id)
+    // console.log($rootScope.sessionUser, $routeParams.user_id)
     if(window.history.back() != undefined){
       window.history.back()
     }

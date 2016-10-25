@@ -19,7 +19,7 @@ myAppModule.factory('userFactory', function ($http){
 
 	factory.login = function(data, callback){
 		$http.post('/login', data).success(function (output){
-			console.log(output)
+			// console.log(output)
 			sessionUser = output;
 			callback(sessionUser)
 		});

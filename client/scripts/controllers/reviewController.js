@@ -35,16 +35,30 @@ myAppModule.controller('reviewController', function ($scope, itemsFactory){
   }
 
   if($scope.deal){
-    itemsFactory.getEbaySingleItem($scope.deal.ItemId, function(data){
-      $scope.dealDetail = data.Item;
-      $scope.dealDetail.ViewItemURLForNaturalSearch += '?SECURITY-APPNAME=' + production_app_id
-      // console.log($scope.dealDetail)
-      itemsFactory.ebayReviewLookUp(data.Item.ViewItemURLForNaturalSearch, function(res){
-        $scope.reviewURL = data.Item.ViewItemURLForNaturalSearch + '#rwid'
-        $scope.dealReview = res
-        // console.log($scope.dealReview)
+    var MAX_REQUESTS = 5;
+    var counter = 0;
+    var getEbayItem = function(){
+      itemsFactory.getEbaySingleItem($scope.deal.ItemId, function(data){
+        console.log(data)
+        if(data.error && counter < MAX_REQUESTS){
+          console.log('error occurred', counter)
+          $timeout(function(){
+            getEbayItem()
+          }, 1000);
+          counter++;
+        }
+        $scope.dealDetail = data.Item;
+        $scope.dealDetail.ViewItemURLForNaturalSearch += '?SECURITY-APPNAME=' + production_app_id
+        // console.log($scope.dealDetail)
+        itemsFactory.ebayReviewLookUp(data.Item.ViewItemURLForNaturalSearch, function(res){
+          $scope.reviewURL = data.Item.ViewItemURLForNaturalSearch + '#rwid'
+          $scope.dealReview = res
+          // console.log($scope.dealReview)
+        })
       })
-    })
+    }
+
+    getEbayItem();
   }
 
   $scope.getReviewURL = function(id,url){

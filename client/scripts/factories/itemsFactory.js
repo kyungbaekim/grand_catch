@@ -56,8 +56,8 @@ myAppModule.factory('itemsFactory', function ($http){
 		$http.get(URL).success(function(res){
 			// console.log("Success:", res)
 			callback(res)
-		}).error(function(res){
-			console.log("error:", res)
+		}).error(function(err){
+			callback(err)
 		})
 	}
 
@@ -118,8 +118,8 @@ myAppModule.factory('itemsFactory', function ($http){
 		$http.get(URL).success(function(res){
 			// console.log("Success:", res)
 			callback(res)
-		}).error(function(res){
-			console.log("error:", res)
+		}).error(function(err){
+			callback(err)
 		})
 	}
 
@@ -128,8 +128,8 @@ myAppModule.factory('itemsFactory', function ($http){
 		$http.get('/topSellers/' + department).success(function(res){
 			// console.log("From factory...:", res)
 			callback(res)
-		}).error(function(res){
-			console.log("error:", res)
+		}).error(function(err){
+			callback(err)
 		})
 	}
 
@@ -148,8 +148,8 @@ myAppModule.factory('itemsFactory', function ($http){
 		$http.get(URL).success(function(res){
 			// console.log("Success:", res)
 			callback(res)
-		}).error(function(res){
-			console.log("error:", res)
+		}).error(function(err){
+			callback(err)
 		})
 	}
 

@@ -1,5 +1,6 @@
-myAppModule.controller('usersController', function ($scope, $rootScope, userFactory, wishlistFactory, $uibModal, $uibModalStack, $location, $cookies){
-	// console.log($cookies['connect.sid'])
+myAppModule.controller('usersController', function ($scope, $rootScope, userFactory, wishlistFactory, $uibModal, $uibModalStack, $location, $cookies, Idle, Keepalive, $uibModal){
+	$('#search_keywords').focus();
+	$scope.started = false;
 
 	userFactory.getSession(function(data){
 		$rootScope.sessionUser = data;
@@ -16,6 +17,8 @@ myAppModule.controller('usersController', function ($scope, $rootScope, userFact
 		$scope.search.keywords = $scope.search.keywords.replace(/[&\\#+$~%'":*?<>{}]/g,'')
 		$scope.search.keywords = $scope.search.keywords.replace(/\//g,'')
 		$location.url('search/' + $scope.search.keywords)
+		$scope.search = {};
+		$('#search_keywords').focus();
 	}
 
 	$scope.getSession = function(){
@@ -47,6 +50,8 @@ myAppModule.controller('usersController', function ($scope, $rootScope, userFact
 			userFactory.getSession(function(data){
 				$rootScope.sessionUser = data.sessionUser;
 				console.log('current sessionUser', $rootScope.sessionUser)
+				Idle.watch();
+				$scope.started = true;
 			});
     }, function () {
         console.log('Modal dismissed at: ' + new Date());
@@ -57,7 +62,7 @@ myAppModule.controller('usersController', function ($scope, $rootScope, userFact
     $scope.register = function () {
 			userFactory.newUser($scope.user, function(data){
 				if(data.status){
-					$uibModalInstance.close(data.sessionUser)
+					$uibModalInstance.close(data.user)
 				}
 				else{
 					console.log("data.status is not true")
@@ -98,10 +103,12 @@ myAppModule.controller('usersController', function ($scope, $rootScope, userFact
 		});
 
 		modalInstance.result.then(function (data) {
-			console.log(data)
+			// console.log(data)
 			userFactory.getSession(function(data){
 				$rootScope.sessionUser = data;
 				console.log('current sessionUser', $rootScope.sessionUser)
+				Idle.watch();
+				$scope.started = true;
 			});
 		}, function () {
 			console.log('Modal dismissed at: ' + new Date());
@@ -154,7 +161,6 @@ myAppModule.controller('usersController', function ($scope, $rootScope, userFact
 		}
 	};
 
-
 	var ForgotModalInstanceCtrl = function ($uibModalInstance, userForm, $scope) {
 		$scope.message = "Forgot instance Button Clicked";
 		console.log($scope.message);
@@ -177,11 +183,46 @@ myAppModule.controller('usersController', function ($scope, $rootScope, userFact
 		};
 	};
 
-
-
 	$scope.logout = function (){
+		console.log("Logging out!")
 		userFactory.logout();
 		$rootScope.wishlist = []
 		$scope.getSession();
+		Idle.unwatch();
+		$scope.started = false;
 	}
+
+	function closeModals() {
+    if ($scope.warning) {
+      $scope.warning.close();
+      $scope.warning = null;
+    }
+
+    if ($scope.timedout) {
+      $scope.timedout.close();
+      $scope.timedout = null;
+    }
+  }
+
+  $scope.$on('IdleStart', function() {
+    closeModals();
+    $scope.warning = $uibModal.open({
+      templateUrl: 'warning-dialog.html',
+      windowClass: 'modal-danger'
+    });
+  });
+
+  $scope.$on('IdleEnd', function() {
+    closeModals();
+  });
+
+  $scope.$on('IdleTimeout', function() {
+    closeModals();
+    $scope.timedout = $uibModal.open({
+      templateUrl: 'timedout-dialog.html',
+      windowClass: 'modal-danger'
+    });
+		console.log('Timeout occurred!')
+		$scope.logout();
+  });
 });

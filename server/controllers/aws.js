@@ -28,7 +28,7 @@ module.exports = {
 		});
 
 		function testSearch1(callback){
-			prodAdv.call("ItemSearch", {SearchIndex: "All", Keywords: keywords, ItemPage: 1,  ResponseGroup:"Images,ItemAttributes,Offers,Reviews"}, function(err, result) {
+			prodAdv.call("ItemSearch", {SearchIndex: "All", Keywords: keywords, ItemPage: 1,  ResponseGroup:"Images,ItemAttributes,Offers,Reviews,BrowseNodes"}, function(err, result) {
 				if(result.Items == undefined){
 					data = {'item': result, 'page': 1}
 				}
@@ -41,7 +41,7 @@ module.exports = {
 		}
 
 		function testSearch2(callback){
-			prodAdv.call("ItemSearch", {SearchIndex: "All", Keywords: keywords, ItemPage: 2,  ResponseGroup:"Images,ItemAttributes,Offers,Reviews"}, function(err, result) {
+			prodAdv.call("ItemSearch", {SearchIndex: "All", Keywords: keywords, ItemPage: 2,  ResponseGroup:"Images,ItemAttributes,Offers,Reviews,BrowseNodes"}, function(err, result) {
 				if(result.Items == undefined){
 					data = {'item': result, 'page': 2}
 				}
@@ -54,7 +54,7 @@ module.exports = {
 		}
 
 		function testSearch3(callback){
-			prodAdv.call("ItemSearch", {SearchIndex: "All", Keywords: keywords, ItemPage: 3,  ResponseGroup:"Images,ItemAttributes,Offers,Reviews"}, function(err, result) {
+			prodAdv.call("ItemSearch", {SearchIndex: "All", Keywords: keywords, ItemPage: 3,  ResponseGroup:"Images,ItemAttributes,Offers,Reviews,BrowseNodes"}, function(err, result) {
 				if(result.Items == undefined){
 					data = {'item': result, 'page': 3}
 				}
@@ -67,7 +67,7 @@ module.exports = {
 		}
 
 		function testSearch4(callback){
-			prodAdv.call("ItemSearch", {SearchIndex: "All", Keywords: keywords, ItemPage: 4,  ResponseGroup:"Images,ItemAttributes,Offers,Reviews"}, function(err, result) {
+			prodAdv.call("ItemSearch", {SearchIndex: "All", Keywords: keywords, ItemPage: 4,  ResponseGroup:"Images,ItemAttributes,Offers,Reviews,BrowseNodes"}, function(err, result) {
 				if(result.Items == undefined){
 					data = {'item': result, 'page': 4}
 				}
@@ -80,7 +80,7 @@ module.exports = {
 		}
 
 		function testSearch5(callback){
-			prodAdv.call("ItemSearch", {SearchIndex: "All", Keywords: keywords, ItemPage: 5,  ResponseGroup:"Images,ItemAttributes,Offers,Reviews"}, function(err, result) {
+			prodAdv.call("ItemSearch", {SearchIndex: "All", Keywords: keywords, ItemPage: 5,  ResponseGroup:"Images,ItemAttributes,Offers,Reviews,BrowseNodes"}, function(err, result) {
 				if(result.Items == undefined){
 					data = {'item': result, 'page': 5}
 				}

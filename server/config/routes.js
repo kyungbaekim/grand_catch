@@ -33,9 +33,9 @@ module.exports = function(app){
 
 	app.post('/login', function (req, res){
 		// console.log("Header X-CSRF token info:", req.header('X-CSRFToken'))
-		console.log("req.body from login:", req.body)
-		console.log("req.headers from login:", req.headers)
-		console.log("req.session from login:", req.session)
+		// console.log("req.body from login:", req.body)
+		// console.log("req.headers from login:", req.headers)
+		// console.log("req.session from login:", req.session)
 		users.login(req, res);
 	})
 
@@ -44,9 +44,9 @@ module.exports = function(app){
 	})
 
 	app.get('/logout', function (req, res){
-		console.log("req.body from logout:", req.body)
-		console.log("req.headers from logout:", req.headers)
-		console.log("req.session from logout:", req.session)
+		// console.log("req.body from logout:", req.body)
+		// console.log("req.headers from logout:", req.headers)
+		// console.log("req.session from logout:", req.session)
 		users.logout(req, res)
 	})
 
@@ -69,7 +69,7 @@ module.exports = function(app){
 
 	function restrict(req, res, next) {
 		// console.log(req.body)
-		// console.log("In restrict function:", req.session)
+		console.log("In restrict function:", req.session)
 		// console.log(req.params)
 	  if (req.session.loggedIn && req.session.info && req.session.info.id == req.params.uid) {
 			var token = req.session.info.token || req.headers['x-access-token'];

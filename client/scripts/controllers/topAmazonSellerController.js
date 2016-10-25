@@ -3,7 +3,7 @@ myAppModule.controller('topAmazonSellerController', function ($scope, itemsFacto
 
   var department = ''
   if($scope.department == 'a_appliances'){
-    department = '2619526011'
+    department = '2619525011'
   }
   else if($scope.department == 'a_phones_accessories'){
     department = '2335753011'
@@ -41,10 +41,11 @@ myAppModule.controller('topAmazonSellerController', function ($scope, itemsFacto
   var getItems = function(){
     itemsFactory.getPopularAmazonItems(department, function(res){
       console.log(res)
-      if(res.result.Error && counter < MAX_REQUESTS){
+      if((res.result.Error && counter < MAX_REQUESTS) || (res.result.BrowseNodes.BrowseNode.TopItemSet == undefined && counter < MAX_REQUESTS)){
         console.log('error occurred', counter)
-        $timeout(function(){getItems()}, 1000);
-        // getItems();
+        $timeout(function(){
+          getItems()
+        }, 1000);
         counter++;
       }
       $scope.itemInfo = res.result.BrowseNodes.BrowseNode.TopItemSet.TopItem

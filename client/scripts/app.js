@@ -1,5 +1,5 @@
 //import angular module
-var	myAppModule = angular.module('myApp', ['ngRoute', 'angularMoment', 'angularUtils.directives.dirPagination', 'ui.bootstrap', 'rzModule', 'ngCookies']);
+var	myAppModule = angular.module('myApp', ['ngRoute', 'angularMoment', 'angularUtils.directives.dirPagination', 'ui.bootstrap', 'rzModule', 'ngCookies', 'ngIdle']);
 myAppModule.config(function ($routeProvider) {
 	$routeProvider
 	.when('/',{
@@ -22,6 +22,12 @@ myAppModule.config(['$httpProvider', function($httpProvider) {
 	$httpProvider.defaults.xsrfCookieName = 'csrftoken';
 	$httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
 }]);
+
+myAppModule.config(function(IdleProvider, KeepaliveProvider) {
+  IdleProvider.idle(60 * 15); // 15 minutes
+  IdleProvider.timeout(30); // 30 seconds
+  KeepaliveProvider.interval(30); // 30 seconds
+});
 
 // myAppModule.filter('to_trusted', ['$sce', function($sce){
 // 	return function(text) {

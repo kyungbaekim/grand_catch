@@ -30,8 +30,8 @@ app.use(cookieParser());
 app.use(session({
   cookieName: 'session',
   secret: 'GrAnD_CaTcH',
-  duration: 30 * 60 * 1000,
-  activeDuration: 10 * 60 * 1000,
+  // duration: 30 * 60 * 1000,
+  // activeDuration: 10 * 60 * 1000,
   httpOnly: true,
   secure: true,
   ephemeral: true

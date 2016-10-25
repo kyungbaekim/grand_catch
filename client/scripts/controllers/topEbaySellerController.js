@@ -36,14 +36,28 @@ myAppModule.controller('topEbaySellerController', function ($scope, itemsFactory
     department = '220'
   }
 
-  itemsFactory.getPopularEbayItems(department, function(res){
-    // console.log(res)
-    $scope.ebayItems = res.getMostWatchedItemsResponse.itemRecommendations.item
-    for(var i=0; i<$scope.ebayItems.length; i++){
-      $scope.ebayItems[i]['keywords'] = $scope.ebayItems[i].title.replace(/[&\\#+$~%'":*?<>{}]/g,'')
-      $scope.ebayItems[i]['keywords'] = $scope.ebayItems[i]['keywords'].replace(/\//g,'-')
-      // $scope.ebayItems[i].viewItemURL[0] + '&affiliate.trackingId=' + affiliateTrackingId + '&affiliate.networkId=' + affiliateNetworkId + '&affiliate.customId=' + affiliateCustomId;
-    }
-    // console.log($scope.ebayItems)
-  })
+  var MAX_REQUESTS = 5;
+  var counter = 0;
+  var getItems = function(){
+    itemsFactory.getPopularEbayItems(department, function(res){
+      console.log(res)
+      if(res.error && counter < MAX_REQUESTS){
+        console.log('error occurred', counter)
+        $timeout(function(){
+          getItems()
+        }, 1000);
+        // getItems();
+        counter++;
+      }
+      $scope.ebayItems = res.getMostWatchedItemsResponse.itemRecommendations.item
+      for(var i=0; i<$scope.ebayItems.length; i++){
+        $scope.ebayItems[i]['keywords'] = $scope.ebayItems[i].title.replace(/[&\\#+$~%'":*?<>{}]/g,'')
+        $scope.ebayItems[i]['keywords'] = $scope.ebayItems[i]['keywords'].replace(/\//g,'-')
+        // $scope.ebayItems[i].viewItemURL[0] + '&affiliate.trackingId=' + affiliateTrackingId + '&affiliate.networkId=' + affiliateNetworkId + '&affiliate.customId=' + affiliateCustomId;
+      }
+      // console.log($scope.ebayItems)
+    })
+  }
+
+  getItems();
 })

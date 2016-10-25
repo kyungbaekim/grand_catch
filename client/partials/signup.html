@@ -7,7 +7,7 @@
     <!-- FIRST NAME -->
     <div class="form-group">
       <label>First Name</label>
-      <input type="text" name="fname" class="form-control" ng-model="user.fname" ng-minlength="3" ng-maxlength="20" required>
+      <input type="text" name="fname" class="form-control" ng-model="user.fname" ng-minlength="3" ng-maxlength="20" required autofocus>
       <!-- <p ng-show="!regForm.fname.$dirty" class="help-block"> First name is required.</p> -->
       <p ng-show="!regForm.fname.$error.required && regForm.fname.$error.minlength && regForm.fname.$dirty" class="help-block">&nbsp;First name must be at least 3 characters.</p>
       <p ng-show="!regForm.fname.$error.required && regForm.fname.$error.maxlength && regForm.fname.$dirty" class="help-block">&nbsp;First name cannot exceed 20 characters.</p>
