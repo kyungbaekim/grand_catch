@@ -2,6 +2,9 @@
 var users = require('../controllers/users.js')
 var aws = require('../controllers/aws.js')
 var wishlist = require('../controllers/wishlists.js')
+var jwt = require('jsonwebtoken');
+var consts = require('../config/constant.js');
+var secret = consts.jwtTokenSecret;
 
 module.exports = function(app){
 	app.post('/search', function(req, res){
@@ -69,15 +72,31 @@ module.exports = function(app){
 		// console.log("In restrict function:", req.session)
 		// console.log(req.params)
 	  if (req.session.loggedIn && req.session.info && req.session.info.id == req.params.uid) {
-			next();
+			var token = req.session.info.token || req.headers['x-access-token'];
+			console.log("token:", token)
+		  // decode token
+		  if (token) {
+		    // verifies secret and checks exp
+		    jwt.verify(token, secret, function(err, decoded) {
+		      if (err) {
+		        return res.json({ success: false, message: 'Failed to authenticate token.' });
+		      } else {
+		        // if everything is good, save to request for use in other routes
+		        req.decoded = decoded;
+		        next();
+		      }
+		    });
+		  } else {
+		    // if there is no token return an error
+		    return res.status(403).send({
+		        success: false,
+		        message: 'No token provided.'
+		    });
+		  }
+			// next();
 	  } else {
 			console.log(req.session)
 			console.log('Access denied! Please log in again!')
-	    // req.session.error = 'Access denied! Please log in first to access to your wishlist';
-			// console.log("session info ID:", req.session.info.id)
-			// console.log(typeof(req.session.info.id), typeof(req.params.uid))
-			// console.log(req.params.uid, 'Access denied! Please log in first to access to your wishlist')
-			// res.json({message: 'Access denied! Please log in first to access to your wishlist'})
 	  }
 	}
 }

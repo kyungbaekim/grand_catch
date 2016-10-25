@@ -9,29 +9,6 @@ var secret = consts.jwtTokenSecret;
 module.exports = {
   index: function(req, res) {
     console.log("requested user ID:", req.session.info.id)
-    // check header or url parameters or post parameters for token
-		var token = req.session.info.token || req.headers['x-access-token'];
-		console.log("token:", token);
-    // decode token
-    if (token) {
-      // verifies secret and checks exp
-      jwt.verify(token, secret, function(err, decoded) {
-        if (err) {
-          res.json({ success: false, message: 'Failed to authenticate token.' });
-        } else {
-          // if everything is good, save to request for use in other routes
-          req.decoded = decoded;
-          // console.log("decoded data:", req.decoded)
-        }
-      });
-    } else {
-      // if there is no token return an error
-      return res.status(403).send({
-        success: false,
-        message: 'No token provided.'
-      });
-    }
-
     User.find({_id: req.session.info.id}, function(err, user){
       if(err){
         res.json(err);
@@ -59,29 +36,6 @@ module.exports = {
     var data = {
       product_detail: req.body,
       _user: req.params.uid
-    }
-
-    // check header or url parameters or post parameters for token
-		var token = req.session.info.token || req.headers['x-access-token'];
-		console.log("token:", token);
-    // decode token
-    if (token) {
-      // verifies secret and checks exp
-      jwt.verify(token, secret, function(err, decoded) {
-        if (err) {
-          res.json({ success: false, message: 'Failed to authenticate token.' });
-        } else {
-          // if everything is good, save to request for use in other routes
-          req.decoded = decoded;
-          // console.log("decoded data:", req.decoded)
-        }
-      });
-    } else {
-      // if there is no token return an error
-      return res.status(403).send({
-        success: false,
-        message: 'No token provided.'
-      });
     }
 
     User.find({_id: req.session.info.id}, function(err, user){
@@ -120,30 +74,6 @@ module.exports = {
   },
 
   find: function(req, res) {
-    // check header or url parameters or post parameters for token
-		var token = req.session.info.token || req.headers['x-access-token'];
-		console.log("token:", token);
-    // decode token
-    if (token) {
-      // verifies secret and checks exp
-      jwt.verify(token, secret, function(err, decoded) {
-        if (err) {
-          res.json({ success: false, message: 'Failed to authenticate token.' });
-        } else {
-          // if everything is good, save to request for use in other routes
-          // decoded_data = decoded;
-          req.decoded = decoded;
-          // console.log("decoded data:", req.decoded)
-        }
-      });
-    } else {
-      // if there is no token return an error
-      return res.status(403).send({
-        success: false,
-        message: 'No token provided.'
-      });
-    }
-
     User.find({_id: req.session.info.id}, function(err, user){
       if(err){
         res.json(err);
@@ -165,31 +95,6 @@ module.exports = {
 
   delete: function(req, res) {
     console.log("requested data:", req.params)
-
-    // check header or url parameters or post parameters for token
-		var token = req.session.info.token || req.headers['x-access-token'];
-		console.log("token:", token);
-    // decode token
-    if (token) {
-      // verifies secret and checks exp
-      jwt.verify(token, secret, function(err, decoded) {
-        if (err) {
-          res.json({ success: false, message: 'Failed to authenticate token.' });
-        } else {
-          // if everything is good, save to request for use in other routes
-          // decoded_data = decoded;
-          req.decoded = decoded;
-          // console.log("decoded data:", req.decoded)
-        }
-      });
-    } else {
-      // if there is no token return an error
-      return res.status(403).send({
-        success: false,
-        message: 'No token provided.'
-      });
-    }
-
     User.find({_id: req.session.info.id}, function(err, user){
       if(err){
         res.json(err);

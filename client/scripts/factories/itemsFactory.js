@@ -70,9 +70,9 @@ myAppModule.factory('itemsFactory', function ($http){
 	  return true;
 	}
 
-	factory.amazonReviewLookUp = function(data, callback){
+	factory.amazonReviewLookUp = function(url, callback){
 		var start = new Date().getTime();
-		var amazonReview = data.slice(21,data.length)
+		var amazonReview = url.slice(22, url.length)
 		// get the pages source of url
 		$http.get(amazonReview).success(function(data){
 			//url pattern to search for in page source
@@ -85,7 +85,6 @@ myAppModule.factory('itemsFactory', function ($http){
 			if(index > -1 ){
 				var word = data.substring(index);
 				word = parseFloat(word.substring(0,3));
-				// console.log('word', word)
 			}
       // console.log('Execution time: ' + time + 'ms');
       callback(word)

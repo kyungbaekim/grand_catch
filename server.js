@@ -1,6 +1,5 @@
 var path = require("path");
 var bodyParser= require("body-parser");
-// var mongoose = require('mongoose');
 var morgan = require('morgan');
 var proxy = require('json-proxy/lib/proxy');
 var session = require('express-session');
@@ -10,7 +9,6 @@ var asyncJS = require('async');
 var crypto = require('crypto');
 
 var expressJwt = require('express-jwt');
-// var jwt = require('jsonwebtoken');
 var express = require("express");
 var app = express();
 

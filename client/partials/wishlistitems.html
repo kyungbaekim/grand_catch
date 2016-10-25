@@ -18,7 +18,7 @@
             <td class="product-details" width="70%" ng-if="item.product_detail[0].seller == 'amazon'">
               <h4>{{ item.product_detail[0].title }}</h4>
               <span ng-if='item.product_detail[0].price != 0 && item.product_detail[0].percentage_Saved == "N/A"'><span class='priceSize'>Price: ${{ item.product_detail[0].price | number:2 }} <br></span></span>
-              <span ng-if='item.product_detail[0].price != 0 && item.product_detail[0].percentage_Saved != "N/A"'><span class='priceSize'>Price: <strike>${{ item.product_detail[0].price | number:2 }}</strike> ${{ item.product_detail[0].sale_price }} (save {{ item.product_detail[0].percentage_Saved }}%)<br></span></span><br>
+              <span ng-if='item.product_detail[0].price != 0 && item.product_detail[0].percentage_Saved != "N/A"'><span class='priceSize'>Price: <strike>${{ item.product_detail[0].price | number:2 }}</strike> ${{ item.product_detail[0].sale_price | number:2 }} (save {{ item.product_detail[0].percentage_Saved }}%)<br></span></span><br>
               <b>Seller:</b> {{ item.product_detail[0].seller }} <span ng-if='item.product_detail[0].prime_item'><img class='amazonPrimeIcon' src="images/amazonPrime1.png"></span><br>
               <b>Condition:</b> {{ item.product_detail[0].condition }}<br>
               <span ng-if='item.product_detail[0].price == 0'><span class='priceSize'>Check website for price<br></span></span>
