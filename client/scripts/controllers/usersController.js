@@ -126,7 +126,58 @@ myAppModule.controller('usersController', function ($scope, $rootScope, userFact
 			console.log("Cancel button clicked")
 			$uibModalStack.dismissAll('closed');
 		};
+
+		$scope.forgot = function () {
+			$uibModalStack.dismissAll('closed');
+			$scope.message = "Forgot Button Clicked";
+			console.log($scope.message);
+
+			var modalInstance = $uibModal.open({
+				templateUrl: 'partials/forgotPW.html',
+				controller: ForgotModalInstanceCtrl,
+				resolve: {
+					userForm: function () {
+						return $scope.forgotPwForm;
+					}
+				}
+			});
+
+			modalInstance.result.then(function (data) {
+				console.log(data)
+				userFactory.getSession(function(data){
+					$rootScope.sessionUser = data;
+					console.log('current sessionUser', $rootScope.sessionUser)
+				});
+			}, function () {
+				console.log('Modal dismissed at: ' + new Date());
+			});
+		}
 	};
+
+
+	var ForgotModalInstanceCtrl = function ($uibModalInstance, userForm, $scope) {
+		$scope.message = "Forgot instance Button Clicked";
+		console.log($scope.message);
+		$scope.recover = function () {
+			// console.log("userForm data:", $scope.user)
+			userFactory.forgot($scope.user, function(data){
+				if(data.status){
+					$uibModalInstance.close(data.user)
+				}
+				else{
+					$scope.forgot_errors = data.errors;
+					console.log('forgot errors', $scope.forgot_errors)
+				}
+			});
+		};
+
+		$scope.cancel = function () {
+			console.log("Cancel button clicked")
+			$uibModalStack.dismissAll('closed');
+		};
+	};
+
+
 
 	$scope.logout = function (){
 		userFactory.logout();

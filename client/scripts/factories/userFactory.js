@@ -25,6 +25,14 @@ myAppModule.factory('userFactory', function ($http){
 		});
 	}
 
+	factory.forgot = function(data, callback){
+		$http.post('/forgot', data).success(function (output){
+			console.log(output)
+			sessionUser = output;
+			callback(sessionUser)
+		});
+	}
+
 	factory.getSession = function(callback){
 		//make full http get request to get the latest sessionUser status
 		$http.get('/session_user').success(function (output){

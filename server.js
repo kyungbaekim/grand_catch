@@ -5,10 +5,15 @@ var morgan = require('morgan');
 var proxy = require('json-proxy/lib/proxy');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
+var nodemailer = require('nodemailer');
+var asyncJS = require('async');
+var crypto = require('crypto');
+
 var expressJwt = require('express-jwt');
 // var jwt = require('jsonwebtoken');
 var express = require("express");
 var app = express();
+
 
 app.use(bodyParser.json({limit: '1mb'}));
 app.use(bodyParser.urlencoded({extended: false, limit: '1mb'}));

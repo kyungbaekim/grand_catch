@@ -17,12 +17,12 @@
           <div class="banner-bottom-title">
             <a href='{{ eItem.viewItemURL }}' target="blank">{{ eItem.title }}</a>
           </div>
-          <div style='text-transform:capitalize' class="product-details text-center quick-add-to-cart">
+          <div class="product-details text-center quick-add-to-cart">
             <!-- {{ eItem.primaryCategoryId }}: {{ eItem.primaryCategoryName }} -->
-            <div style="height: 40px;">
+            <div class="dealsReview">
               <span class='priceSize'>Price: ${{ eItem.buyItNowPrice['__value__'] | number:2 }}</span>
             </div>
-            <div style="height: 50px;">
+            <div class="similarItems">
               <form>
                 <input type="hidden" name="keywords" ng-init="keywords = eItem.keywords" ng-model="search.keywords">
           			<a href="#/search/{{ keywords }}"><button type="submit" class="single_add_to_cart_button">Search for similar products</button></a>

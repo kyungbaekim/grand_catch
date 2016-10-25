@@ -36,6 +36,10 @@ module.exports = function(app){
 		users.login(req, res);
 	})
 
+	app.post('/forgot', function (req, res, next){
+		users.forgot(req, res, next);
+	})
+
 	app.get('/logout', function (req, res){
 		console.log("req.body from logout:", req.body)
 		console.log("req.headers from logout:", req.headers)
