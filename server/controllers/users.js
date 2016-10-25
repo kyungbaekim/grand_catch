@@ -47,7 +47,7 @@ module.exports = {
 							token = jwt.sign({
 								email: user.email,
 								password: user.password
-							}, secret, { expiresIn: 60 * 60 });
+							}, secret, { expiresIn: 60 * 60 * 12 });
 							console.log({token: token})
 							//user saved successfully, set session info
 							req.session.info = {
@@ -56,7 +56,7 @@ module.exports = {
 								token: token
 							}
 							req.session.loggedIn = true;
-							var hour = 3600000 // an hour
+							var hour = 3600000 * 12 // 12 hours
 							req.session.cookie.expires = new Date(Date.now() + hour)
 							req.session.cookie.maxAge = hour
 							// password matched, return login status true
@@ -80,7 +80,7 @@ module.exports = {
 						token = jwt.sign({
 							email: user.email,
 							password: user.password
-						}, secret, { expiresIn: 60 });
+						}, secret, { expiresIn: 60 * 60 * 12 });
 						console.log({token: token})
 						// password matched, set session info
 						req.session.info = {
@@ -89,7 +89,7 @@ module.exports = {
 							token: token
 						}
 						req.session.loggedIn = true;
-						var hour = 3600000 / 60 // an hour
+						var hour = 3600000 * 12 // 12 hours
 						req.session.cookie.expires = new Date(Date.now() + hour)
 						req.session.cookie.maxAge = hour
 						// password matched, return login status true
