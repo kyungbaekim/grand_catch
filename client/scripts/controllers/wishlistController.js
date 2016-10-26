@@ -11,6 +11,11 @@ myAppModule.controller('wishlistController', function ($scope, userFactory, wish
     }
   }
 
+  $scope.$parent.seo = {
+    pageTitle : 'GrandCatch wishlist page',
+    pageDescripton: 'You can find all of your saved items/products here.'
+  };
+
   $scope.isArray = angular.isArray;
 
   $scope.$watch('$root.sessionUser', function() {

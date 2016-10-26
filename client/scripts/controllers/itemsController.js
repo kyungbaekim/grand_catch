@@ -4,6 +4,11 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, userFa
 	$scope.wishlist = [];
 	var user;
 
+	$scope.$parent.seo = {
+    pageTitle : 'GrandCatch search result page',
+    pageDescripton: 'All the products searched will be displayed on this page.'
+  };
+
 	$scope.$watch('$root.sessionUser.user', function() {
 		if($rootScope.sessionUser.user){
 			wishlistFactory.getUserWishlist($rootScope.sessionUser.user.id, function(res){

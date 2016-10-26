@@ -1,4 +1,9 @@
 myAppModule.controller('usersController', function ($scope, $rootScope, userFactory, wishlistFactory, $uibModal, $uibModalStack, $location, $cookies, Idle, Keepalive, $uibModal){
+	$scope.$parent.seo = {
+    pageTitle : 'GrandCatch user page',
+    pageDescripton: 'Please register/login to use our wishlist service.'
+  };
+
 	$('#search_keywords').focus();
 	$scope.started = false;
 

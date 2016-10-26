@@ -25,8 +25,8 @@ app.use('/components', express.static(__dirname + '/node_modules')); // redirect
 app.use('/fonts', express.static(__dirname + '/node_modules/bootstrap/fonts')); // redirect ui bootstrap
 app.use('/pattern', express.static(__dirname + '/node_modules/url-pattern/lib')); // redirect url pattern
 
+app.use(require('prerender-node'));
 app.use(cookieParser());
-
 app.use(session({
   cookieName: 'session',
   secret: 'GrAnD_CaTcH',
@@ -59,7 +59,6 @@ app.use(function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type, Authorization');
   next();
 });
-
 
 port = 8000;
 var server = app.listen(port, function(){

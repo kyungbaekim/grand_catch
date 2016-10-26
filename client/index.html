@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" ng-app='myApp'>
+<html lang="en" ng-app="myApp" ng-controller="indexController">
 <head>
-	<title>Grand Catch</title>
+	<meta name="fragment" content="!">
+	<title>{{ seo.pageTitle }}</title>
 	<meta charset="utf-8">
-	<meta name="description" content="">
-	<meta name="keywords" content="">
-	<meta name="author" content="">
+	<meta name="robots" content="GrandCatch, Price comparison, Amazon, Ebay, Search, Wishlist, Daily deals, popular items, categories" />
+	<meta name="google-site-verification" content="Search for products from both Amazon and Ebay and provide the search results to the users for price/item comparison." />
+	<meta name="description" content="{{ seo.metaDescription }}">
+	<meta name="keywords" content="GrandCatch, Price comparison, Amazon, Ebay, Search, Wishlist, Daily deals, popular items, categories">
+	<meta name="author" content="Kyungbae Kim, Tyler Nguyen">
 	<meta name="viewport" content="width=device-width, maximum-scale=1.0">
+	<!-- <base href="/"> -->
 
 	<!-- favicon -->
 	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
@@ -52,6 +56,8 @@
 	<script type="text/javascript" src='scripts/app.js'></script>
 
 	<!-- Controllers -->
+	<script type="text/javascript" src='scripts/controllers/indexController.js'></script>
+	<script type="text/javascript" src='scripts/controllers/mainController.js'></script>
 	<script type="text/javascript" src='scripts/controllers/itemsController.js'></script>
 	<script type="text/javascript" src='scripts/controllers/paginateController.js'></script>
 	<script type="text/javascript" src='scripts/controllers/usersController.js'></script>

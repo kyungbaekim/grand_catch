@@ -1,9 +1,10 @@
 //import angular module
 var	myAppModule = angular.module('myApp', ['ngRoute', 'angularMoment', 'angularUtils.directives.dirPagination', 'ui.bootstrap', 'rzModule', 'ngCookies', 'ngIdle']);
-myAppModule.config(function ($routeProvider) {
+myAppModule.config(function ($routeProvider, $locationProvider) {
 	$routeProvider
 	.when('/',{
-		templateUrl: 'partials/main.html'
+		templateUrl: 'partials/main.html',
+		controller: 'mainController'
 	})
 	.when('/wishlist/:user_id',{
 		templateUrl:'partials/wishlist.html',
@@ -16,6 +17,9 @@ myAppModule.config(function ($routeProvider) {
 	.otherwise({
 		redirectTo: '/'
 	});
+
+	// $locationProvider.html5Mode(true);
+  // $locationProvider.hashPrefix('!');
 });
 
 myAppModule.config(['$httpProvider', function($httpProvider) {
