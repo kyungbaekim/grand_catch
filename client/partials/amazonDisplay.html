@@ -15,8 +15,11 @@
             <span ng-if='itemDetail.percentage_Saved != "N/A"'>
               <p class="s-price"><span class="special-price"><span class="amount"><strike>${{ itemDetail.price | number:2 }}</strike> ${{ itemDetail.sale_price | number:2 }}(saves {{ itemDetail.percentage_Saved }}%)</span></span></p>
             </span>
-            <span ng-if='itemDetail.percentage_Saved == "N/A"'>
+            <span ng-if='itemDetail.percentage_Saved == "N/A" && itemDetail.price > 0'>
               <p class="s-price"><span class="special-price"><span class="amount">${{ itemDetail.price | number:2 }}</span></span></p>
+            </span>
+            <span ng-if='itemDetail.percentage_Saved == "N/A" && itemDetail.price == 0'>
+              <p class="s-price"><span class="special-price"><span class="amount">Check website for price</span></span></p>
             </span>
           </div>
           <b>Condition:</b> {{ itemDetail.condition }}<br>
