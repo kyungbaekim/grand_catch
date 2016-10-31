@@ -176,9 +176,16 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, userFa
 					}
 				});
 				// console.log(price)
-				$scope.rangeInfo = {
-	        min : Math.min.apply(Math, price),
-	        max : Math.max.apply(Math, price)
+
+				if($scope.filteredSearchResult.length < 1){
+					$scope.rangeInfo = {
+		        max: 0
+					}
+				} else {
+					$scope.rangeInfo = {
+						// min: Math.min.apply(Math, price),
+						max: Math.max.apply(Math, price)
+					}
 				}
 				// console.log($scope.rangeInfo)
 				$scope.dataLoaded = true;
@@ -224,13 +231,11 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, userFa
 
 	var isIDunique = function(itemID){
 		for(var i=0; i<$scope.searchEbayResult.length; i++) {
-			// console.log($scope.searchEbayResult.length, $scope.searchEbayResult)
 			if($scope.searchEbayResult.length == 0){
 				return true;
 			}
       else{
 				if($scope.searchEbayResult[i]['id'] == itemID) {
-					// console.log($scope.searchEbayResult[i]['id'], itemID)
 					return false;
 				}
 			}
@@ -240,8 +245,6 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, userFa
 
 	function createEbayList(obj){
 		var temp = obj.findItemsByKeywordsResponse[0].searchResult[0].item
-		// console.log(temp)
-		// console.log("start converting the data...")
 		$scope.searchEbayResult = [];
 		if(temp != null){
 			for(var i=0; i<temp.length; i++){
@@ -310,7 +313,6 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, userFa
 	}
 
 	function createAmazonList(obj){
-		// console.log("start converting the data for Amazon...")
 		$scope.searchAmazonResult = [];
 		if(obj != null){
 			for(var i=0; i<obj.length; i++){
@@ -357,17 +359,6 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, userFa
 					// console.log("No condition", i, obj[i])
 				}
 
-				// if(list_Price == 'Check Website'){
-				// 	if(obj[i].ItemAttributes != undefined && obj[i].ItemAttributes.ListPrice != undefined){
-				// 		list_Price = parseFloat(obj[i].ItemAttributes.ListPrice.Amount) / 100;
-				// 	}
-				// 	else{
-				// 		if(obj[i].Offers != undefined && obj[i].Offers.Offer != undefined){
-				// 			list_Price = parseFloat(obj[i].Offers.Offer.OfferListing.Price.Amount) / 100
-				// 		}
-				// 	}
-				// }
-
 				if(typeof list_Price === 'string' || isNaN(list_Price)){
 					list_Price = 0;
 				}
@@ -413,7 +404,6 @@ myAppModule.controller('itemsController', function ($scope, itemsFactory, userFa
 		}
 		return $scope.searchAmazonResult;
 	}
-
 
 	$scope.uncheckAll = function () {
 		console.log($scope.useCategory, $scope.useSeller, $scope.useCondition)

@@ -9,7 +9,6 @@ myAppModule.controller('usersController', function ($scope, $rootScope, userFact
 
 	userFactory.getSession(function(data){
 		$rootScope.sessionUser = data;
-		// console.log('current sessionUser', $rootScope.sessionUser)
 		console.log(data)
 	});
 
