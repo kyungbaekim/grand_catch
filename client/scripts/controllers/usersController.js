@@ -139,7 +139,9 @@ myAppModule.controller('usersController', function ($scope, $rootScope, userFact
 			$uibModalStack.dismissAll('closed');
 		};
 
+		//open a Forgot Modal instance
 		$scope.forgot = function () {
+			//close previous modal
 			$uibModalStack.dismissAll('closed');
 			$scope.message = "Forgot Button Clicked";
 			console.log($scope.message);
@@ -153,7 +155,6 @@ myAppModule.controller('usersController', function ($scope, $rootScope, userFact
 					}
 				}
 			});
-
 			modalInstance.result.then(function (data) {
 				console.log(data)
 				userFactory.getSession(function(data){
@@ -164,15 +165,20 @@ myAppModule.controller('usersController', function ($scope, $rootScope, userFact
 				console.log('Modal dismissed at: ' + new Date());
 			});
 		}
-	};
+	}; //end of LoginModalInstanceCtrl
 
 	var ForgotModalInstanceCtrl = function ($uibModalInstance, userForm, $scope) {
+
 		$scope.message = "Forgot instance Button Clicked";
 		console.log($scope.message);
+		console.log('userForm', userForm);
+
 		$scope.recover = function () {
 			// console.log("userForm data:", $scope.user)
 			userFactory.forgot($scope.user, function(data){
+				console.log('forgot response', data.status)
 				if(data.status){
+					// $uibModalStack.dismissAll('closed');
 					$uibModalInstance.close(data.user)
 				}
 				else{
@@ -186,7 +192,7 @@ myAppModule.controller('usersController', function ($scope, $rootScope, userFact
 			console.log("Cancel button clicked")
 			$uibModalStack.dismissAll('closed');
 		};
-	};
+	}; //end of ForgotModalInstanceCtrl
 
 	$scope.logout = function (){
 		console.log("Logging out!")

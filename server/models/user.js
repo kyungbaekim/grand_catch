@@ -16,9 +16,9 @@ UserSchema.pre('save', function (done){
 	console.log('user.password in UserSchema', user.password)
 	if(user.password){
 		bcrypt.genSalt(10, function (err, salt){
-			console.log(salt, "salt in pre save function")
+			// console.log(salt, "salt in pre save function")
 			bcrypt.hash(user.password, salt, function (err, hash){
-				console.log(hash, 'hash in pre save')
+				// console.log(hash, 'hash in pre save')
 				user.password = hash
 				done()
 			});

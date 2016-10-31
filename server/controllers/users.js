@@ -8,6 +8,9 @@ var secret = consts.jwtTokenSecret;
 var User = mongoose.model('User');
 var Wishlist = mongoose.model('Wishlist');
 var token;
+var crypto = require('crypto');
+var nodemailer = require('nodemailer');
+var asyncJS = require('async');
 
 module.exports = {
 	index: function(req, res) {
@@ -123,15 +126,67 @@ module.exports = {
 
 	forgot: function (req,res,next){
 		console.log('forgot body', req.body);
-		var email = sanitize(req.body.email);
-		User.findOne({email: email}, function(err,user){
-			if(user){
-				console.log('user found', user)
-			}else {
-				req.session.error = 'Authentication failed, please check your entered email address';
-				res.json({status: false, errors: ["Invalid Email address"]})
-			}
-		});
+		// var email = sanitize(req.body.email);
+		// User.findOne({email: email}, function(err,user){
+		// 	if(user){
+		// 		console.log('user found', user)
+		// 	}else {
+		// 		req.session.error = 'Authentication failed, please check your entered email address';
+		// 		res.json({status: false, errors: ["Invalid Email address"]})
+		// 	}
+		// });
+			asyncJS.waterfall([
+	    function(done) {
+	      crypto.randomBytes(5, function(err, buf) {
+					//generate a random token
+	        var token = buf.toString('hex');
+	        done(err, token);
+	      });
+	    },
+	    function(token, done) {
+				var email = sanitize(req.body.email);
+	      User.findOne({ email: email }, function(err, user) {
+	        if (!user) {
+						req.session.error = 'Authentication failed, please check your entered email address';
+						res.json({status: false, errors: ["Invalid Email address"]})
+	          // return res.redirect('/forgot');
+	        }
+					else {
+						user.resetPasswordToken = token;
+						user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+						//save token info to user
+						user.save(function(err) {
+							done(err, token, user);
+						});
+					}
+
+	      });
+	    },
+	    function(token, user, done) {
+				// create reusable transporter object using the default SMTP transport
+				var smtpTransport = nodemailer.createTransport('smtps://pokemongomapper%40gmail.com:pikachu1@smtp.gmail.com');
+	      var mailOptions = {
+					// console.log('in mailOptions', req.headers.host);
+	        to: user.email,
+	        from: 'pokemongomapper@gmail.com',
+	        subject: 'Grand Catch Password Reset',
+	        text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+	          'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+	          'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+	          'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+	      };
+	      smtpTransport.sendMail(mailOptions, function(err, info) {
+					console.log('An e-mail has been sent to ' + user.email + ' with further instructions.');
+					console.log('Message sent: ' + info.response);
+	        // req.flash('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
+					if(err){
+						res.json({status: false, errors: ['Email could not be sent. Please wait a few minutes a try again']});
+					} else {
+						res.json({status: true});
+					}
+	      });
+	    }
+	  ]);
 	},
 
 	find: function(req, res) {

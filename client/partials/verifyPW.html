@@ -1,7 +1,7 @@
 <div class="modal-header">
-   <h3>Forgot Password</h3>
+   <h3>Verify Password</h3>
    <p class='warning' ng-show="forgot_errors.length > 0">{{ forgot_errors[0] }}</p>
-   <p>Enter the email address associated with your GrandCatch account.</p>
+   <p>For your security, we need to verify your identity. We've sent a code to the email {{user.email}} Please enter it below.</p>
  </div>
  <form name="forgotPwForm" novalidate>
    <!-- <input type="hidden" name="_csrf" value="{{ X-CSRFToken }}" ng-model="user.csrf_token"> -->
