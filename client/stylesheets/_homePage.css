@@ -1,3 +1,16 @@
+.amazon-wrapper {
+  margin-top: 20px;
+  min-width: 970px;
+  min-height: 600px;
+  /*border: 1px solid red;*/
+}
+
+.recommended {
+  width: 1000px;
+  height: 600px;
+  margin: 0 auto;
+}
+
 .dealsPriceSize {
   height: 60px;
   margin-bottom: 10px;
