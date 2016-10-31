@@ -54,7 +54,6 @@ myAppModule.factory('itemsFactory', function ($http){
 		URL += '&responseencoding=JSON&appid=' + production_app_id + '&'
 		URL += 'siteid=0&version=975&ItemID=' + itemID + '&IncludeSelector=Description,ItemSpecifics,Details,ShippingCosts'
 		$http.get(URL).success(function(res){
-			// console.log("Success:", res)
 			callback(res)
 		}).error(function(err){
 			callback(err)
@@ -146,7 +145,6 @@ myAppModule.factory('itemsFactory', function ($http){
 	factory.getEbayDailyDeals = function(callback){
 		var URL = 'deals/v1/country/us/feed/json?feedType=json&count=40'
 		$http.get(URL).success(function(res){
-			// console.log("Success:", res)
 			callback(res)
 		}).error(function(err){
 			callback(err)

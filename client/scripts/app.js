@@ -39,12 +39,6 @@ myAppModule.config(function(IdleProvider, KeepaliveProvider) {
 // 	};
 // }]);
 
-// myAppModule.filter('htmlToPlaintext', function(){
-// 	return function(text) {
-// 		return  text ? String(text).replace(/<[^>]+>/gm, '') : '';
-// 	};
-// });
-
 // Custom validator based on expressions.
 myAppModule.directive("passwordVerify", function() {
   return {

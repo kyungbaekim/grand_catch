@@ -19,7 +19,6 @@ myAppModule.factory('userFactory', function ($http){
 
 	factory.login = function(data, callback){
 		$http.post('/login', data).success(function (output){
-			// console.log(output)
 			sessionUser = output;
 			callback(sessionUser)
 		});
@@ -37,7 +36,6 @@ myAppModule.factory('userFactory', function ($http){
 		//make full http get request to get the latest sessionUser status
 		$http.get('/session_user').success(function (output){
 			sessionUser = output
-			// console.log(sessionUser)
 			callback(sessionUser);
 		})
 	}
