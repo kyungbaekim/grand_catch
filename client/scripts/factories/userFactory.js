@@ -26,11 +26,30 @@ myAppModule.factory('userFactory', function ($http){
 
 	factory.forgot = function(data, callback){
 		$http.post('/forgot', data).success(function (output){
+			console.log('userFactory /forgot output',output)
+			sessionUser = output;
+			callback(sessionUser)
+		});
+	}
+
+	factory.verify = function(data,callback){
+		// console.log('data in verfify factory', data)
+		$http.post('/verify', data).success(function (output){
 			console.log(output)
 			sessionUser = output;
 			callback(sessionUser)
 		});
 	}
+
+	factory.resetPW = function(data,callback){
+		// console.log('data in verfify factory', data)
+		$http.post('/reset', data).success(function (output){
+			console.log(output)
+			sessionUser = output;
+			callback(sessionUser)
+		});
+	}
+
 
 	factory.getSession = function(callback){
 		//make full http get request to get the latest sessionUser status

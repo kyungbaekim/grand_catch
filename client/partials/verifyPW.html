@@ -1,22 +1,20 @@
 <div class="modal-header">
    <h3>Verify Password</h3>
-   <p class='warning' ng-show="forgot_errors.length > 0">{{ forgot_errors[0] }}</p>
-   <p>For your security, we need to verify your identity. We've sent a code to the email {{user.email}} Please enter it below.</p>
+   <p class='warning' ng-show="verify_errors.length > 0">{{ verify_errors[0] }}</p>
+   <p>For your security, we need to verify your identity. We've sent a code to the email {{forgotEmail}}. Please enter it below.</p>
  </div>
- <form name="forgotPwForm" novalidate>
+ <form name="verifyPwForm" novalidate>
    <!-- <input type="hidden" name="_csrf" value="{{ X-CSRFToken }}" ng-model="user.csrf_token"> -->
    <div class="modal-body">
      <!-- EMAIL -->
      <div class="form-group">
-       <label>Email</label>
-       <input type="email" name="email" class="form-control" ng-model="user.email" required>
-       <!-- <p ng-show="!loginForm.email.$dirty" class="help-block">&nbsp;Email required.</p> -->
-       <p ng-show="forgotPwForm.email.$error.email && forgotPwForm.email.$dirty" class="help-block">&nbsp;Enter a valid email.</p>
+       <label>Enter Code</label>
+       <input type="text" class="form-control" ng-model="verify.code" required>
+
      </div>
    </div>
-
    <div class="modal-footer">
-     <button class="btn btn-primary" ng-disabled="!forgotPwForm.$valid" ng-click="recover()">Continue</button>
+     <button class="btn btn-primary" ng-disabled="!verifyPwForm.$valid" ng-click="verifyCode()">Continue</button>
      <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
    </div>
  </form>

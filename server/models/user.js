@@ -13,7 +13,7 @@ var UserSchema = new mongoose.Schema({
 
 UserSchema.pre('save', function (done){
 	var user = this;
-	console.log('user.password in UserSchema', user.password)
+	// console.log('user.password in UserSchema', user.password)
 	if(user.password){
 		bcrypt.genSalt(10, function (err, salt){
 			// console.log(salt, "salt in pre save function")
@@ -28,8 +28,8 @@ UserSchema.pre('save', function (done){
 
 UserSchema.methods.validPassword = function (password){
 	console.log('password validation', password)
-	console.log('this.password is', this.password)
-	console.log('this UserSchema', this)
+	// console.log('this.password is', this.password)
+	// console.log('this UserSchema', this)
 	return bcrypt.compareSync(password, this.password)
 }
 

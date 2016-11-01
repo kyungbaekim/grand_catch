@@ -11,6 +11,7 @@ var token;
 var crypto = require('crypto');
 var nodemailer = require('nodemailer');
 var asyncJS = require('async');
+var expirationTime = 3600000;
 
 module.exports = {
 	index: function(req, res) {
@@ -126,15 +127,6 @@ module.exports = {
 
 	forgot: function (req,res,next){
 		console.log('forgot body', req.body);
-		// var email = sanitize(req.body.email);
-		// User.findOne({email: email}, function(err,user){
-		// 	if(user){
-		// 		console.log('user found', user)
-		// 	}else {
-		// 		req.session.error = 'Authentication failed, please check your entered email address';
-		// 		res.json({status: false, errors: ["Invalid Email address"]})
-		// 	}
-		// });
 			asyncJS.waterfall([
 	    function(done) {
 	      crypto.randomBytes(5, function(err, buf) {
@@ -153,7 +145,7 @@ module.exports = {
 	        }
 					else {
 						user.resetPasswordToken = token;
-						user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+						user.resetPasswordExpires = Date.now() + expirationTime; // 1 hour
 						//save token info to user
 						user.save(function(err) {
 							done(err, token, user);
@@ -171,8 +163,8 @@ module.exports = {
 	        from: 'pokemongomapper@gmail.com',
 	        subject: 'Grand Catch Password Reset',
 	        text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
-	          'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-	          'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+	          'To finish verifying your email with Grand Catch, please enter the following security code:\n\n' +
+	          token + '\n\n' +
 	          'If you did not request this, please ignore this email and your password will remain unchanged.\n'
 	      };
 	      smtpTransport.sendMail(mailOptions, function(err, info) {
@@ -187,6 +179,43 @@ module.exports = {
 	      });
 	    }
 	  ]);
+	},
+
+	verify: function(req, res) {
+		var email = sanitize(req.body.email);
+		var code = sanitize(req.body.code);
+		console.log('in verify server', email)
+		User.findOne({email: email}, function(err, user){
+			console.log('user found', user)
+			//checks if time pass is greater than 1 hr
+			if(user.resetPasswordExpires - Date.now() > expirationTime){
+				res.json({status: false, errors: ['Verification code has expired. Please submit a new code.']})
+			}else if (user.resetPasswordToken != code) {
+				console.log('verification code doest not match')
+				res.json({status: false, errors: ['Verification code does not match. Please check your code and try again.']})
+			}else {
+				// verification code matched, set web token
+				console.log('verification code matches')
+				token = jwt.sign({
+					email: user.email
+				}, secret, { expiresIn: 60 * 60 * 12 });
+				console.log({token: token})
+				// password matched, set session info
+				req.session.info = {
+					id: user._id,
+					name: user.fname + " " + user.lname,
+					token: token
+				}
+				req.session.loggedIn = true;
+				var hour = 3600000 * 12 // 12 hours
+				req.session.cookie.expires = new Date(Date.now() + hour)
+				req.session.cookie.maxAge = hour
+				// password matched, return login status true
+				console.log("session info:", req.session)
+				console.log("session id:", req.session.id)
+				res.json({status: true, loggedIn: true, user: user._id})
+			}
+		})
 	},
 
 	find: function(req, res) {
