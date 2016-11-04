@@ -52,7 +52,7 @@ module.exports = {
 								errors.push(err.errors[i].message)
 							}
 							res.json({status: false, errors: errors})
-						}else{
+						}else {
 							//user saved successfully, set web token
 							token = jwt.sign({
 								email: user.email,
@@ -216,6 +216,31 @@ module.exports = {
 				res.json({status: true, loggedIn: true, user: user._id})
 			}
 		})
+	},
+
+	reset: function(req, res) {
+		console.log('in reset server controller', req.body);
+		var user_id = sanitize(req.body.user_id);
+		var user_pw = sanitize(req.body.password);
+		var user_cpw = sanitize(req.body.cpassword);
+		if(user_pw == user_cpw ){
+			User.findOne({_id: user_id}, function(err,user) {
+				if(user) {
+					user.password = user_pw;
+					user.save(function(err, updatedUser) {
+						if(err){
+							console.log('error saving user');
+						}else {
+							console.log('user pw updated');
+							res.json({status:true});
+						}
+					})
+				}
+				console.log('user found in reset',user)
+			});
+		}else {
+			res.json({status:false}, {errors: ['Password and Confirmation Password does not match']})
+		}
 	},
 
 	find: function(req, res) {

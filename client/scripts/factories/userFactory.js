@@ -42,7 +42,9 @@ myAppModule.factory('userFactory', function ($http){
 	}
 
 	factory.resetPW = function(data,callback){
-		// console.log('data in verfify factory', data)
+		console.log('data in reset factory', data)
+		data.user_id = sessionUser.user
+		console.log('current sessionUser', sessionUser)
 		$http.post('/reset', data).success(function (output){
 			console.log(output)
 			sessionUser = output;

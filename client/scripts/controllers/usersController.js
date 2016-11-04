@@ -231,6 +231,10 @@ myAppModule.controller('usersController', function ($scope, $rootScope, userFact
 				console.log('reset', data)
 				if(data.status){
 					$uibModalInstance.close()
+					userFactory.getSession(function(data){
+						$rootScope.sessionUser = data;
+						console.log('current sessionUser', $rootScope.sessionUser)
+					});
 				}else {
 					$scope.reset_errors = data.errors;
 				}
@@ -241,7 +245,7 @@ myAppModule.controller('usersController', function ($scope, $rootScope, userFact
 			console.log("Cancel button clicked")
 			$uibModalStack.dismissAll('closed');
 		};
-	} //end of VerifyPwModalInstanceCtrl
+	} //end of ResetPwPwModalInstanceCtrl
 
 	$scope.logout = function (){
 		console.log("Logging out!")
