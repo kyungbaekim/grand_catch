@@ -15,6 +15,9 @@ img#logo{
      width: 50px;
      height: auto;
   }
+  input[type="text"]#search_keywords::-webkit-input-placeholder {
+  font-size: 12px;
+}
 
 }
 
