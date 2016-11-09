@@ -65,6 +65,10 @@ a:hover {
 a:active, a:hover {
   outline: 0 none;
 }
+
+button {
+  letter-spacing: 1px;
+}
 ul{
 list-style: outside none none;
 margin: 0;
@@ -1270,8 +1274,8 @@ body {
   border: 1px solid #32b5f3;
   border-radius: 20px;
   color: #ffffff;
-  height: 40px;
-  padding: 0 22px;
+  height: 34px;
+  padding: 0 12px;
   transition: all 0.3s ease 0s;
   font-size: 16px;
   font-weight: 500;
