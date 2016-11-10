@@ -168,6 +168,20 @@ tr:nth-child(even) {
   background-size: contain;
 }
 
+@media (max-width: 480px) {
+  .preloader {
+    /*padding: 50px;*/
+    width: 100px;
+    height: 100px;
+    position: relative;
+    top: 50px;
+    left: 100px;
+    /*background: url('/images/loading-blue.gif') no-repeat;*/
+    background: url('/images/octo.gif') no-repeat;
+    background-size: contain;
+  }
+}
+
 div.navbar-header{
   background: white;
 }
