@@ -20,6 +20,7 @@ img#logo{
      height: auto;
   }
   input[type="text"]#search_keywords::-webkit-input-placeholder {
+    margin-top: 5px;
     font-size: 12px;
   }
 }
