@@ -47,13 +47,12 @@ var UserSchema = new mongoose.Schema({
 
 UserSchema.pre('save', function (done){
 	var user = this;
-	console.log('user.password in UserSchema', user.local.password)
-	if(user.local.password){
+  if(user.password){
 		bcrypt.genSalt(10, function (err, salt){
-			console.log(salt, "salt in pre save function")
-			bcrypt.hash(user.local.password, salt, function (err, hash){
-				console.log(hash, 'hash in pre save')
-				user.local.password = hash
+			// console.log(salt, "salt in pre save function")
+			bcrypt.hash(user.password, salt, function (err, hash){
+				// console.log(hash, 'hash in pre save')
+				user.password = hash
 				done()
 			});
 		});
@@ -61,7 +60,7 @@ UserSchema.pre('save', function (done){
 });
 
 UserSchema.methods.validPassword = function (password){
-	return bcrypt.compareSync(password, this.local.password)
+	return bcrypt.compareSync(password, this.password)
 }
 
 var deepPopulate = require('mongoose-deep-populate')(mongoose);

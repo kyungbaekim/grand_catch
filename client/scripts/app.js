@@ -1,3 +1,6 @@
+//commment out console.log function below to enable console.log
+ console.log = function() {};
+
 //import angular module
 var	myAppModule = angular.module('myApp', ['ngRoute', 'angularMoment', 'angularUtils.directives.dirPagination', 'ui.bootstrap', 'rzModule', 'ngCookies', 'ngIdle']);
 myAppModule.config(function ($routeProvider, $locationProvider) {

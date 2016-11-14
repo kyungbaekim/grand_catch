@@ -1,0 +1,20 @@
+<div class="modal-header">
+   <h3>Verify Password</h3>
+   <p class='warning' ng-show="verify_errors.length > 0">{{ verify_errors[0] }}</p>
+   <p>For your security, we need to verify your identity. We've sent a code to the email {{forgotEmail}}. Please enter it below.</p>
+ </div>
+ <form name="verifyPwForm" novalidate>
+   <!-- <input type="hidden" name="_csrf" value="{{ X-CSRFToken }}" ng-model="user.csrf_token"> -->
+   <div class="modal-body">
+     <!-- EMAIL -->
+     <div class="form-group">
+       <label>Enter Code</label>
+       <input type="text" class="form-control" ng-model="verify.code" required>
+
+     </div>
+   </div>
+   <div class="modal-footer">
+     <button class="btn btn-primary" ng-disabled="!verifyPwForm.$valid" ng-click="verifyCode()">Continue</button>
+     <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+   </div>
+ </form>

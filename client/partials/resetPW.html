@@ -1,0 +1,28 @@
+<div class="modal-header">
+  <h3>Reset Password</h3>
+  <p ng-show="reset.length > 0">{{ reset_errors }}</p>
+</div>
+<form name="resetForm" novalidate>
+  <div class="modal-body">
+    <!-- PASSWORD -->
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" name="password" class="form-control" ng-model="user.password" ng-minlength="8" required>
+      <!-- <p ng-show="!resetForm.password.$dirty" class="help-block"> Password required.</p> -->
+      <p ng-show="resetForm.password.$error.minlength && resetForm.password.$dirty" class="help-block">&nbsp;Password must be at least 8 characters long.</p>
+    </div>
+
+    <!-- CONFIRM PASSWORD -->
+    <div class="form-group">
+      <label>Confirm Password</label>
+      <input type="password" name="cpassword" class="form-control" ng-model="user.cpassword" data-password-verify="user.password" required>
+      <!-- <p ng-show="!resetForm.cpassword.$dirty" class="help-block"> Confirm password required.</p> -->
+      <p ng-show="resetForm.cpassword.$error.passwordVerify" class="help-block">&nbsp;Confirm password and password must match.</p>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-disabled="!resetForm.$valid" ng-click="resetPW()">Reset password and sign in</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+  </div>
+</form>

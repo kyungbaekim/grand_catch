@@ -35,6 +35,14 @@ module.exports = function(app){
 		users.forgot(req, res, next);
 	})
 
+	app.post('/verify', function (req, res){
+		users.verify(req, res);
+	})
+
+	app.post('/reset', function (req, res){
+		users.reset(req, res);
+	})
+
 	app.get('/logout', function (req, res){
 		users.logout(req, res)
 	})

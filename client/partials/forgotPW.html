@@ -3,7 +3,7 @@
    <p class='warning' ng-show="forgot_errors.length > 0">{{ forgot_errors[0] }}</p>
    <p>Enter the email address associated with your GrandCatch account.</p>
  </div>
- <form name="forgotPwForm" novalidate>
+ <form name="forgotEmailForm" novalidate>
    <!-- <input type="hidden" name="_csrf" value="{{ X-CSRFToken }}" ng-model="user.csrf_token"> -->
    <div class="modal-body">
      <!-- EMAIL -->
@@ -11,11 +11,12 @@
        <label>Email</label>
        <input type="email" name="email" class="form-control" ng-model="user.email" required>
        <!-- <p ng-show="!loginForm.email.$dirty" class="help-block">&nbsp;Email required.</p> -->
-       <p ng-show="forgotPwForm.email.$error.email && forgotPwForm.email.$dirty" class="help-block">&nbsp;Enter a valid email.</p>
+       <p ng-show="forgotEmailForm.email.$error.email && forgotEmailForm.email.$dirty" class="help-block">&nbsp;Enter a valid email.</p>
      </div>
    </div>
 
    <div class="modal-footer">
-     <button class="btn btn-primary" ng-disabled="!forgotPwForm.$valid" ng-click="recover()">Continue</button>
+     <button class="btn btn-primary" ng-disabled="!forgotEmailForm.$valid" ng-click="recover()">Continue</button>
+     <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
    </div>
  </form>

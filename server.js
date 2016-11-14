@@ -8,8 +8,7 @@ var asyncJS = require('async');
 var crypto = require('crypto');
 var session = require('express-session');
 var flash = require('connect-flash');
-
-// var expressJwt = require('express-jwt');
+var expressJwt = require('express-jwt');
 var express = require("express");
 var app = express();
 
