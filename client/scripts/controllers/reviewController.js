@@ -39,7 +39,7 @@ myAppModule.controller('reviewController', function ($scope, itemsFactory){
     var counter = 0;
     var getEbayItem = function(){
       itemsFactory.getEbaySingleItem($scope.deal.ItemId, function(data){
-        console.log(data)
+        // console.log(data)
         if(data.error && counter < MAX_REQUESTS){
           console.log('error occurred', counter)
           $timeout(function(){

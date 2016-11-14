@@ -10,7 +10,6 @@
 	<meta name="keywords" content="Grand Catch, GrandCatch, Price comparison, Amazon, Ebay, Product search, Wishlist, Daily deals, popular items, categories, find lower price">
 	<meta name="author" content="Kyungbae Kim, Tyler Nguyen">
 	<meta name="viewport" content="width=device-width, maximum-scale=1.0">
-	<!-- <base href="/"> -->
 
 	<!-- favicon -->
 	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
@@ -146,69 +145,47 @@
 				</div>
 			</div>
 		</div> -->
-	<nav class="navbar navbar-default navbar-fixed-top">
-  	<div id="nav" class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#/"><img id='logo' src="images/Grand-Catch-LOGO.png" alt=""></a>
-			<div class="col-xs-7 col-sm-6 pullright">
-			 <form class="navbar-form" role="search">
-				 <div class="input-group">
-					 <!-- <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term"> -->
-					 <input type="text" id='search_keywords' class="form-control"  name="keywords" autofocus placeholder='Search Product' ng-model="search.keywords">
+		<nav class="navbar navbar-default navbar-fixed-top">
+	  	<div id="nav" class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="#/"><img id='logo' src="images/Grand-Catch-LOGO.png" alt=""></a>
+				<div class="col-xs-7 col-sm-6 pullright">
+				 <form class="navbar-form" role="search">
+					 <div class="input-group">
+						 <!-- <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term"> -->
+						 <input type="text" id='search_keywords' class="form-control"  name="keywords" autofocus placeholder='Search Product' ng-model="search.keywords">
 
-					 <div class="input-group-btn">
-						 <!-- <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button> -->
-						 <button type="submit" class="btn btn-default" ng-click="searchKey()"><i class="fa fa-search"></i></button>
+						 <div class="input-group-btn">
+							 <!-- <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button> -->
+							 <button type="submit" class="btn btn-default" ng-click="searchKey()"><i class="fa fa-search"></i></button>
+						 </div>
 					 </div>
-				 </div>
-			 </form>
-		 </div>
-    </div>
+				 </form>
+			 </div>
+	    </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-      <ul class="nav navbar-nav navbar-right">
-				<!-- <div ng-if="!sessionUser.user">
-				</div> -->
-				<li ng-if="!sessionUser.user">
-					<a href="" ng-click="login()" title="Log in"><i class="flaticon-people" style="font-size: 20px;"></i></a>
-				</li>
-				<li ng-if="!sessionUser.user">
-					<a href="" ng-click="register()" style="font-size: 16px">Register</a>
-				</li>
-				<!-- <div ng-if="sessionUser.user && sessionUser.loggedIn">
-				</div> -->
-				<li ng-if="sessionUser.user && sessionUser.loggedIn">
-					<a href="#/">Welcome, {{ sessionUser.user.name }}!</a>
-				</li>
-				<li ng-if="sessionUser.user && sessionUser.loggedIn">
-					<a href="#/wishlist/{{ sessionUser.user.id }}" title="Go to wishlist page"><i class="fa fa-heart wishlist"></i></a>
-				</li>
-				<li ng-if="sessionUser.user && sessionUser.loggedIn">
-					<a href="" ng-click="logout()"><i class="fa fa-sign-out" title="Log out"></i></a>
-				</li>
-        <!-- <li class="dropdown">
-          <a href="#/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#/">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li> -->
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-	</nav>
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul ng-if="!sessionUser.user" class="nav navbar-nav navbar-right">
+					<li><a href="" ng-click="login()" title="Log in"><i class="flaticon-people" style="font-size: 20px;"></i></a></li>
+					<li><a href="" ng-click="register()" style="font-size: 16px">Register</a></li>
+				</ul>
+				<ul ng-if="sessionUser.user && sessionUser.loggedIn" class="nav navbar-nav navbar-right">
+					<li><a href="#/">Welcome, {{ sessionUser.user.name }}!</a></li>
+					<li><a href="#/wishlist/{{ sessionUser.user.id }}" title="Go to wishlist page"><i class="fa fa-heart wishlist"></i></a></li>
+					<li><a href="" ng-click="logout()"><i class="fa fa-sign-out" title="Log out"></i></a></li>
+	      </ul>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+		</nav>
+	</div>
 <!-- Mobile Menu End -->
 <!-- end of usersController -->
 	<div class="partial" ng-view=''></div>

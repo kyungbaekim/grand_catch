@@ -40,7 +40,7 @@ myAppModule.controller('topAmazonSellerController', function ($scope, itemsFacto
   var counter = 0;
   var getItems = function(){
     itemsFactory.getPopularAmazonItems(department, function(res){
-      console.log(res)
+      // console.log(res)
       if((res.result.Error && counter < MAX_REQUESTS) || (res.result.BrowseNodes.BrowseNode.TopItemSet == undefined && counter < MAX_REQUESTS)){
         console.log('error occurred', counter)
         $timeout(function(){

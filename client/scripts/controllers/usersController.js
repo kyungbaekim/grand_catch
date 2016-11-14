@@ -1,4 +1,4 @@
-myAppModule.controller('usersController', function ($scope, $rootScope, userFactory, wishlistFactory, $uibModal, $uibModalStack, $location, $cookies, Idle, Keepalive, $uibModal){
+myAppModule.controller('usersController', function ($scope, $rootScope, userFactory, wishlistFactory, $uibModal, $uibModalStack, $location, $cookies, Idle, Keepalive){
 	$scope.$parent.seo = {
     pageTitle : 'GrandCatch user page',
     pageDescripton: 'Please register/login to use our wishlist service.'
@@ -50,9 +50,10 @@ myAppModule.controller('usersController', function ($scope, $rootScope, userFact
     });
 
     modalInstance.result.then(function (data) {
-			console.log(data)
+			// console.log(data)
 			userFactory.getSession(function(data){
-				$rootScope.sessionUser = data.sessionUser;
+				console.log("User data returned: ", data)
+				$rootScope.sessionUser = data;
 				console.log('current sessionUser', $rootScope.sessionUser)
 				Idle.watch();
 				$scope.started = true;
@@ -66,6 +67,7 @@ myAppModule.controller('usersController', function ($scope, $rootScope, userFact
     $scope.register = function () {
 			userFactory.newUser($scope.user, function(data){
 				if(data.status){
+					// console.log(data.user)
 					$uibModalInstance.close(data.user)
 				}
 				else{
@@ -225,7 +227,6 @@ myAppModule.controller('usersController', function ($scope, $rootScope, userFact
 	} //end of VerifyPwModalInstanceCtrl
 
 	var ResetPwModalInstanceCtrl = function($uibModalInstance,$scope) {
-
 		$scope.resetPW = function(){
 			userFactory.resetPW($scope.user, function(data){
 				console.log('reset', data)

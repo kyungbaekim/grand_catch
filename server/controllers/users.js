@@ -20,6 +20,7 @@ module.exports = {
         console.log(err);
       }
       else{
+				console.log(users);
         res.json(users);
       }
     })
@@ -111,17 +112,17 @@ module.exports = {
 					} else {
 						// password does not match
 						req.session.error = 'Authentication failed, please check your entered email address and password';
-						res.json({status: false, errors: ["Invalid Email address and/or Password"]})
+						res.json({status: false, errors: ["Invalid Email address and/or password"]})
 					}
 				}
 				else { // user not found
 					req.session.error = 'Authentication failed, please check your entered email address and password';
-					res.json({status: false, errors: ["Invalid Email address and/or Password"]})
+					res.json({status: false, errors: ["Invalid Email address and/or password"]})
 				}
 			})
 		} else { // email or password is empty
 			req.session.error = 'Authentication failed, please check your entered email address and password';
-			res.json({status: false, errors: ["Invalid Email address and/or Password"]})
+			res.json({status: false, errors: ["Invalid Email address and/or assword"]})
 		}
 	},
 
@@ -256,6 +257,7 @@ module.exports = {
   },
 
 	getSession: function(req, res){
+		console.log(req.session);
 		if(req.session.info){
 			res.json({sessionID: req.session.id, loggedIn: true, user: req.session.info})
 		}
@@ -267,7 +269,7 @@ module.exports = {
 	logout: function(req, res){
 		// req.logout();
 		req.session.destroy(function(err){
-		  cannot access session here
+		  // cannot access session here
 			if(!err){
 				res.json({status: true, loggedIn: false, message: "Successfully logged out."})
 			}

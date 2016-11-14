@@ -40,7 +40,7 @@ myAppModule.controller('topEbaySellerController', function ($scope, itemsFactory
   var counter = 0;
   var getItems = function(){
     itemsFactory.getPopularEbayItems(department, function(res){
-      console.log(res)
+      // console.log(res)
       if(res.error && counter < MAX_REQUESTS){
         console.log('error occurred', counter)
         $timeout(function(){
