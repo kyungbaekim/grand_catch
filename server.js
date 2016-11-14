@@ -2,16 +2,16 @@ var path = require("path");
 var bodyParser= require("body-parser");
 var morgan = require('morgan');
 var proxy = require('json-proxy/lib/proxy');
-var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var nodemailer = require('nodemailer');
 var asyncJS = require('async');
 var crypto = require('crypto');
+var session = require('express-session');
+var flash = require('connect-flash');
 
-var expressJwt = require('express-jwt');
+// var expressJwt = require('express-jwt');
 var express = require("express");
 var app = express();
-
 
 app.use(bodyParser.json({limit: '1mb'}));
 app.use(bodyParser.urlencoded({extended: false, limit: '1mb'}));
@@ -27,16 +27,16 @@ app.use('/pattern', express.static(__dirname + '/node_modules/url-pattern/lib'))
 
 app.use(require('prerender-node'));
 app.use(cookieParser());
+app.use(flash());
 app.use(session({
-  cookieName: 'session',
   secret: 'GrAnD_CaTcH',
-  // duration: 30 * 60 * 1000,
-  // activeDuration: 10 * 60 * 1000,
+  resave: false,
+  saveUninitialized: true,
   httpOnly: true,
   secure: true,
   ephemeral: true
 }));
--
+
 require("./server/config/mongoose.js");
 require("./server/config/routes.js")(app);
 
@@ -53,14 +53,7 @@ app.use(proxy.initialize({
   }
 }));
 
-app.use(function(req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type, Authorization');
-  next();
-});
-
-port = 8000;
+port = 8080;
 var server = app.listen(port, function(){
 	console.log("********** PORT " + port + " PORT **********")
 });

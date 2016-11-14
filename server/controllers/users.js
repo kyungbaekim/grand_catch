@@ -156,8 +156,9 @@ module.exports = {
 	},
 
 	logout: function(req, res){
+		// req.logout();
 		req.session.destroy(function(err){
-		  // cannot access session here
+		  cannot access session here
 			if(!err){
 				res.json({status: true, loggedIn: false, message: "Successfully logged out."})
 			}

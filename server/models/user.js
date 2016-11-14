@@ -11,15 +11,49 @@ var UserSchema = new mongoose.Schema({
 	resetPasswordExpires: Date
 }, {timestamps: true})
 
+// define the schema for our user model
+// var UserSchema = new mongoose.Schema({
+//     local            : {
+// 			fname        : String,
+// 			lname        : String,
+//       email        : String,
+//       password     : String,
+// 			wishlist     : [{type: mongoose.Schema.Types.ObjectId, ref: 'Wishlist'}],
+// 			resetPasswordToken: String,
+// 			resetPasswordExpires: Date
+//     },
+//     facebook         : {
+//       id           : String,
+//       token        : String,
+//       email        : String,
+//       name         : String,
+// 			wishlist     : [{type: mongoose.Schema.Types.ObjectId, ref: 'Wishlist'}],
+//     },
+//     twitter          : {
+//       id           : String,
+//       token        : String,
+//       displayName  : String,
+//       username     : String,
+// 			wishlist     : [{type: mongoose.Schema.Types.ObjectId, ref: 'Wishlist'}],
+//     },
+//     google           : {
+//       id           : String,
+//       token        : String,
+//       email        : String,
+//       name         : String,
+// 			wishlist     : [{type: mongoose.Schema.Types.ObjectId, ref: 'Wishlist'}],
+//     }
+// }, {timestamps: true});
+
 UserSchema.pre('save', function (done){
 	var user = this;
-	console.log('user.password in UserSchema', user.password)
-	if(user.password){
+	console.log('user.password in UserSchema', user.local.password)
+	if(user.local.password){
 		bcrypt.genSalt(10, function (err, salt){
 			console.log(salt, "salt in pre save function")
-			bcrypt.hash(user.password, salt, function (err, hash){
+			bcrypt.hash(user.local.password, salt, function (err, hash){
 				console.log(hash, 'hash in pre save')
-				user.password = hash
+				user.local.password = hash
 				done()
 			});
 		});
@@ -27,10 +61,7 @@ UserSchema.pre('save', function (done){
 });
 
 UserSchema.methods.validPassword = function (password){
-	console.log('password validation', password)
-	console.log('this.password is', this.password)
-	console.log('this UserSchema', this)
-	return bcrypt.compareSync(password, this.password)
+	return bcrypt.compareSync(password, this.local.password)
 }
 
 var deepPopulate = require('mongoose-deep-populate')(mongoose);
