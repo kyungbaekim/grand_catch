@@ -52,7 +52,7 @@ app.use(proxy.initialize({
   }
 }));
 
-port = 8080;
+port = 8000;
 var server = app.listen(port, function(){
 	console.log("********** PORT " + port + " PORT **********")
 });
