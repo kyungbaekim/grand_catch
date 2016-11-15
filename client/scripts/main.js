@@ -181,36 +181,9 @@ Blog list owl active
 
 
 /*----------------------------
-	Input Plus Minus Button
+ toggle mobile navbar on click
 ------------------------------ */
-    $(".cart-plus-minus").append('<div class="dec qtybutton">-</div><div class="inc qtybutton">+</div>');
-    $(".qtybutton").on("click", function() {
-        var $button = $(this);
-        var oldValue = $button.parent().find("input").val();
-        if ($button.text() == "+") {
-            var newVal = parseFloat(oldValue) + 1;
-        } else {
-            // Don't allow decrementing below zero
-            if (oldValue > 0) {
-                var newVal = parseFloat(oldValue) - 1;
-            } else {
-                newVal = 0;
-            }
-        }
-        $button.parent().find("input").val(newVal);
-    });
-
-/*---------------------
- Faq page Accrodian
---------------------- */
-	 $('.collapse').on('shown.bs.collapse', function(){
-		$(this).parent().find(".fa-plus-square").removeClass("fa-plus-square").addClass("fa-minus-square");
-		}).on('hidden.bs.collapse', function(){
-		$(this).parent().find(".fa-minus-square").removeClass("fa-minus-square").addClass("fa-plus-square");
-		});
-/*----------------------------
-	jQuery MeanMenu
------------------------------- */
-	jQuery('nav#dropdown').meanmenu();
-
+  $(document).on('click','body',function(e) {
+    $(this).find('.navbar-collapse.in').collapse('hide');
+  });
 })(jQuery);
