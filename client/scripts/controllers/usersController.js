@@ -7,16 +7,14 @@ myAppModule.controller('usersController', function ($scope, $rootScope, userFact
 	$('#search_keywords').focus();
 	$scope.started = false;
 
-	//index page contains usersController
-	//immediately getSession / and users upon page load
 	userFactory.getSession(function(data){
 		$rootScope.sessionUser = data;
-		console.log('set session in user controller', data)
+		console.log(data)
 	});
 
-	// userFactory.getAllUser(function(data){
-	// 	console.log("All users:", data);
-	// })
+	userFactory.getAllUser(function(data){
+		console.log("All users:", data);
+	})
 
 	$scope.searchKey = function(){
 		console.log("Searched keyword:", $scope.search.keywords)
@@ -39,7 +37,7 @@ myAppModule.controller('usersController', function ($scope, $rootScope, userFact
 
 	$scope.register = function () {
     $scope.message = "Register Button Clicked";
-    // console.log($scope.message);
+    console.log($scope.message);
 
     var modalInstance = $uibModal.open({
       templateUrl: 'partials/signup.html',
@@ -98,14 +96,13 @@ myAppModule.controller('usersController', function ($scope, $rootScope, userFact
 
 	$scope.login = function () {
 		$scope.message = "Login Button Clicked";
-		// console.log($scope.message);
+		console.log($scope.message);
 
 		var modalInstance = $uibModal.open({
 			templateUrl: 'partials/login.html',
 			controller: LoginModalInstanceCtrl,
 			resolve: {
         userForm: function () {
-					console.log('$scope.loginForm in modalInstance', $scope.loginForm);
           return $scope.loginForm;
         }
       }

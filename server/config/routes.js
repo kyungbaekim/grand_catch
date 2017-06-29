@@ -5,8 +5,6 @@ var wishlist = require('../controllers/wishlists.js')
 var jwt = require('jsonwebtoken');
 var consts = require('../config/constant.js');
 var secret = consts.jwtTokenSecret;
-var path = require("path");
-
 
 module.exports = function(app){
 	app.post('/search', function(req, res){
@@ -25,9 +23,9 @@ module.exports = function(app){
 		users.create(req, res);
 	})
 
-	// app.get('/getUsers', function (req, res){
-	// 	users.index(req, res);
-	// })
+	app.get('/getUsers', function (req, res){
+		users.index(req, res);
+	})
 
 	app.post('/login', function (req, res){
 		users.login(req, res);
@@ -65,10 +63,6 @@ module.exports = function(app){
 	app.post('/wishlist/delete/:wid/:uid', restrict, function (req, res){
 		wishlist.delete(req, res)
 	})
-
-	app.get('*', function(req, res){
-  	res.sendFile(path.join(__dirname,'../../client','404.html'));
-	});
 
 	function restrict(req, res, next) {
 		console.log("In restrict function:", req.session)
