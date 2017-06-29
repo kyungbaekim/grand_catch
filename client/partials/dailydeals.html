@@ -35,7 +35,8 @@
             <div style="height: 50px;">
               <form>
                 <input type="hidden" name="keywords" ng-init="keywords = deal.keywords" ng-model="search.keywords">
-          			<a href="#/search/{{ keywords }}"><button type="submit" class="single_add_to_cart_button">Search for similar products</button></a>
+                <!-- <a href="#/search/{{ keywords }}"><button type="submit" class="single_add_to_cart_button">Search for similar products</button></a> -->
+          			<a href="{{ dealDetail.ViewItemURLForNaturalSearch }}" target="_blank"><button class="single_add_to_cart_button">Buy</button></a>
               </form>
             </div>
           </div>

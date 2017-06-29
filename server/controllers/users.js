@@ -20,14 +20,14 @@ module.exports = {
         console.log(err);
       }
       else{
-				console.log(users);
+				// console.log('in users controller', users);
         res.json(users);
       }
     })
   },
 
 	create: function (req, res){
-		console.log('req.body', req.body)
+		// console.log('req.body', req.body)
 		var fname = sanitize(req.body.fname);
 		var lname = sanitize(req.body.lname);
 		var email = sanitize(req.body.email);
@@ -59,7 +59,7 @@ module.exports = {
 								email: user.email,
 								password: user.password
 							}, secret, { expiresIn: 60 * 60 * 12 });
-							console.log({token: token})
+							// console.log({token: token})
 							//user saved successfully, set session info
 							req.session.info = {
 								id: user._id,
@@ -257,7 +257,7 @@ module.exports = {
   },
 
 	getSession: function(req, res){
-		console.log(req.session);
+		console.log('get current session in server',req.session);
 		if(req.session.info){
 			res.json({sessionID: req.session.id, loggedIn: true, user: req.session.info})
 		}

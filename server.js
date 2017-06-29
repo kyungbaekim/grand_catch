@@ -39,6 +39,7 @@ app.use(session({
 require("./server/config/mongoose.js");
 require("./server/config/routes.js")(app);
 
+
 // app.use(morgan('dev'));
 app.use(proxy.initialize({
   proxy: {

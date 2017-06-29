@@ -128,79 +128,79 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-			<div class="tab-menu">
-			<!-- Nav tabs -->
-			<ul class="nav nav-tabs">
-			<li ng-class="{active: main.eactive.tab == 'e_home_graden'}" class='first-item'>
-			<a ng-click="main.eactive.tab = 'e_home_garden'">HOME & APPLIANCES</a>
-			</li>
-			<li ng-class="{active: main.eactive.tab == 'e_baby'}">
-			<a ng-click="main.eactive.tab = 'e_baby'">BABY</a>
-			</li>
-			<li ng-class="{active: main.eactive.tab == 'e_phones_accessories'}">
-			<a ng-click="main.eactive.tab = 'e_phones_accessories'">CELL PHONES & ACCESSORIES</a>
-			</li>
-			<li ng-class="{active: main.eactive.tab == 'e_fashion'}">
-			<a ng-click="main.eactive.tab = 'e_fashion'">CLOTHING, SHOES & ACCESSORIES</a>
-			</li>
-			<li ng-class="{active: main.eactive.tab == 'e_computers'}">
-			<a ng-click="main.eactive.tab = 'e_computers'">COMPUTERS</a>
-			</li>
-			<li ng-class="{active: main.eactive.tab == 'e_electronics'}">
-			<a ng-click="main.eactive.tab = 'e_electronics'">ELECTRONICS</a>
-			</li>
-			<li ng-class="{active: main.eactive.tab == 'e_health_beauty'}">
-			<a ng-click="main.eactive.tab = 'e_health_beauty'">HEALTH & BEAUTY</a>
-			</li>
-			<li ng-class="{active: main.eactive.tab == 'e_jewelry_watches'}">
-			<a ng-click="main.eactive.tab = 'e_jewelry_watches'">JEWELRY & WATCHES</a>
-			</li>
-			<li ng-class="{active: main.eactive.tab == 'e_sporting_goods'}">
-			<a ng-click="main.eactive.tab = 'e_sporting_goods'">SPORTING GOODS</a>
-			</li>
-			<li ng-class="{active: main.eactive.tab == 'e_toys_hobbies'}">
-			<a ng-click="main.eactive.tab = 'e_toys_hobbies'">TOYS & HOBBIES</a>
-			</li>
-			</ul>
-			</div>
-			</div>
-			</div>
-			<div class="row">
-			<div class="product-list tab-content">
-			<div ng-switch='main.eactive.tab'>
-			<div ng-switch-default='e_home_garden'>
-			<ng-include src='"partials/popularEbayItem.html"' ng-init="department = 'e_home_garden'"></ng-include>
-			</div>
-			<div ng-switch-when='e_home_garden'>
-			<ng-include src='"partials/popularEbayItem.html"' ng-init="department = 'e_home_garden'"></ng-include>
-			</div>
-			<div ng-switch-when='e_baby'>
-			<ng-include src='"partials/popularEbayItem.html"' ng-init="department = 'e_baby'"></ng-include>
-			</div>
-			<div ng-switch-when='e_phones_accessories'>
-			<ng-include src='"partials/popularEbayItem.html"' ng-init="department = 'e_phones_accessories'"></ng-include>
-			</div>
-			<div ng-switch-when='e_fashion'>
-			<ng-include src='"partials/popularEbayItem.html"' ng-init="department = 'e_fashion'"></ng-include>
-			</div>
-			<div ng-switch-when='e_computers'>
-			<ng-include src='"partials/popularEbayItem.html"' ng-init="department = 'e_computers'"></ng-include>
-			</div>
-			<div ng-switch-when='e_electronics'>
-			<ng-include src='"partials/popularEbayItem.html"' ng-init="department = 'e_electronics'"></ng-include>
-			</div>
-			<div ng-switch-when='e_health_beauty'>
-			<ng-include src='"partials/popularEbayItem.html"' ng-init="department = 'e_health_beauty'"></ng-include>
-			</div>
-			<div ng-switch-when='e_jewelry_watches'>
-			<ng-include src='"partials/popularEbayItem.html"' ng-init="department = 'e_jewelry_watches'"></ng-include>
-			</div>
-			<div ng-switch-when='e_sporting_goods'>
-			<ng-include src='"partials/popularEbayItem.html"' ng-init="department = 'e_sporting_goods'"></ng-include>
-			</div>
-			<div ng-switch-when='e_toys_hobbies'>
-			<ng-include src='"partials/popularEbayItem.html"' ng-init="department = 'e_toys_hobbies'"></ng-include>
-			</div>
+				<div class="tab-menu">
+					<!-- Nav tabs -->
+					<!-- <ul class="nav nav-tabs">
+						<li ng-class="{active: main.eactive.tab == 'e_home_graden'}" class='first-item'>
+							<a ng-click="main.eactive.tab = 'e_home_garden'">HOME & APPLIANCES</a>
+						</li>
+						<li ng-class="{active: main.eactive.tab == 'e_baby'}">
+							<a ng-click="main.eactive.tab = 'e_baby'">BABY</a>
+						</li>
+						<li ng-class="{active: main.eactive.tab == 'e_phones_accessories'}">
+							<a ng-click="main.eactive.tab = 'e_phones_accessories'">CELL PHONES & ACCESSORIES</a>
+						</li>
+						<li ng-class="{active: main.eactive.tab == 'e_fashion'}">
+							<a ng-click="main.eactive.tab = 'e_fashion'">CLOTHING, SHOES & ACCESSORIES</a>
+						</li>
+						<li ng-class="{active: main.eactive.tab == 'e_computers'}">
+							<a ng-click="main.eactive.tab = 'e_computers'">COMPUTERS</a>
+						</li>
+						<li ng-class="{active: main.eactive.tab == 'e_electronics'}">
+							<a ng-click="main.eactive.tab = 'e_electronics'">ELECTRONICS</a>
+						</li>
+						<li ng-class="{active: main.eactive.tab == 'e_health_beauty'}">
+							<a ng-click="main.eactive.tab = 'e_health_beauty'">HEALTH & BEAUTY</a>
+						</li>
+						<li ng-class="{active: main.eactive.tab == 'e_jewelry_watches'}">
+							<a ng-click="main.eactive.tab = 'e_jewelry_watches'">JEWELRY & WATCHES</a>
+						</li>
+						<li ng-class="{active: main.eactive.tab == 'e_sporting_goods'}">
+							<a ng-click="main.eactive.tab = 'e_sporting_goods'">SPORTING GOODS</a>
+						</li>
+						<li ng-class="{active: main.eactive.tab == 'e_toys_hobbies'}">
+							<a ng-click="main.eactive.tab = 'e_toys_hobbies'">TOYS & HOBBIES</a>
+						</li>
+					</ul> -->
+				</div>
 			</div>
 		</div>
-	</div>
+		<div class="row">
+			<!-- <div class="product-list tab-content"> -->
+				<div ng-switch='main.eactive.tab'>
+					<div ng-switch-default='e_home_garden'>
+						<ng-include src='"partials/popularEbayItem.html"' ng-init="department = 'e_home_garden'"></ng-include>
+					</div>
+					<div ng-switch-when='e_home_garden'>
+						<ng-include src='"partials/popularEbayItem.html"' ng-init="department = 'e_home_garden'"></ng-include>
+					</div>
+					<div ng-switch-when='e_baby'>
+						<ng-include src='"partials/popularEbayItem.html"' ng-init="department = 'e_baby'"></ng-include>
+					</div>
+					<div ng-switch-when='e_phones_accessories'>
+						<ng-include src='"partials/popularEbayItem.html"' ng-init="department = 'e_phones_accessories'"></ng-include>
+					</div>
+					<div ng-switch-when='e_fashion'>
+						<ng-include src='"partials/popularEbayItem.html"' ng-init="department = 'e_fashion'"></ng-include>
+					</div>
+					<div ng-switch-when='e_computers'>
+						<ng-include src='"partials/popularEbayItem.html"' ng-init="department = 'e_computers'"></ng-include>
+					</div>
+					<div ng-switch-when='e_electronics'>
+						<ng-include src='"partials/popularEbayItem.html"' ng-init="department = 'e_electronics'"></ng-include>
+					</div>
+					<div ng-switch-when='e_health_beauty'>
+						<ng-include src='"partials/popularEbayItem.html"' ng-init="department = 'e_health_beauty'"></ng-include>
+					</div>
+					<div ng-switch-when='e_jewelry_watches'>
+						<ng-include src='"partials/popularEbayItem.html"' ng-init="department = 'e_jewelry_watches'"></ng-include>
+					</div>
+					<div ng-switch-when='e_sporting_goods'>
+						<ng-include src='"partials/popularEbayItem.html"' ng-init="department = 'e_sporting_goods'"></ng-include>
+					</div>
+					<div ng-switch-when='e_toys_hobbies'>
+						<ng-include src='"partials/popularEbayItem.html"' ng-init="department = 'e_toys_hobbies'"></ng-include>
+					</div>
+				</div>
+			</div>
+		</div>

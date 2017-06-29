@@ -25,9 +25,10 @@
               <span ng-if='itemDetail.Offers.Offer.OfferListing.IsEligibleForPrime == "1"'><img style="vertical-align: bottom; margin-bottom: -5px; width: 55px; height: auto;" src="images/amazonPrime1.png"></span>
             </div>
             <div class="similarItems">
+              <a href="{{ item.DetailPageURL }}" target="_blank"><button class="single_add_to_cart_button buy_item">Buy</button></a>
               <form>
-                <input type="hidden" name="keywords" ng-init="keywords = item.keywords" ng-model="search.keywords">
-                <a href="#/search/{{ keywords }}"><button type="submit" class="single_add_to_cart_button">Search for similar products</button></a>
+                <!-- <input type="hidden" name="keywords" ng-init="keywords = item.keywords" ng-model="search.keywords"> -->
+                <!-- <a href="#/search/{{ keywords }}"><button type="submit" class="single_add_to_cart_button">Search for similar products</button></a> -->
               </form>
             </div>
           </div>
