@@ -1754,11 +1754,12 @@ p.form-row-phone {
   margin-right: 10px;
 }
 .shop-single-product-area .single-banner {
-  float: left;
+  /*float: left;*/
+  margin: 0 auto;
   margin-top: 20px;
 }
 .shop-single-product-area .single-banner:last-child {
-  margin-right: 0;
+  /*margin-right: 0;*/
 }
 .left-item img {
   width: 100%;

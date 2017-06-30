@@ -95,7 +95,7 @@ module.exports = {
 	},
 
 	topSellers: function(req, res){
-		console.log('in topSellers', req.params.department);
+		// console.log('in topSellers', req.params.department);
 		var option = {BrowseNodeId: "All", ResponseGroup:"TopSellers"}
 		prodAdv.call("BrowseNodeLookup", {BrowseNodeId: req.params.department, ResponseGroup:"TopSellers"}, function(err, result) {
 			res.json({result: result})
@@ -103,7 +103,7 @@ module.exports = {
 	},
 
 	itemLookUp: function(req, res){
-		console.log('in itemLookup', req.params.asin);
+		// console.log('in itemLookup', req.params.asin);
 		prodAdv.call("ItemLookup", {ItemId: req.params.asin, ResponseGroup:"Images,ItemAttributes,Offers,OfferFull,Reviews"}, function(err, result) {
 			res.json({result: result})
 		})
