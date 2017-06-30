@@ -474,11 +474,11 @@ body {
 }
 
 .single-banner {
-  min-width: 270px;
+  min-width: 260px;
 }
 
 .single-banner:hover {
-  box-shadow: 0 0 10px #d4d4d4;
+  /*box-shadow: 0 0 10px #d4d4d4;*/
 }
 .online-banner-area .banner-bottom {
   padding: 20px 0;

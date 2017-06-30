@@ -43,6 +43,10 @@ img#logo{
   }
 }
 
+div.product-wrapper {
+  /*position: relative;*/
+}
+
 
 div.quickview{
   position: absolute;
