@@ -81,8 +81,13 @@ padding: 0
 	color:#353535;
 }
 body {
-    
+    color: #444444;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    background: #ffffff;
+    font-size: 14px;
 }
+
 ::selection {
     background: #b3d4fc;
     text-shadow: none;
