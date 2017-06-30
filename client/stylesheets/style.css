@@ -109,7 +109,7 @@ div.searchBar input{
   border-top-left-radius: 30px;
 /*  color: #444444;*/
   height: 50px;
-  line-height: 50px;
+  /*line-height: 50px;*/
   padding-left: 20px;
   position: relative;
   width: 40%;
