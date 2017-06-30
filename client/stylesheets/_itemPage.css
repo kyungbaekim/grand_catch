@@ -1,4 +1,4 @@
-.navbar .navbar-form{
+.navbar .navbar-form {
     padding: 0 15px;
     border: 0;
     -webkit-box-shadow: none;
@@ -20,17 +20,21 @@ img#logo{
      height: auto;
   }
   input[type="text"]#search_keywords::-webkit-input-placeholder {
-    padding-top: 0;
+    /*padding-top: 0;*/
+    text-decoration: none;
     font-size: 12px;
   }
   input[type="text"]#search_keywords::-moz-placeholder { /* Firefox 19+ */
-    padding-top: 0;
+    /*padding-top: 0;*/
+    text-decoration: none;
   }
   input[type="text"]#search_keywords:-ms-input-placeholder { /* IE 10+ */
-    padding-top: 0;
+    /*padding-top: 0;*/
+    text-decoration: none;
     }
   input[type="text"]#search_keywords:-moz-placeholder { /* Firefox 18- */
-    padding-top: 0;
+    /*padding-top: 0;*/
+    text-decoration: none;
   }
 }
 
