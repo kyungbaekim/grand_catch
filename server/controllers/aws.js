@@ -1,4 +1,5 @@
 var aws = require("aws-lib");
+//IAM prodcut api user
 var amazon_access_key = 'AKIAINYRXIGXBX4UOP6A'
 var amazon_secret_key = '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'
 var amazon_associate_id = 'grandcatch-20'

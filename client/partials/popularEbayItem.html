@@ -23,10 +23,11 @@
               <span class='priceSize'>Price: ${{ eItem.buyItNowPrice['__value__'] | number:2 }}</span>
             </div>
             <div class="similarItems">
-              <form>
+              <a href='{{ eItem.viewItemURL }}' target="_blank"><button class="single_add_to_cart_button top-buy-item">Buy</button></a>
+              <!-- <form>
                 <input type="hidden" name="keywords" ng-init="keywords = eItem.keywords" ng-model="search.keywords">
           			<a href="#/search/{{ keywords }}"><button type="submit" class="single_add_to_cart_button">Search for similar products</button></a>
-              </form>
+              </form> -->
             </div>
           </div>
         </div>

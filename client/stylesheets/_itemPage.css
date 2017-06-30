@@ -75,3 +75,8 @@ button.buyItem {
   margin: 10px 0;
   padding-bottom: 2px;
 }
+
+.top-buy-item {
+  width: 80%;
+  float: none !important;
+}
