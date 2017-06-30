@@ -472,6 +472,11 @@ body {
 .mainmenu nav ul#nav li:first-child {
   margin: 0;
 }
+
+.single-banner {
+  min-width: 270px;
+}
+
 .single-banner:hover {
   box-shadow: 0 0 10px #d4d4d4;
 }
