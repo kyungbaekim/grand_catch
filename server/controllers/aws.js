@@ -1,10 +1,10 @@
 var aws = require("aws-lib");
 //IAM prodcut api user
-var amazon_access_key = 'AKIAINYRXIGXBX4UOP6A'
-var amazon_secret_key = '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'
-var amazon_associate_id = 'grandcatch-20'
+var k1 = '00AKIAINYRXIGXBX4UOP6A00'
+var s1 = '00i3v82lczYGjwq1ZcS9yaeLJd3Ngx14Goh90CwbMr00'
+var aa_id = 'grandcatch-20'
 var searchedItem = "";
-var prodAdv = aws.createProdAdvClient(amazon_access_key, amazon_secret_key, amazon_associate_id);
+var prodAdv = aws.createProdAdvClient(k1.slice(2,k1.length-2), s1.slice(2,s1.length-2), aa_id);
 
 async = require("async");
 
