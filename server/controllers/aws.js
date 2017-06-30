@@ -1,6 +1,6 @@
 var aws = require("aws-lib");
-var amazon_access_key = 'AKIAJER7N2BECLSEVK2Q'
-var amazon_secret_key = '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'
+var amazon_access_key = 'AKIAJP5IK3JQRGS7FBIA'
+var amazon_secret_key = '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'
 var amazon_associate_id = 'grandcatch-20'
 var searchedItem = "";
 var prodAdv = aws.createProdAdvClient(amazon_access_key, amazon_secret_key, amazon_associate_id);
