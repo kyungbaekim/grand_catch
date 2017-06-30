@@ -9,12 +9,12 @@ myAppModule.controller('usersController', function ($scope, $rootScope, userFact
 
 	userFactory.getSession(function(data){
 		$rootScope.sessionUser = data;
-		console.log(data)
+		// console.log(data)
 	});
 
-	userFactory.getAllUser(function(data){
-		console.log("All users:", data);
-	})
+	// userFactory.getAllUser(function(data){
+	// 	console.log("All users:", data);
+	// })
 
 	$scope.searchKey = function(){
 		console.log("Searched keyword:", $scope.search.keywords)
@@ -52,9 +52,9 @@ myAppModule.controller('usersController', function ($scope, $rootScope, userFact
     modalInstance.result.then(function (data) {
 			// console.log(data)
 			userFactory.getSession(function(data){
-				console.log("User data returned: ", data)
+				// console.log("User data returned: ", data)
 				$rootScope.sessionUser = data;
-				console.log('current sessionUser', $rootScope.sessionUser)
+				// console.log('current sessionUser', $rootScope.sessionUser)
 				Idle.watch();
 				$scope.started = true;
 			});

@@ -20,14 +20,14 @@ module.exports = {
         console.log(err);
       }
       else{
-				console.log(users);
+				// console.log(users);
         res.json(users);
       }
     })
   },
 
 	create: function (req, res){
-		console.log('req.body', req.body)
+		// console.log('req.body', req.body)
 		var fname = sanitize(req.body.fname);
 		var lname = sanitize(req.body.lname);
 		var email = sanitize(req.body.email);
@@ -59,7 +59,7 @@ module.exports = {
 								email: user.email,
 								password: user.password
 							}, secret, { expiresIn: 60 * 60 * 12 });
-							console.log({token: token})
+							// console.log({token: token})
 							//user saved successfully, set session info
 							req.session.info = {
 								id: user._id,
@@ -127,7 +127,7 @@ module.exports = {
 	},
 
 	forgot: function (req,res,next){
-		console.log('forgot body', req.body);
+		// console.log('forgot body', req.body);
 			asyncJS.waterfall([
 	    function(done) {
 	      crypto.randomBytes(5, function(err, buf) {
