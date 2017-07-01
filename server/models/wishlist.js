@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 
+//belongs to Users
 var WishlistSchema = new mongoose.Schema({
   _user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   product_detail: [{}]

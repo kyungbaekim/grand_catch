@@ -25,7 +25,7 @@ myAppModule.controller('wishlistController', function ($scope, userFactory, wish
   });
 
   wishlistFactory.getUserWishlist($routeParams.user_id, function (data){
-    console.log(data)
+    // console.log(data)
     $rootScope.wishlist = data
     for(var i=0; i<$rootScope.wishlist.length; i++){
       if($rootScope.wishlist[i].product_detail[0].Title != undefined){

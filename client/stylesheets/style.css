@@ -294,3 +294,60 @@ h2.sidebar-title{
     padding: 10px 0 40px 0;
   }
 }
+
+/* Preloader */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f8f8f8;
+  z-index: 999999; }
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  box-sizing: border-box;
+  position: absolute;
+  top: 45%;
+  left: 48%; }
+
+.spinner-round:before {
+  border-radius: 50%;
+  content: " ";
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  box-sizing: border-box;
+  border-top: solid 4px #ccc;
+  border-right: solid 4px #ccc;
+  border-bottom: solid 4px #ccc;
+  border-left: solid 4px #ccc;
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+.spinner-round:after {
+  border-radius: 50%;
+  content: " ";
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  box-sizing: border-box;
+  border-top: solid 4px #32b5f3;
+  border-right: solid 4px transparent;
+  border-bottom: solid 4px transparent;
+  border-left: solid 4px transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: spinner-round-animate 1s ease-in-out infinite; }
+
+@keyframes spinner-round-animate {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
+/* End Preloader */
