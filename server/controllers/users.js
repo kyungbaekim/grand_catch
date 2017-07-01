@@ -200,7 +200,7 @@ module.exports = {
 				token = jwt.sign({
 					email: user.email
 				}, secret, { expiresIn: 60 * 60 * 12 });
-				console.log({token: token})
+				// console.log({token: token})
 				// password matched, set session info
 				req.session.info = {
 					id: user._id,
