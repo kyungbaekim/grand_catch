@@ -1,8 +1,9 @@
 var aws = require("aws-lib");
 //IAM prodcut api user
+
 var aa_id = 'grandcatch-20'
 var searchedItem = "";
-//var prodAdv = aws.createProdAdvClient(k1.slice(2,k1.length-2), s1.slice(2,s1.length-2), aa_id);
+var prodAdv = aws.createProdAdvClient(k1.slice(2,k1.length-2), s1.slice(2,s1.length-2), aa_id);
 
 async = require("async");
 

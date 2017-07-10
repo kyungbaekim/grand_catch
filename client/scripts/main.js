@@ -177,7 +177,7 @@ Blog list owl active
 /*---------------------
 	venobox
 --------------------- */
-    // $('.venobox').venobox();
+    $('.venobox').venobox();
 
 
 /*----------------------------

@@ -21,8 +21,8 @@ myAppModule.config(function ($routeProvider, $locationProvider) {
 		redirectTo: '/'
 	});
 
-	$locationProvider.html5Mode(true);
-  $locationProvider.hashPrefix('!');
+	// $locationProvider.html5Mode(true);
+  // $locationProvider.hashPrefix('!');
 });
 
 myAppModule.config(['$httpProvider', function($httpProvider) {

@@ -24,7 +24,7 @@ app.use('/components', express.static(__dirname + '/node_modules')); // redirect
 app.use('/fonts', express.static(__dirname + '/node_modules/bootstrap/fonts')); // redirect ui bootstrap
 app.use('/pattern', express.static(__dirname + '/node_modules/url-pattern/lib')); // redirect url pattern
 
-app.use(require('prerender-node').set('prerenderToken', 'd9SjGci7gNqSbe9DPjmK'));
+app.use(require('prerender-node'));
 app.use(cookieParser());
 app.use(flash());
 app.use(session({
