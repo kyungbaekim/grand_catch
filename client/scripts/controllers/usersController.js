@@ -96,7 +96,7 @@ myAppModule.controller('usersController', function ($scope, $rootScope, userFact
 
 	$scope.login = function () {
 		$scope.message = "Login Button Clicked";
-		console.log($scope.message);
+		//console.log($scope.message);
 
 		var modalInstance = $uibModal.open({
 			templateUrl: 'partials/login.html',
@@ -112,12 +112,12 @@ myAppModule.controller('usersController', function ($scope, $rootScope, userFact
 			// console.log(data)
 			userFactory.getSession(function(data){
 				$rootScope.sessionUser = data;
-				console.log('current sessionUser', $rootScope.sessionUser)
+			//console.log('current sessionUser', $rootScope.sessionUser)
 				Idle.watch();
 				$scope.started = true;
 			});
 		}, function () {
-			console.log('Modal dismissed at: ' + new Date());
+			//console.log('Modal dismissed at: ' + new Date());
 		});
 	}
 
@@ -145,14 +145,14 @@ myAppModule.controller('usersController', function ($scope, $rootScope, userFact
 			//close previous modal
 			$uibModalStack.dismissAll('closed');
 			$scope.message = "Forgot Button Clicked";
-			console.log($scope.message);
+			//console.log($scope.message);
 
 			var modalInstance = $uibModal.open({
 				templateUrl: 'partials/forgotPW.html',
 				controller: ForgotModalInstanceCtrl
 			});
 			modalInstance.result.then(function (data) {
-				console.log(data)
+				//console.log(data)
 				userFactory.getSession(function(data){
 					$rootScope.sessionUser = data;
 					console.log('current sessionUser', $rootScope.sessionUser)

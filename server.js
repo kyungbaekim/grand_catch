@@ -1,5 +1,6 @@
 var path = require("path");
 var bodyParser= require("body-parser");
+//express logger
 var morgan = require('morgan');
 var proxy = require('json-proxy/lib/proxy');
 var cookieParser = require('cookie-parser');
@@ -7,9 +8,12 @@ var nodemailer = require('nodemailer');
 var asyncJS = require('async');
 var crypto = require('crypto');
 var session = require('express-session');
+//use mongoDB to store server side session for production env
+var MongoStore = require('connect-mongo')(session);
 var flash = require('connect-flash');
 var expressJwt = require('express-jwt');
 var express = require("express");
+
 var app = express();
 
 app.use(bodyParser.json({limit: '1mb'}));
@@ -33,13 +37,17 @@ app.use(session({
   saveUninitialized: true,
   httpOnly: true,
   secure: true,
-  ephemeral: true
+  ephemeral: true,
+  store: new MongoStore({
+    url: 'mongodb://localhost/grandcatch'
+  })
 }));
 
-require("./server/config/mongoose.js");
-require("./server/config/routes.js")(app);
+var mongoosedb = require("./server/config/mongoose.js");
+var routes = require("./server/config/routes.js");
+routes(app);
 
-// app.use(morgan('dev'));
+app.use(morgan('dev'));
 app.use(proxy.initialize({
   proxy: {
     'forward': {
